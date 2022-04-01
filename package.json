@@ -1,0 +1,15 @@
+{
+  "name": "tips",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:csDeng/tips.git",
+  "author": "CSJerry <553537528@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.37"
+  },
+  "scripts": {
+    "dev": "yarn vuepress dev docs",
+    "build": "yarn vuepress build docs"
+  }
+}
