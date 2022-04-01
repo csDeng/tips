@@ -1,5 +1,7 @@
 #! /bin/bash
-currentDate = "`date + %Y-%m-%d`"
+cur_date=`date '+%Y-%m-%d'`
+
 git add .
-git commit -m "$currentDate"
+git commit -m "$cur_date"
 git push
+sleep 2
