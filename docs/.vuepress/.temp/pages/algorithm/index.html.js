@@ -20,8 +20,14 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1648830018000,
+    "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 2
+      }
+    ]
   },
   "filePathRelative": "algorithm/README.md"
 }

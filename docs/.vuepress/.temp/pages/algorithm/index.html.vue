@@ -27,7 +27,7 @@
 </ul>
 <h2 id="april" tabindex="-1"><a class="header-anchor" href="#april" aria-hidden="true">#</a> April</h2>
 <ul>
-<li><RouterLink to="/algorithm/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html">基本数据结构</RouterLink></li>
+<li><RouterLink to="/algorithm/basic_struct.html">基本数据结构</RouterLink></li>
 <li><RouterLink to="/algorithm/sort.html">排序算法</RouterLink></li>
 </ul>
 <h2 id="may" tabindex="-1"><a class="header-anchor" href="#may" aria-hidden="true">#</a> May</h2>

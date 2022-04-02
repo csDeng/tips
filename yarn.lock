@@ -255,7 +255,7 @@
     vue "^3.2.31"
     vue-router "^4.0.14"
 
-"@vuepress/plugin-back-to-top@2.0.0-beta.37":
+"@vuepress/plugin-back-to-top@2.0.0-beta.37", "@vuepress/plugin-back-to-top@^2.0.0-beta.37":
   version "2.0.0-beta.37"
   resolved "https://mirrors.tencent.com/npm/@vuepress%2fplugin-back-to-top/-/plugin-back-to-top-2.0.0-beta.37.tgz#0423444226102d0c7558bb17d67de2779926db78"
   integrity sha512-4CKomH4WgfNC5+tvI7zM+dhHLkqiHUfjE6R+jRI98xIsYCKz+7EooiLl2rIO2ywgzDJi2i+U+MyqvH6DADTEbg==
@@ -265,7 +265,7 @@
     ts-debounce "^4.0.0"
     vue "^3.2.31"
 
-"@vuepress/plugin-container@2.0.0-beta.37":
+"@vuepress/plugin-container@2.0.0-beta.37", "@vuepress/plugin-container@^2.0.0-beta.37":
   version "2.0.0-beta.37"
   resolved "https://mirrors.tencent.com/npm/@vuepress%2fplugin-container/-/plugin-container-2.0.0-beta.37.tgz#da6b7214751cd5ae9c85a7d6809d5a22c792936c"
   integrity sha512-bukHQfYP3UYA1K3P+jiqpVC8QNdRPMJ3C+cr4CVENsdLA2MhrXTzVFX4xN53VKuZBHb34noQzmON2q6OkfUd1g==

@@ -6,6 +6,8 @@
   "author": "CSJerry <553537528@qq.com>",
   "license": "MIT",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^2.0.0-beta.37",
+    "@vuepress/plugin-container": "^2.0.0-beta.37",
     "vuepress": "^2.0.0-beta.37"
   },
   "scripts": {

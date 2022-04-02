@@ -88,8 +88,14 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1648829257000,
+    "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 1
+      }
+    ]
   },
   "filePathRelative": "algorithm/sort.md"
 }
