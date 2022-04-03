@@ -2,7 +2,7 @@
 <h2 id="_1-什么是排序" tabindex="-1"><a class="header-anchor" href="#_1-什么是排序" aria-hidden="true">#</a> 1. 什么是排序</h2>
 <p><img src="@source/algorithm/pics/image-20210610162855798.png" alt="image-20210610162855798"></p>
 <p><img src="@source/algorithm/pics/image-20210610160552752.png" alt="image-20210610160552752"></p>
-<center><font color='red'>以下部分动图来自[CSDN](https://blog.csdn.net/king9666/article/details/87433486)</font></center>
+<p>以下部分动图来自<a href="https://blog.csdn.net/king9666/article/details/87433486" target="_blank" rel="noopener noreferrer">CSDN<ExternalLinkIcon/></a></p>
 <h1 id="_1-冒泡" tabindex="-1"><a class="header-anchor" href="#_1-冒泡" aria-hidden="true">#</a> 1. 冒泡</h1>
 <ul>
 <li>一个一个往上冒</li>
@@ -173,9 +173,7 @@ using namespace std<span class="token punctuation">;</span>
 <p>希尔排序是把记录按下标的一定增量<code>分组</code>，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至<code>1</code>时，整个文件恰被分成一组，算法便终止。</p>
 </blockquote>
 <ul>
-<li>
-<font color='red'>重点：注意对每个子序列进行插入排序</font>
-</li>
+<li>重点：注意对每个子序列进行插入排序</li>
 </ul>
 <p><img src="@source/algorithm/pics/1024555-20161128110416068-1421707828.png" alt="img"></p>
 <details class="custom-container details"><summary>查看代码</summary>

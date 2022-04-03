@@ -14,7 +14,7 @@
 
 
 
-<center><font color='red'>以下部分动图来自[CSDN](https://blog.csdn.net/king9666/article/details/87433486)</font></center>
+以下部分动图来自[CSDN](https://blog.csdn.net/king9666/article/details/87433486)
 
 # 1. 冒泡
 
@@ -227,7 +227,7 @@ void z_sort(int a[], int len){
 
 > 希尔排序是把记录按下标的一定增量`分组`，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至`1`时，整个文件恰被分成一组，算法便终止。
 
-* <font color='red'>重点：注意对每个子序列进行插入排序</font>
+* 重点：注意对每个子序列进行插入排序
 
 ![img](./pics/1024555-20161128110416068-1421707828.png)
 

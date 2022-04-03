@@ -1,14 +1,11 @@
 FROM node
 
 WORKDIR /hello
+RUN npm build
 
-COPY package*.json ./
-COPY . .
-COPY ./server.js /app/server.js
-RUN npm install
-
-EXPOSE 8080
-CMD [ "npm","run","dev" ]
+FROM nginx
+COPY ./docs/.vuepress/dist/ /usr/share/nginx/html/
+EXPOSE 80
 
 
 

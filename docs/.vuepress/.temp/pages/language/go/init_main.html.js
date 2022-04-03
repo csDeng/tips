@@ -45,21 +45,14 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1648900736000,
+    "contributors": [
+      {
+        "name": "v_beckdeng",
+        "email": "v_beckdeng@tencent.com",
+        "commits": 1
+      }
+    ]
   },
   "filePathRelative": "language/go/init_main.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

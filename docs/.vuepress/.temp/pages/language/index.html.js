@@ -23,27 +23,19 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1648829257000,
+    "updatedTime": 1648900736000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
         "commits": 1
+      },
+      {
+        "name": "v_beckdeng",
+        "email": "v_beckdeng@tencent.com",
+        "commits": 1
       }
     ]
   },
   "filePathRelative": "language/README.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }
