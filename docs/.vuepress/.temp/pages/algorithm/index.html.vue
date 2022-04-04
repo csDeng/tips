@@ -1,5 +1,12 @@
 <template><h1 id="简介" tabindex="-1"><a class="header-anchor" href="#简介" aria-hidden="true">#</a> 简介</h1>
 <p>本页主要是我学习数据结构与算法的打卡点。</p>
+<div class="custom-container tip"><p class="custom-container-title">算法可视化网站</p>
+<ul>
+<li><a href="https://visualgo.net/zh" target="_blank" rel="noopener noreferrer">数据结构和算法动态可视化<ExternalLinkIcon/></a></li>
+<li><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank" rel="noopener noreferrer">数据结构可视化（全英文）<ExternalLinkIcon/></a></li>
+<li><a href="https://algorithm-visualizer.org/" target="_blank" rel="noopener noreferrer">算法可视化（有源码） <ExternalLinkIcon/></a></li>
+</ul>
+</div>
 <p>学习方向主要分以下几个阶段:</p>
 <ul>
 <li>

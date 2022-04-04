@@ -6,6 +6,13 @@
 
 本页主要是我学习数据结构与算法的打卡点。
 
+::: tip 算法可视化网站
+
+* [数据结构和算法动态可视化](https://visualgo.net/zh)   
+* [数据结构可视化（全英文）](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)   
+* [算法可视化（有源码） ](https://algorithm-visualizer.org/) 
+:::
+
 学习方向主要分以下几个阶段:
     
 * 基本数据结构

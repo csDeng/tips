@@ -4,7 +4,7 @@ const routeItems = [
   ["v-8daa1a0e","/",{"title":"首页"},["/index.html","/README.md"]],
   ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
   ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
-  ["v-4ffc68c2","/algorithm/sort.html",{"title":"概述"},["/algorithm/sort","/algorithm/sort.md"]],
+  ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
   ["v-2e25198a","/database/",{"title":"简介"},["/database/index.html","/database/README.md"]],
   ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
