@@ -23,12 +23,15 @@
 </details>
 </blockquote>
 <ul>
-<li>
-<p>不同包的<code>init</code>函数按照包导入的依赖关系决定该初始化函数的执行顺序</p>
-</li>
-<li>
-<p><code>init</code>函数不能被其他函数调用，而是在<code>main</code>函数执行之前，自动被调用</p>
-</li>
+<li>不同包的<code>init</code>函数按照包导入的依赖关系决定该初始化函数的执行顺序</li>
+</ul>
+<blockquote>
+<details class="custom-container details"><summary>测试结果</summary>
+<p><img src="@source/language/go/pics/init_main/diff_pkg_2022-04-05_02-16-08.png" alt="不同包的导入"></p>
+</details>
+</blockquote>
+<ul>
+<li><code>init</code>函数不能被其他函数调用，而是在<code>main</code>函数执行之前，自动被调用</li>
 </ul>
 <h2 id="main函数" tabindex="-1"><a class="header-anchor" href="#main函数" aria-hidden="true">#</a> main函数</h2>
 <p>Go语言程序的默认入口函数(主函数)：func main()
@@ -57,6 +60,9 @@
 <h2 id="init函数和main函数的异同" tabindex="-1"><a class="header-anchor" href="#init函数和main函数的异同" aria-hidden="true">#</a> init函数和main函数的异同</h2>
 <h3 id="相同点" tabindex="-1"><a class="header-anchor" href="#相同点" aria-hidden="true">#</a> 相同点：</h3>
 <p>两个函数在定义时不能有任何的参数和返回值，且Go程序自动调用。</p>
+<details class="custom-container details"><summary>vscode测试结果</summary>
+<p><img src="@source/language/go/pics/init_main/no_res_2022-04-05_02-24-45.png" alt="no_return"></p>
+</details>
 <h3 id="不同点" tabindex="-1"><a class="header-anchor" href="#不同点" aria-hidden="true">#</a> 不同点：</h3>
 <p><code>init</code>可以应用于任意包中，且可以重复定义多个。
 <code>main</code>函数只能用于<code>main</code>包中，且只能定义一个。</p>
