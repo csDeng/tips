@@ -9,6 +9,7 @@ const routeItems = [
   ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
   ["v-2d0aad32","/os/",{"title":"简介"},["/os/index.html","/os/README.md"]],
+  ["v-74fc0e94","/language/go/array_slice.html",{"title":"数组和切片"},["/language/go/array_slice","/language/go/array_slice.md"]],
   ["v-605ce91a","/language/go/init_main.html",{"title":"init函数与main函数"},["/language/go/init_main","/language/go/init_main.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]
