@@ -25,7 +25,8 @@ sidebar: false
 
 
 ### Go基础
-* [`init`与`main`函数](./go/init_main.md)
+1. [`init`与`main`函数](./go/init_main.md)
+2. [数组array与切片slice](./go/array_slice.md)
 
 
 

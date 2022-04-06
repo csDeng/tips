@@ -21,4 +21,6 @@ export const pagesComponents = {
   "v-605ce91a": defineAsyncComponent(() => import(/* webpackChunkName: "v-605ce91a" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/init_main.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/Github/tips/docs/.vuepress/.temp/pages/404.html.vue")),
+  // path: /language/go/array_slice.html
+  "v-74fc0e94": defineAsyncComponent(() => import(/* webpackChunkName: "v-74fc0e94" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.vue")),
 }

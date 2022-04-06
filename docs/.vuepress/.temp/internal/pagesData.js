@@ -19,4 +19,6 @@ export const pagesData = {
   "v-605ce91a": () => import(/* webpackChunkName: "v-605ce91a" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/init_main.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/Github/tips/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
+  // path: /language/go/array_slice.html
+  "v-74fc0e94": () => import(/* webpackChunkName: "v-74fc0e94" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.js").then(({ data }) => data),
 }

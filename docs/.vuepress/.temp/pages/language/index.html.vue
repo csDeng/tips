@@ -13,7 +13,8 @@
 <h2 id="go" tabindex="-1"><a class="header-anchor" href="#go" aria-hidden="true">#</a> Go</h2>
 <p>主要分基础</p>
 <h3 id="go基础" tabindex="-1"><a class="header-anchor" href="#go基础" aria-hidden="true">#</a> Go基础</h3>
-<ul>
+<ol>
 <li><RouterLink to="/language/go/init_main.html"><code>init</code>与<code>main</code>函数</RouterLink></li>
-</ul>
+<li><RouterLink to="/language/go/array_slice.html">数组array与切片slice</RouterLink></li>
+</ol>
 </template>

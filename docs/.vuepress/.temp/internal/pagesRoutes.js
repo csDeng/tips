@@ -11,6 +11,7 @@ const routeItems = [
   ["v-2d0aad32","/os/",{"title":"简介"},["/os/index.html","/os/README.md"]],
   ["v-605ce91a","/language/go/init_main.html",{"title":"init函数与main函数"},["/language/go/init_main","/language/go/init_main.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
+  ["v-74fc0e94","/language/go/array_slice.html",{"title":"数组和切片"},["/language/go/array_slice","/language/go/array_slice.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(
