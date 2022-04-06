@@ -1,3 +1,7 @@
+[[TOC]]
+
+
+
 # 数组和切片
 
 内容主要来自[数组Array - 地鼠文档 (topgoer.cn)](https://www.topgoer.cn/docs/golang/chapter03-9)，[切片Slice - 地鼠文档 (topgoer.cn)](https://www.topgoer.cn/docs/golang/chapter03-10)，辅以本人微微的更改。
@@ -477,19 +481,19 @@ func main() {
 输出结果：
 
 ```shell
-    全局变量：arr [0 1 2 3 4 5 6 7 8 9]
-    全局变量：slice0 [2 3 4 5 6 7]
-    全局变量：slice1 [0 1 2 3 4 5]
-    全局变量：slice2 [5 6 7 8 9]
-    全局变量：slice3 [0 1 2 3 4 5 6 7 8 9]
-    全局变量：slice4 [0 1 2 3 4 5 6 7 8]
-    -----------------------------------
-    局部变量： arr2 [9 8 7 6 5 4 3 2 1 0]
-    局部变量： slice5 [2 3 4 5 6 7]
-    局部变量： slice6 [0 1 2 3 4 5]
-    局部变量： slice7 [5 6 7 8 9]
-    局部变量： slice8 [0 1 2 3 4 5 6 7 8 9]
-    局部变量： slice9 [0 1 2 3 4 5 6 7 8]
+全局变量：arr [0 1 2 3 4 5 6 7 8 9]
+全局变量：slice0 [2 3 4 5 6 7]
+全局变量：slice1 [0 1 2 3 4 5]
+全局变量：slice2 [5 6 7 8 9]
+全局变量：slice3 [0 1 2 3 4 5 6 7 8 9]
+全局变量：slice4 [0 1 2 3 4 5 6 7 8]
+-----------------------------------
+局部变量： arr2 [9 8 7 6 5 4 3 2 1 0]
+局部变量： slice5 [2 3 4 5 6 7]
+局部变量： slice6 [0 1 2 3 4 5]
+局部变量： slice7 [5 6 7 8 9]
+局部变量： slice8 [0 1 2 3 4 5 6 7 8 9]
+局部变量： slice9 [0 1 2 3 4 5 6 7 8]
 ```
 
 :::
@@ -497,9 +501,9 @@ func main() {
 #### 通过make来创建
 
 ```go
-    var slice []type = make([]type, len)
-    slice  := make([]type, len)
-    slice  := make([]type, len, cap)
+var slice []type = make([]type, len)
+slice  := make([]type, len)
+slice  := make([]type, len, cap)
 ```
 
 ![null](./pics/array_slice/m_9066724e202fc1ae425d04d7fa1cd3ef_r.jpg)
@@ -730,7 +734,48 @@ if len(ss) == 0 {
 ```
 :::
 
+
+* slice遍历：
+
+:::details 查看代码
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+
+    data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+    slice := data[:]
+    for index, value := range slice {
+        fmt.Printf("index : %v , value : %v\n", index, value)
+    }
+
+}
+```
+
+输出结果：
+
+```
+index : 0 , value : 0
+index : 1 , value : 1
+index : 2 , value : 2
+index : 3 , value : 3
+index : 4 , value : 4
+index : 5 , value : 5
+index : 6 , value : 6
+index : 7 , value : 7
+index : 8 , value : 8
+index : 9 , value : 9
+```
+:::
+
 ### 改
+
+* 普通的改
+
 :::details 查看代码
 ```go
 package main
@@ -745,6 +790,38 @@ func main() {
 }
 
 ```
+:::
+
+
+
+* 切片resize（调整大小）
+
+:::details 查看代码
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    var a = []int{1, 3, 4, 5}
+    fmt.Printf("slice a : %v , len(a) : %v\n", a, len(a))
+    b := a[1:2]
+    fmt.Printf("slice b : %v , len(b) : %v\n", b, len(b))
+    c := b[0:3]
+    fmt.Printf("slice c : %v , len(c) : %v\n", c, len(c))
+}
+```
+
+输出结果：
+
+```
+slice a : [1 3 4 5] , len(a) : 4
+slice b : [3] , len(b) : 1
+slice c : [3 4 5] , len(c) : 3
+```
+
 :::
 
 ### 删
@@ -784,8 +861,9 @@ func main() {
 
 
 
-### 用append内置函数操作切片（切片追加）
+* 用append内置函数操作切片（切片追加）
 
+:::details 查看代码
 ```go
 package main
 
@@ -819,8 +897,11 @@ func main() {
     slice e : [1 2 3 4 5 6 7 8 9 10]
 ```
 
-append ：向 slice 尾部添加数据，返回新的 slice 对象。
+:::
 
+* append ：向 slice 尾部添加数据，返回新的 slice 对象。
+
+:::details 查看代码
 ```go
 package main
 
@@ -844,29 +925,36 @@ func main() {
 输出结果：
 
 ```
-    0xc42000a060
-    0xc42000a080
-    [] [1]
+0xc42000a060
+0xc42000a080
+[] [1]
 ```
+:::
 
-### 超出原 slice.cap 限制，就会重新分配底层数组，即便原数组并未填满。
+* 超出原 slice.cap 限制，就会重新分配底层数组，即便原数组并未填满。
 
+:::details 查看代码
 ```go
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
 
-    data := [...]int{0, 1, 2, 3, 4, 10: 0}
-    s := data[:2:3]
+	data := [...]int{0, 1, 2, 3, 4, 10: 0}
+	fmt.Println(data)
+	s := data[:2:3]
+	fmt.Printf("len(s) = %d, cap(s) = %d, s = %v \r\n", len(s), cap(s), s)
 
-    s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
+	s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
 
-    fmt.Println(s, data)         // 重新分配底层数组，与原数组无关。
-    fmt.Println(&s[0], &data[0]) // 比对底层数组起始指针。
+	fmt.Println(s, data)         // 重新分配底层数组，与原数组无关。
+	fmt.Println(&s[0], &data[0]) // 比对底层数组起始指针。
+	fmt.Printf("len(s) = %d, cap(s) = %d, s = %v \r\n", len(s), cap(s), s)
+
+}
 
 }
 ```
@@ -874,15 +962,22 @@ func main() {
 输出结果:
 
 ```
-    [0 1 100 200] [0 1 2 3 4 0 0 0 0 0 0]
-    0xc4200160f0 0xc420070060
+[0 1 2 3 4 0 0 0 0 0 0]
+len(s) = 2, cap(s) = 3, s = [0 1] 
+[0 1 100 200] [0 1 2 3 4 0 0 0 0 0 0]
+0xc00000a4b0 0xc00001e0c0
+len(s) = 4, cap(s) = 6, s = [0 1 100 200]
 ```
 
 从输出结果可以看出，append 后的 s 重新分配了底层数组，并复制数据。如果只追加一个值，则不会超过 s.cap 限制，也就不会重新分配。
-通常以 2 倍容量重新分配底层数组。在大批量添加数据时，建议一次性分配足够大的空间，以减少内存分配和数据复制开销。或初始化足够长的 len 属性，改用索引号进行操作。及时释放不再使用的 slice 对象，避免持有过期数组，造成 GC 无法回收。
+在大批量添加数据时，建议一次性分配足够大的空间，以减少内存分配和数据复制开销。或初始化足够长的 len 属性，改用索引号进行操作。及时释放不再使用的 slice 对象，避免持有过期数组，造成 GC 无法回收。
+:::
 
-### slice中cap重新分配规律：
 
+
+* slice中cap重新分配规律：
+
+:::details 查看代码
 ```go
 package main
 
@@ -909,16 +1004,19 @@ func main() {
 输出结果:
 
 ```
-    cap: 1 -> 2
-    cap: 2 -> 4
-    cap: 4 -> 8
-    cap: 8 -> 16
-    cap: 16 -> 32
-    cap: 32 -> 64
+cap: 1 -> 2
+cap: 2 -> 4
+cap: 4 -> 8
+cap: 8 -> 16
+cap: 16 -> 32
+cap: 32 -> 64
 ```
 
-### 切片拷贝
+:::
 
+* 切片拷贝
+
+:::details 查看代码
 ```go
 package main
 
@@ -948,16 +1046,18 @@ func main() {
 输出结果：
 
 ```
-    slice s1 : [1 2 3 4 5]
-    slice s2 : [0 0 0 0 0 0 0 0 0 0]
-    copied slice s1 : [1 2 3 4 5]
-    copied slice s2 : [1 2 3 4 5 0 0 0 0 0]
-    slice s3 : [1 2 3]
-    appended slice s3 : [1 2 3 1 2 3 4 5 0 0 0 0 0]
-    last slice s3 : [1 2 3 1 2 3 4 5 0 0 0 0 0 4 5 6]
+slice s1 : [1 2 3 4 5]
+slice s2 : [0 0 0 0 0 0 0 0 0 0]
+copied slice s1 : [1 2 3 4 5]
+copied slice s2 : [1 2 3 4 5 0 0 0 0 0]
+slice s3 : [1 2 3]
+appended slice s3 : [1 2 3 1 2 3 4 5 0 0 0 0 0]
+last slice s3 : [1 2 3 1 2 3 4 5 0 0 0 0 0 4 5 6]
 ```
+:::
 
-copy ：函数 copy 在两个 slice 间复制数据，复制长度以 len 小的为准。两个 slice 可指向同一底层数组，允许元素区间重叠。
+* copy ：函数 copy 在两个 slice 间复制数据，复制长度以 len 小的为准。两个 slice 可指向同一底层数组，允许元素区间重叠。
+:::details 查看代码
 
 ```go
 package main
@@ -985,86 +1085,25 @@ func main() {
 输出结果:
 
 ```
-    array data :  [0 1 2 3 4 5 6 7 8 9]
-    slice s1 : [8 9]
-    slice s2 : [0 1 2 3 4]
-    copied slice s1 : [8 9]
-    copied slice s2 : [8 9 2 3 4]
-    last array data :  [8 9 2 3 4 5 6 7 8 9]
+array data :  [0 1 2 3 4 5 6 7 8 9]
+slice s1 : [8 9]
+slice s2 : [0 1 2 3 4]
+copied slice s1 : [8 9]
+copied slice s2 : [8 9 2 3 4]
+last array data :  [8 9 2 3 4 5 6 7 8 9]
 ```
 
 应及时将所需数据 copy 到较小的 slice，以便释放超大号底层数组内存。
 
-### slice遍历：
+:::
 
-```go
-package main
-
-import (
-    "fmt"
-)
-
-func main() {
-
-    data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-    slice := data[:]
-    for index, value := range slice {
-        fmt.Printf("inde : %v , value : %v\n", index, value)
-    }
-
-}
-```
-
-输出结果：
-
-```
-    inde : 0 , value : 0
-    inde : 1 , value : 1
-    inde : 2 , value : 2
-    inde : 3 , value : 3
-    inde : 4 , value : 4
-    inde : 5 , value : 5
-    inde : 6 , value : 6
-    inde : 7 , value : 7
-    inde : 8 , value : 8
-    inde : 9 , value : 9
-```
-
-### 切片resize（调整大小）
-
-```go
-package main
-
-import (
-    "fmt"
-)
-
-func main() {
-    var a = []int{1, 3, 4, 5}
-    fmt.Printf("slice a : %v , len(a) : %v\n", a, len(a))
-    b := a[1:2]
-    fmt.Printf("slice b : %v , len(b) : %v\n", b, len(b))
-    c := b[0:3]
-    fmt.Printf("slice c : %v , len(c) : %v\n", c, len(c))
-}
-```
-
-输出结果：
-
-```
-    slice a : [1 3 4 5] , len(a) : 4
-    slice b : [3] , len(b) : 1
-    slice c : [3 4 5] , len(c) : 3
-```
-
-### 数组和切片的内存布局
-
-![null](pics/array_slice/m_f89941e7d776ce50cad36fd7ec89b97f_r.jpg)
+## 扩展
 
 ### 字符串和切片（string and slice）
 
 string底层就是一个byte的数组，因此，也可以进行切片操作。
 
+::: details 查看代码
 ```go
 package main
 
@@ -1085,13 +1124,14 @@ func main() {
 输出结果：
 
 ```
-    hello
-    world
+hello
+world
 ```
+:::
 
-string本身是不可变的，因此要改变string中字符。需要如下操作：
-英文字符串：
+string本身是不可变的，因此要改变string中间字符。需要先转化为`[]byte`切片再操作。
 
+::: details 查看代码
 ```go
 package main
 
@@ -1115,6 +1155,7 @@ func main() {
 ```
     Hello Go!
 ```
+:::
 
 ### 含有中文字符串：
 
@@ -1143,14 +1184,15 @@ func main() {
 你好，够浪！hello go
 ```
 
-golang slice data[:6:8] 两个冒号的理解
+### slice `data[:6:8]` 两个冒号的理解
 
-常规slice , data[6:8]，从第6位到第8位（返回6， 7），长度len为2， 最大可扩充长度cap为4（6-9）
+常规slice , `data[6:8]`，从第6位到第8位（返回6， 7），长度len为2， 最大可扩充长度cap为4（6-9）
 
-另一种写法： data[:6:8] 每个数字前都有个冒号， slice内容为data从0到第6位，长度len为6，最大扩充项cap设置为8
+另一种写法： `data[:6:8]` 每个数字前都有个冒号， slice内容为data从0到第6位，长度len为6，最大扩充项cap设置为8
 
-a[x:y:z] 切片内容 [x:y] 切片长度: y-x 切片容量:z-x
+`a[x:y:z]` 切片内容 `[x:y]` 切片长度:` y-x` 切片容量:`z-x`
 
+::: details 查看代码
 ```go
 package main
 
@@ -1167,8 +1209,46 @@ func main() {
 }
 ```
 
-数组or切片转字符串：
+输出结果
+```shell
+[6 7] 2 4
+[0 1 2 3 4 5] 6 8
+```
+:::
+
+### 数组or切片转字符串：
+
+:::details 查看代码
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	a := [...]int{1, 2, 3, 4, 5}
+	fmt.Println(a)
+	fmt.Println(strings.Trim(fmt.Sprint(a), "[]"))
+	fmt.Println(
+		// func strings.Replace(s string, old string, new string, n int) string
+		strings.Replace(
+			strings.Trim(fmt.Sprint(a), "[]"),
+			" ", "-", -1))
+}
 
 ```
-    strings.Replace(strings.Trim(fmt.Sprint(array_or_slice), "[]"), " ", ",", -1)
+
+输出
+```shell
+[1 2 3 4 5]
+1 2 3 4 5
+1-2-3-4-5
 ```
+:::
+
+
+## slice的源码
+
+[go/slice.go at master · golang/go (github.com)](https://github.com/golang/go/blob/master/src/runtime/slice.go)

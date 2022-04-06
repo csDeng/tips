@@ -1,6 +1,7 @@
 const  {
     themeConfig,
-    markdown
+    markdown,
+    plugins
 } = require('./config/index')
 
 
@@ -13,5 +14,6 @@ module.exports = {
     // 主题和它的配置
     theme: '@vuepress/theme-default',
     themeConfig:themeConfig,
-    markdown
+    markdown,
+    plugins
 }
