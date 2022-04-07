@@ -161,11 +161,79 @@ export const data = {
       "title": "slice的源码",
       "slug": "slice的源码",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "slice的底层实现",
+      "slug": "slice的底层实现",
+      "children": [
+        {
+          "level": 3,
+          "title": "切片和数组",
+          "slug": "切片和数组",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "切片的数据结构",
+          "slug": "切片的数据结构",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "创建切片",
+          "slug": "创建切片",
+          "children": [
+            {
+              "level": 4,
+              "title": "make 和切片字面量",
+              "slug": "make-和切片字面量",
+              "children": []
+            },
+            {
+              "level": 4,
+              "title": "nil 和空切片",
+              "slug": "nil-和空切片",
+              "children": []
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "title": "切片扩容",
+          "slug": "切片扩容",
+          "children": [
+            {
+              "level": 4,
+              "title": "扩容策略",
+              "slug": "扩容策略",
+              "children": []
+            },
+            {
+              "level": 4,
+              "title": "新数组 or 老数组 ？",
+              "slug": "新数组-or-老数组",
+              "children": []
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "title": "切片拷贝",
+          "slug": "切片拷贝",
+          "children": []
+        }
+      ]
     }
   ],
   "git": {
-    "updatedTime": 1649248083000,
+    "updatedTime": 1649262751000,
     "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 1
+      },
       {
         "name": "v_beckdeng",
         "email": "v_beckdeng@tencent.com",
