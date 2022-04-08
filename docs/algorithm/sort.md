@@ -237,7 +237,7 @@ for(int i=0; i<length-1; i++){
 
 ![img](./pics/1258817-20190420150936225-1441021270.gif)
 
-*  先来了解下堆的相关概念：
+::: details 先来了解下堆的相关概念：
 
 堆是具有以下性质的完全二叉树：
 
@@ -259,33 +259,59 @@ for(int i=0; i<length-1; i++){
 
 **小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]**  （大到小排序）
 
+:::
+
+:::details 堆的百度百科
+堆（heap）是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵树的数组对象。
+
+堆总是满足下列性质：
+
+* 堆中某个结点的值总是不大于或不小于其父结点的值；
+* 堆总是一棵完全二叉树。
+
+
+:::details 完全二叉树
+* 完全二叉树的特点：
+  - 叶子结点只能出现在最下层和次下层，且最下层的叶子结点集中在树的左部。
+
+需要注意的是，满二叉树肯定是完全二叉树，而完全二叉树不一定是满二叉树
+
+* 判断一棵树是否是完全二叉树的思路
+> 1>如果树为空，则直接返回错<br/>
+> 2>如果树不为空：层序遍历二叉树<br/>
+> 2.1>如果一个结点左右孩子都不为空，则pop该节点，将其左右孩子入队列；<br/>
+> 2.1>如果遇到一个结点，左孩子为空，右孩子不为空，则该树一定不是完全二叉树；<br/>
+> 2.2>如果遇到一个结点，左孩子不为空，右孩子为空；或者左右孩子都为空，且则该节点之后的队列中的结点都为叶子节点，该树才是完全二叉树，否则就不是完全二叉树.
+:::
+
+
+
+
 了解了这些定义。接下来看看堆排序的基本思想及基本步骤：
 
 * 堆排序基本思想及步骤
 
-》 基于选择排序
+基于选择排序
 
 > 　　堆排序的基本思想是：将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点。将其与末尾元素进行交换，此时末尾就为最大值。然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。如此反复执行，便能得到一个有序序列了
 
 :::details 查看代码
+
+<CodeGroup>
+<CodeGroupItem title='Go' active>
+
+
+</CodeGroupItem>
+<CodeGroupItem title='C++'>
+
 ```c++
 // 构建小顶堆， 大到小排序
-#include<iostream>
-using namespace std;
-
-void display(int a[], int len){
-  cout<<len<<" ";
-  for(int i=1; i<=len; i++){
-    cout<<a[i]<<" ";
-  }
-  cout<<endl;
-}
 
 // 交互a数组中的x跟y
 void swap(int a[], int x, int y){
-  int temp = a[x];
-  a[x] = a[y];
-  a[y] = temp;
+  a[x] ^= a[y];
+  a[y] ^= a[x];
+  a[x] ^= a[y];
 }
 
 // 调整堆
@@ -304,26 +330,17 @@ void heapSort(int a[], int len){
   for(int i=len/2; i>0; --i){
     heapAdjust(a, i, len);
   }
-  display(a,len);
   for(int i=len; i>1; i--){
     swap(a, 1, i);
     heapAdjust(a, 1, i-1);
-    display(a,len);
   }
 }
 
-int main(){
-  int n;
-  cin>>n;
-  int *a = new int[n+5];
-  for(int i=1; i<=n; i++){
-    cin>>a[i];
-  }
-  heapSort(a,n);
-  delete []a;
-  return 0;
-}
 ```
+</CodeGroupItem>
+</CodeGroup>
+
+
 :::
 
 ### 3. 插入
@@ -699,31 +716,82 @@ void merge_sort(int arr[], const int len) {
 
 :::details 查看代码
 
-```c++
-// 自底向上归并
-/****
- * 分而治之
- * 
- ***/ 
-#include<iostream>
-#include<cstring>
-#include<string>
-#include<algorithm>
-using namespace std;
-int length;
-void display( string a[]){
-  for(int i=0; i<length; i++){
-    cout<<a[i];
-    if(i!=length-1){
-      cout<<" ";
-    }
-  }
-  cout<<endl;
+<CodeGroup>
+<CodeGroupItem title='Go' active>
+
+```go
+func MergeSort(a []int, begin, end int) {
+	step := 1
+	// 步数为1开始，step长度的数组表示一个有序的数组
+	// 1 -> 2 -> 4 -> 8
+	for end-begin > step {
+		// 从头到尾对数组进行归并操作
+		// step << 1 = 2 * step 表示偏移到后两个有序数组将它们进行归并
+		for i := begin; i < end; i += step << 1 {
+			low := i
+			mid := low + step
+			high := low + (step << 1)
+
+			// 不存在第二个数组，直接返回
+			if mid > end {
+				return
+			}
+
+			// 第二个数组长度不够
+			if high > end {
+				high = end
+			}
+			// 合并两个有序的数组
+			merge(a, low, mid, high)
+		}
+		step <<= 1
+	}
 }
 
-// 治 【闭区间】
-void merge(string a[], string reg[],  int l, const int mid, const int r){
-  // if( l>r || l>mid || mid>r ) return ;
+func merge(a []int, begin, mid, end int) {
+	leftSize := mid - begin
+	rightSize := end - mid
+	newSize := leftSize + rightSize
+	result := make([]int, 0, newSize)
+
+	l, r := 0, 0
+
+	for l < leftSize && r < rightSize {
+		lval := a[begin+l]
+		rval := a[mid+r]
+
+		if lval < rval {
+			result = append(result, lval)
+			l++
+		} else {
+			result = append(result, rval)
+			r++
+		}
+	}
+
+	result = append(result, a[begin+l:mid]...)
+	result = append(result, a[mid+r:end]...)
+	for i := 0; i < newSize; i++ {
+		a[begin+i] = result[i]
+	}
+	return
+}
+```
+</CodeGroupItem>
+<CodeGroupItem title='C++'>
+
+```c++
+void mergeSort(int a[], int reg[], const int end){
+  // 分
+  for(int step=1; step<end; step*=2){
+    for(int j=0; j < end; j += step*2 ){
+      	int low = j, mid = j+step-1, high = min(j+2*step-1, end-1);
+       	merge(a, reg, low, mid, high );
+    }
+  }
+}
+
+void merge(int a[], int reg[],  int l, const int mid, const int r){
   int start = l;
   int end = r;
   int j = mid+1;
@@ -737,44 +805,11 @@ void merge(string a[], string reg[],  int l, const int mid, const int r){
     a[ii] = reg[ii];
   }
 }
-void mergeSort_re(string a[], string reg[], const int end){
-  // 分
-  for(int step=1; step<end; step*=2){
-    for(int j=0; j < end; j += step*2 ){
-      int low = j, mid = j+step-1, high = min(j+2*step-1, end-1);
-      // cout << "low=" << low << " mid=" << mid << " high=" << high << endl;
-      // void merge(string a[], string reg[],  int l, int mid, int r)
-       merge(a, reg, low, mid, high );
-    }
-    display(a);
-  }
-
-}
-void mergeSort(string a[], const int len){
-  string * reg = new string[len+10];
-  mergeSort_re( a, reg, len);
-  delete []reg;
-}
-
-int main(){
-  int t; cin>>t;
-  while(t--){
-    int l ; cin>>l;
-    length = l;
-    string *s =  new string[l+10];
-
-    for(int i=0; i<l; i++) cin>>s[i];    
-    if(l==1){ // 注意这个bug我卡了两天
-      cout<<s[0]<<endl;
-    }
-    else mergeSort(s, l);
-    cout<<endl;
-    delete []s;
-  }
-  return 0;
-}
 
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 :::
 
@@ -785,6 +820,63 @@ int main(){
 
 
 :::details 查看代码
+
+<CodeGroup>
+<CodeGroupItem title='Go' active>
+
+```go
+func getbits(a []int) int {
+	max_num := 0
+	for _, v := range a {
+		if v > max_num {
+			max_num = v
+		}
+	}
+	res := 0
+	if max_num == 0 {
+		return 1
+	}
+	for max_num > 0 {
+		max_num /= 10
+		res++
+	}
+	return res
+}
+
+func radixSort(a []int) {
+	n := len(a)
+	step := getbits(a)
+	radix := 1
+	var num, tail int
+
+	reg := make([][]int, 10)
+
+	for i := 0; i < step; i++ {
+		radix *= 10
+
+		// 每一轮都要清空桶
+		for i := 0; i < 10; i++ {
+			reg[i] = make([]int, 0)
+		}
+		for j := 0; j < n; j++ {
+			num = a[j] % radix
+			tail = num / (radix / 10)
+			reg[tail] = append(reg[tail], a[j])
+		}
+		index := 0
+		for k := 0; k < 10; k++ {
+			for _, v := range reg[k] {
+				a[index] = v
+				index++
+			}
+		}
+	}
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem title='C++'>
+
 
 ```c++
 #include<iostream>
@@ -804,7 +896,7 @@ int maxbit(int data[], int n) //辅助函数，求数据的最大位数
     }
     return d;
 }
-void radixsort(int data[], int n) //基数排序
+void radixSort(int data[], int n) //基数排序
 {
     // d 位
     int d = maxbit(data, n);
@@ -822,15 +914,13 @@ void radixsort(int data[], int n) //基数排序
           tmp[j] = -1;
           flag[j] = 0;
         }
-        
         for(j = 0; j < n; j++)
-        { 
+        {
             // k 是当前数字位置中的数字
             k = (data[j] / radix) % 10; //统计每个桶中的记录数
             count[k]++;
         }
         for(int jj=0; jj<10; jj++){
-          // cout<<"jj="<<jj<<"count[jj]="<<count[jj]<<endl;
           flag[jj] = count[jj];
         }
         for(j = 1; j < 10; j++)
@@ -841,57 +931,19 @@ void radixsort(int data[], int n) //基数排序
             tmp[count[k] - 1] = data[j];
             count[k]--;
         }
-        /**** 看每一位的收集器
-        for(int ii=0, kk=0; ii<10; ii++){
-          cout << ii <<":";
-          if(flag[ii]==0){
-            cout << "NULL"<<endl;
-            continue;
-          }
-          for( int jk=flag[ii]+1; jk>0; jk-- ){
-            if(jk==1){
-              cout<<"->^"<<endl;
-            }else{
-              cout<<"->"<<tmp[kk];
-              kk++;
-            }
-            
-          }
-        }
-        ***/
-        // for( int ii=0; ii<10; ii++){
-        //   cout<<"ii="<< ii << " temp[ii]="<<tmp[ii]<<endl;
-        // }
         for(j = 0; j < n; j++){//将临时数组的内容复制到data中
           data[j] = tmp[j];
-        } 
-        for(int ii=0; ii<n; ii++){
-          cout<<data[ii]<<" ";
-        }   
-        cout<<endl;
+        }
         radix = radix * 10;
     }
     delete[]tmp;
     delete[]count;
 }
 
-int main(){
-  int t;
-  cin>>t;
-  while(t--){
-    int l;
-    cin >> l;
-    int *a = new int[l+5];
-    for(int i=0; i<l; i++){
-      cin>>a[i];
-    }
-    radixsort(a,l);
-    cout<<endl;
-    delete []a;
-  }
-  return 0;
-}
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 :::
 

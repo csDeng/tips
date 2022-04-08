@@ -3,9 +3,13 @@ module.exports = {
         highlightLines:true,
         lineNumbers:true
     },
-    toc: {
-        level: [
-            1,2,3,4,5
-        ]
+    anchor:{
+        level:[1,2,3,4,5,6]
+    },
+    extractHeaders:{
+        level:[2,3,4,5]
+    },
+    toc:{
+        level:[1,2,3,4]
     }
 }
