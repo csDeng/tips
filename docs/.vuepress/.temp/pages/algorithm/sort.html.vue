@@ -133,6 +133,8 @@
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div></CodeGroupItem>
 </CodeGroup>
+<p>快排优化版的简单示意图(以 <code>3 5 2 1 6</code>作为局部数组为例)</p>
+<p><img src="@source/algorithm/pics/sort/image-20220410215637085.png" alt="image-20220410215637085"></p>
 </details>
 <h3 id="_2-选择" tabindex="-1"><a class="header-anchor" href="#_2-选择" aria-hidden="true">#</a> 2. 选择</h3>
 <h4 id="_2-1-简单选择排序" tabindex="-1"><a class="header-anchor" href="#_2-1-简单选择排序" aria-hidden="true">#</a> 2.1 简单选择排序</h4>

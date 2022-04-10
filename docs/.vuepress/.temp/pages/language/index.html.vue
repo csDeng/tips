@@ -16,5 +16,7 @@
 <ol>
 <li><RouterLink to="/language/go/init_main.html"><code>init</code>与<code>main</code>函数</RouterLink></li>
 <li><RouterLink to="/language/go/array_slice.html">数组array与切片slice</RouterLink></li>
+<li><RouterLink to="/language/go/pointer.html">指针</RouterLink></li>
+<li><RouterLink to="/language/go/map.html">map</RouterLink></li>
 </ol>
 </template>

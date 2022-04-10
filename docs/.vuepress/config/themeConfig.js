@@ -20,6 +20,10 @@ module.exports =  {
             text: '计算机网络',
             link: '/network/',
         },
+        {
+            text:'灯塔',
+            link:'/target/'
+        }
         // // NavbarGroup
         // {
         // text: 'Group',

@@ -19,6 +19,10 @@ export const themeData = {
     {
       "text": "计算机网络",
       "link": "/network/"
+    },
+    {
+      "text": "灯塔",
+      "link": "/target/"
     }
   ],
   "logo": "https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg",

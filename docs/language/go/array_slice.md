@@ -13,14 +13,26 @@
 Golang Array和以往认知的数组有很大不同。
 
 1. 数组：是同一种数据类型的固定长度的序列。
+
 2. 数组定义：var a [len]int，比如：var a [5]int，数组长度必须是常量，且是类型的组成部分。一旦定义，长度不能变。
+
 3. 长度是数组类型的一部分，因此，var a[5] int和var a[10]int是不同的类型。
-4. 数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是：len-1
-for i := 0; i < len(a); i++ {
-}
-for index, v := range a {
-}
+
+4. 数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是：`len-1`.
+
+  ```go
+  for i := 0; i < len(a); i++ {
+  
+  }
+  for index, v := range a {
+      
+  }
+  ```
+
+  
+
 5. 访问越界，如果下标在数组合法范围之外，则触发访问越界，会panic
+
 6. 数组是值类型，赋值和传参会复制整个数组，而不是指针。因此改变副本的值，不会改变本身的值。
 7.支持 "=="、"!=" 操作符，因为内存总是被初始化过的。
 8.指针数组 [n]*T，数组指针 *[n]T。
@@ -413,13 +425,13 @@ func main() {
    // 5.从数组切片
    arr := [5]int{1, 2, 3, 4, 5}
    var s6 []int
-   // 前包后不包
+   // 左闭右开
    s6 = arr[1:4]
    fmt.Println(s6)
 }
 ```
 
-#### 利用数组来创建
+#### 1. 利用数组来创建
 
 ```go
 全局：
@@ -498,7 +510,7 @@ func main() {
 
 :::
 
-#### 通过make来创建
+#### 2. 通过make来创建
 
 ```go
 var slice []type = make([]type, len)
@@ -548,7 +560,7 @@ func main() {
 ```
 :::
 
-#### 直接创建 slice 对象，自动分配底层数组。
+#### 3. 直接创建 slice 对象，自动分配底层数组。
 
 ```go
 package main
@@ -1261,7 +1273,7 @@ func main() {
 
 ### 切片和数组
 
-![null](./array_slice/pics/m_c237168440ffb7d9fd50f31048f2b72b_r.png)
+![null](./pics/array_slice/m_c237168440ffb7d9fd50f31048f2b72b_r.png)
 
 关于切片和数组怎么选择？接下来好好讨论讨论这个问题。
 
@@ -1443,18 +1455,43 @@ type slice struct {
 }
 ```
 
-![null](./array_slice/pics/m_b7bffbf0976c474809a222748dbc42ba_r.png)
+![null](./pics/array_slice/m_b7bffbf0976c474809a222748dbc42ba_r.png)
 
 切片的结构体由3部分构成，Pointer 是指向一个数组的指针，len 代表当前切片的长度，cap 是当前切片的容量。cap 总是大于等于 len 的。
 
-![null](./array_slice/pics/m_b3ed4a54677e9c668021c12d6cac6258_r.png)
+![null](./pics/array_slice/m_b3ed4a54677e9c668021c12d6cac6258_r.png)
 
 如果想从 slice 中得到一块内存地址，可以这样做：
 
 ```go
-s := make([]byte, 200)
-ptr := unsafe.Pointer(&s[0])
+package main
+
+import (
+	"fmt"
+	"unsafe"
+)
+
+func main() {
+	s := make([]byte, 10)
+	ptr := unsafe.Pointer(&s[0])
+	fmt.Printf("Value:s = %v, Address:s = %p \r\n", s, s)
+	fmt.Println("Value:ptr = %v, Address:ptr = %p \r\n", ptr, ptr)
+
+}
 ```
+
+:::details 输出结果
+
+```shell
+Value:s = [0 0 0 0 0 0 0 0 0 0], Address:s = 0xc0000140c0 
+Value:ptr = 0xc0000140c0, Address:ptr = 0xc0000140c0 
+```
+
+:::
+
+
+
+:::warning 不能理解部分
 
 如果反过来呢？从 Go 的内存地址中构造一个 slice。
 
@@ -1479,6 +1516,8 @@ s := *(*[]byte)(unsafe.Pointer(&s1))
     sliceHeader.Len = length
     sliceHeader.Data = uintptr(ptr)
 ```
+
+:::
 
 ### 创建切片
 
@@ -1527,25 +1566,41 @@ func makeslice64(et *_type, len64, cap64 int64) slice {
 
 实现原理和上面的是一样的，只不过多了把 int64 转换成 int 这一步罢了。
 
-![null](./array_slice/pics/m_d27d00e84fbd89b3cbd30b25dc8bea61_r.png)
+![null](./pics/array_slice/m_d27d00e84fbd89b3cbd30b25dc8bea61_r.png)
 
 上图是用 make 函数创建的一个 len = 4， cap = 6 的切片。内存空间申请了6个 int 类型的内存大小。由于 len = 4，所以后面2个暂时访问不到，但是容量还是在的。这时候数组里面每个变量都是0 。
 
 除了 make 函数可以创建切片以外，字面量也可以创建切片。
 
-![null](./array_slice/pics/m_d0781cd13de93cd58e55b732b513845d_r.png)
+![null](./pics/array_slice/m_d0781cd13de93cd58e55b732b513845d_r.png)
 
 ::: tip 温馨提示
 
-这里是用字面量创建的一个 len = 6，cap = 6 的切片，这时候数组里面每个元素的值都初始化完成了。需要注意的是 [ ] 里面不要写数组的容量，因为如果写了个数以后就是数组了，而不是切片了。
+这里是用字面量创建的一个 len = 6，cap = 6 的切片，这时候数组里面每个元素的值都初始化完成了。需要注意的是` [ ] `里面不要写数组的容量，因为如果写了个数以后就是数组了，而不是切片了。
 
 :::
 
 
 
-![null](./array_slice/pics/m_fcf28db7d94ead0043dbd92106159961_r.png)
+![null](./pics/array_slice/m_fcf28db7d94ead0043dbd92106159961_r.png)
 
 还有一种简单的字面量创建切片的方法。如上图。上图就 Slice A 创建出了一个 len = 3，cap = 3 的切片。从原数组的第二位元素(0是第一位)开始切，一直切到第四位为止(不包括第五位)。同理，Slice B 创建出了一个 len = 2，cap = 4 的切片。
+
+:::tip 字面量创建切片的提示
+
+```go
+array := [...]{1,2,3,4,5}
+
+s := array[low:high]
+// len = high -low
+
+s := array[low:high:max]
+// len = high-low cap = max-low
+```
+
+
+
+:::
 
 #### nil 和空切片
 
@@ -1555,7 +1610,7 @@ nil 切片和空切片也是常用的。
     var slice []int
 ```
 
-![null](./array_slice/pics/m_802f29858b9d1b83ef13dd1f54f70240_r.png)
+![null](./pics/array_slice/m_802f29858b9d1b83ef13dd1f54f70240_r.png)
 
 nil 切片被用在很多标准库和内置函数中，描述一个不存在的切片的时候，就需要用到 nil 切片。比如函数在发生异常的时候，返回的切片就是 nil 切片。nil 切片的指针指向 nil。
 
@@ -1566,7 +1621,7 @@ nil 切片被用在很多标准库和内置函数中，描述一个不存在的�
     slice := []int{ }
 ```
 
-![null](./array_slice/pics/m_3adefbd66074247f94227944f0732837_r.png)
+![null](./pics/array_slice/m_3adefbd66074247f94227944f0732837_r.png)
 
 空切片和 nil 切片的区别在于，空切片指向的地址不是nil，指向的是一个内存地址，但是它没有分配任何内存空间，即底层元素包含0个元素。
 
@@ -1845,32 +1900,42 @@ func growslice(et *_type, old slice, cap int) slice {
 先看看扩容策略。
 
 ```go
+package main
+
+import "fmt"
+
 func main() {
-    slice := []int{10, 20, 30, 40}
-    // 扩容
-    newSlice := append(slice, 50)
-    fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
-    fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
-    
-    // 对新切片操作，看看会不会影响原切片
-    newSlice[1] += 10
-    fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
-    fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	slice := []int{10, 20, 30, 40}
+	// 扩容
+	fmt.Printf("Init slice = %v, Pointer = %p, len = %d, cap = %d\n\n", slice, &slice, len(slice), cap(slice))
+
+	newSlice := append(slice, 50)
+	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+
+	// 对新切片操作，看看会不会影响原切片
+	newSlice[1] += 10
+	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
 }
+
 ```
 
 输出结果：
 
-```
-    Before slice = [10 20 30 40], Pointer = 0xc4200b0140, len = 4, cap = 4
-    Before newSlice = [10 20 30 40 50], Pointer = 0xc4200b0180, len = 5, cap = 8
-    After slice = [10 20 30 40], Pointer = 0xc4200b0140, len = 4, cap = 4
-    After newSlice = [10 30 30 40 50], Pointer = 0xc4200b0180, len = 5, cap = 8
+```shell
+Init slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
+
+Before slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
+Before newSlice = [10 20 30 40 50], Pointer = 0xc0000040a8, len = 5, cap = 8
+
+After slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
+After newSlice = [10 30 30 40 50], Pointer = 0xc0000040a8, len = 5, cap = 8
 ```
 
 用图表示出上述过程。
 
-![null](./array_slice/pics/m_9a761aecc615b540c6f5346bc4c79cee_r.png)
+![null](./pics/array_slice/m_9a761aecc615b540c6f5346bc4c79cee_r.png)
 
 :::tip
 
@@ -1890,23 +1955,24 @@ Go 中切片扩容的策略是这样的：
 
 再谈谈扩容之后的数组一定是新的么？这个不一定，分两种情况。
 
-* 情况一：`len < cap`
+* 情况一：切片`len < cap`
 
 ```go
 package main
 
 import "fmt"
-
+/** len < cap**/
 func main() {
 	array := [4]int{10, 20, 30, 40}
 	slice := array[0:2]
-	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Init array %v \n\n", array)
 
 	newSlice := append(slice, 50)
 
 	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
 	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
-	fmt.Println("Before array", array, "\n")
+	fmt.Printf("Before array %v \r\n\r\n", array)
 
 	newSlice[1] += 10
 
@@ -1920,38 +1986,56 @@ func main() {
 打印输出：
 
 ```shell
-init slice = [10 20], Pointer = 0xc000004078, len = 2, cap = 4
+init slice = [10 20], Pointer = 0xc000096060, len = 2, cap = 4
+Init array [10 20 30 40]
 
-Before slice = [10 20], Pointer = 0xc000004078, len = 2, cap = 4
-Before newSlice = [10 20 50], Pointer = 0xc0000040a8, len = 3, cap = 4
+Before slice = [10 20], Pointer = 0xc000096060, len = 2, cap = 4
+Before newSlice = [10 20 50], Pointer = 0xc000096090, len = 3, cap = 4
 Before array [10 20 50 40]
 
-After slice = [10 30], Pointer = 0xc000004078, len = 2, cap = 4
-After newSlice = [10 30 50], Pointer = 0xc0000040a8, len = 3, cap = 4
+After slice = [10 30], Pointer = 0xc000096060, len = 2, cap = 4
+After newSlice = [10 30 50], Pointer = 0xc000096090, len = 3, cap = 4
 After array = [10 30 50 40]
 ```
 
 把上述过程用图表示出来，如下图。
 
-![null](./array_slice/pics/m_c32c7658df1d0dda5f944415446b11bd_r.png)
+![null](./pics/array_slice/m_c32c7658df1d0dda5f944415446b11bd_r.png)
 
 通过打印的结果，我们可以看到，在这种情况下，扩容以后并没有新建一个新的数组，扩容前后的数组都是同一个，这也就导致了新的切片修改了一个值，也影响到了老的切片了。并且 `append() `操作也改变了原来数组里面的值。一个 `append() `操作影响了这么多地方，如果原数组上有多个切片，那么这些切片都会被影响！无意间就产生了莫名的 bug！
 
+:::details Go中文文档的原话
+
 这种情况，由于原数组还有容量可以扩容，所以执行 `append()` 操作以后，会在原数组上直接操作，所以这种情况下，扩容以后的数组还是指向原来的数组。
 
-这种情况也极容易出现在字面量创建切片时候，第三个参数 cap 传值的时候，如果用字面量创建切片，cap 并不等于指向数组的总容量，那么这种情况就会发生。
+这种情况也极容易出现在字面量创建切片时候，第三个参数 cap 传值的时候，如果用字面量创建切片，`cap` 并不等于指向数组的总容量，那么这种情况就会发生。
 
-```
+
+```go
     slice := array[1:2:3]
 ```
 
 上面这种情况非常危险，极度容易产生 bug 。
 
-建议用字面量创建切片的时候，cap 的值一定要保持清醒，避免共享原数组导致的 bug。
+:::
 
 
 
-* 情况二：`len=cap`
+:::tip 错误更正
+
+原文档中提到，“在字面量创建切片时候，第三个参数 cap 传值的时候，如果用字面量创建切片，`cap` 并不等于指向数组的总容量，那么这种情况（对新切片的修改影响底层数组）就会发生。”
+
+> 经过测试，发现是切片的`len<cap`导致的，与切片跟底层数组的总容量关系无关。但是有个问题是，当`len<cap`的时候，切片的增长必不会进行扩容，所以新切片的底层跟原切片的底层是一样的，只是内存内容的可见性不一致。
+>
+> 所以说，这个标题（新数组or老数组）指的应该是切片增长也就是`append`之后的返回的是新切片的底层数组是否为新。
+
+:::
+
+
+
+:::details len小于cap细节测试
+
+* slice的cap小于底层数组总容量
 
 ```go
 package main
@@ -1960,20 +2044,133 @@ import "fmt"
 
 func main() {
 	array := [4]int{10, 20, 30, 40}
-	slice := array[0:4]
-	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n\n", slice, &slice, len(slice), cap(slice))
+	slice := array[1:2:4]
+	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Init array %v, Pointer = %p \r\n\r\n", array, &array)
 
 	newSlice := append(slice, 50)
 
 	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
 	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
-	fmt.Println("Before array", array, "\n")
+	fmt.Printf("Before array %v, Pointer = %p \r\n\r\n", array, &array)
 
 	newSlice[1] += 10
 
 	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
 	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
-	fmt.Printf("After array = %v\n", array)
+	fmt.Printf("After array = %v, Pointer = %p \r\n\r\n", array, &array)
+}
+
+```
+
+输出结果
+
+```shell
+init slice = [20], Pointer = 0xc000004078, len = 1, cap = 3
+Init array [10 20 30 40], Pointer = 0xc0000121c0 
+
+Before slice = [20], Pointer = 0xc000004078, len = 1, cap = 3
+Before newSlice = [20 50], Pointer = 0xc0000040a8, len = 2, cap = 3
+Before array [10 20 50 40], Pointer = 0xc0000121c0
+
+After slice = [20], Pointer = 0xc000004078, len = 1, cap = 3
+After newSlice = [20 60], Pointer = 0xc0000040a8, len = 2, cap = 3
+After array = [10 20 60 40], Pointer = 0xc0000121c0
+
+```
+
+从输出来看，`slice,newSlice,array`的地址都是不一样的。但是为什么对`newSlice`的修改会影响到`array`呢？
+
+>思考一下，嗯。
+
+* slice的cap等于底层数组总容量
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	array := [4]int{10, 20, 30, 40}
+	slice := array[0:2:4]
+	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Init array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice := append(slice, 50)
+
+	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("Before array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice[1] += 10
+
+	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("After array = %v, Pointer = %p \r\n\r\n", array, &array)
+}
+
+```
+
+输出
+
+```shell
+init slice = [10 20], Pointer = 0xc000096060, len = 2, cap = 4
+Init array [10 20 30 40], Pointer = 0xc0000a8080 
+
+Before slice = [10 20], Pointer = 0xc000096060, len = 2, cap = 4
+Before newSlice = [10 20 50], Pointer = 0xc000096090, len = 3, cap = 4
+Before array [10 20 50 40], Pointer = 0xc0000a8080
+
+After slice = [10 30], Pointer = 0xc000096060, len = 2, cap = 4
+After newSlice = [10 30 50], Pointer = 0xc000096090, len = 3, cap = 4
+After array = [10 30 50 40], Pointer = 0xc0000a8080
+```
+
+> 从输出来看，`slice,newSlice,array`的地址都是依然不一样的。但是对新切片的操作依然影响了原数组。
+
+* slice的cap大于底层数组总容量？
+
+对不起，这种情况是不存在的。
+
+首先，从底层操作系统的角度来看，slice的底层是依靠连续数组来分配内存的，可以理解为切片仅仅是数组的一种封装而已，但是他是不具备更改底层数组的相关基本信息（地址，数组大小）的，而他的扩容的**一种方式**是通过新生成一个数组，然后把元素拷贝过去实现的。
+
+其次，从代码的角度来看，他是会报错的。贴个图解千愁。
+
+![image-20220409012630666](./pics/array_slice/image-20220409012630666.png)
+
+:::
+
+建议用字面量创建切片的时候，cap 的值一定要保持清醒，避免共享原数组导致的 bug。
+
+* 情况二：切片`len=cap`
+
+```go
+package main
+
+/**
+len=cap
+*/
+
+import "fmt"
+
+func main() {
+	array := [4]int{10, 20, 30, 40}
+	slice := array[0:4]
+	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Init array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice := append(slice, 50)
+
+	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("Before array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice[1] += 10
+
+	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("After array %v, Pointer = %p \r\n\r\n", array, &array)
+
 }
 
 ```
@@ -1982,27 +2179,95 @@ func main() {
 
 ```shell
 init slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
+Init array [10 20 30 40], Pointer = 0xc0000121c0 
 
 Before slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
 Before newSlice = [10 20 30 40 50], Pointer = 0xc0000040a8, len = 5, cap = 8
-Before array [10 20 30 40]
+Before array [10 20 30 40], Pointer = 0xc0000121c0
 
 After slice = [10 20 30 40], Pointer = 0xc000004078, len = 4, cap = 4
 After newSlice = [10 30 30 40 50], Pointer = 0xc0000040a8, len = 5, cap = 8
-After array = [10 20 30 40]
+After array [10 20 30 40], Pointer = 0xc0000121c0
+```
+
+情况二其实就是在扩容策略里面举的例子，在那个例子中之所以生成了新的切片，是因为原来数组的容量已经达到了最大值，再想扩容， Go 默认会先开一片内存区域，把原来的值拷贝过来，然后再执行 append() 操作。这种情况丝毫不影响原数组。
+
+:::details  len等于cap细节测试
+
+* `slice cap`小于数组总容量
+
+```go
+package main
+
+/**
+len=cap
+*/
+
+import "fmt"
+
+func main() {
+	array := [4]int{10, 20, 30, 40}
+	slice := array[0:2:2]
+	fmt.Printf("init slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Init array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice := append(slice, 50)
+
+	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("Before array %v, Pointer = %p \r\n\r\n", array, &array)
+
+	newSlice[1] += 10
+
+	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	fmt.Printf("After array %v, Pointer = %p \r\n\r\n", array, &array)
+
+}
+
+```
+
+输出
+
+
+
+```shell
+init slice = [10 20], Pointer = 0xc000004078, len = 2, cap = 2
+Init array [10 20 30 40], Pointer = 0xc0000121c0 
+
+Before slice = [10 20], Pointer = 0xc000004078, len = 2, cap = 2
+Before newSlice = [10 20 50], Pointer = 0xc0000040a8, len = 3, cap = 4
+Before array [10 20 30 40], Pointer = 0xc0000121c0
+
+After slice = [10 20], Pointer = 0xc000004078, len = 2, cap = 2
+After newSlice = [10 30 50], Pointer = 0xc0000040a8, len = 3, cap = 4
+After array [10 20 30 40], Pointer = 0xc0000121c0
+
 ```
 
 
 
-情况二其实就是在扩容策略里面举的例子，在那个例子中之所以生成了新的切片，是因为原来数组的容量已经达到了最大值，再想扩容， Go 默认会先开一片内存区域，把原来的值拷贝过来，然后再执行 append() 操作。这种情况丝毫不影响原数组。
+可以看到对新切片的修改是不影响原数组的。
+
+
+
+* `slice cap`等于数组总容量
+
+> 上文情况二
+
+* `slice cap`大于数组总容量
+
+> 不存在
+
+:::
+
+
 
 所以建议尽量避免情况一，尽量使用情况二，避免 bug 产生。
 
-* 情况一和二的输出结果对比图
 
-![image-20220408003116920](./array_slice/pics/image-20220408003116920.png)
 
-可以看到原数组不受影响，表示扩容后是新数组。
+
 
 ### 切片拷贝
 
@@ -2057,7 +2322,7 @@ func slicecopy(to, fm slice, width uintptr) int {
 
 在这个方法中，`slicecopy `方法会把源切片值(即 fm Slice )中的元素复制到目标切片(即 to Slice )中，并返回被复制的元素个数，copy 的两个类型必须一致。slicecopy 方法最终的复制结果取决于较短的那个切片，当较短的切片复制完成，整个复制过程就全部完成了。
 
-![null](array_slice/pics/m_de4254a0cfe1df7843ea784eb419d91c_r.png)
+![null](./pics/array_slice/m_de4254a0cfe1df7843ea784eb419d91c_r.png)
 
 举个例子，比如：
 
@@ -2143,7 +2408,7 @@ func main() {
 
 从上面结果我们可以看到，如果用 range 的方式去遍历一个切片，拿到的 Value 其实是切片里面的值拷贝。所以每次打印 Value 的地址都不变。
 
-![null](./array_slice/pics/m_18e670ad444e7cd50c684ea50e44b27e_r.png)
+![null](./pics/array_slice/m_18e670ad444e7cd50c684ea50e44b27e_r.png)
 
 由于 Value 是值拷贝的，并非引用传递，所以直接改 Value 是达不到更改原切片值的目的的，需要通过 `&slice[index]` 获取真实的地址。
 

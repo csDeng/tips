@@ -174,6 +174,12 @@ void q_sort(int a[], int left, int right){
 </CodeGroup>
 
 
+
+快排优化版的简单示意图(以 `3 5 2 1 6`作为局部数组为例)
+
+![image-20220410215637085](./pics/sort/image-20220410215637085.png)
+
+
 :::
 
 ### 2. 选择

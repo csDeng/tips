@@ -27,6 +27,8 @@ sidebar: false
 ### Go基础
 1. [`init`与`main`函数](./go/init_main.md)
 2. [数组array与切片slice](./go/array_slice.md)
+3. [指针](./go/pointer.md)
+4. [map](./go/map.md)
 
 
 

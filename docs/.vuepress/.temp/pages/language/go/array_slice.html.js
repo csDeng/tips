@@ -75,20 +75,20 @@ export const data = {
           "children": [
             {
               "level": 4,
-              "title": "利用数组来创建",
-              "slug": "利用数组来创建",
+              "title": "1. 利用数组来创建",
+              "slug": "_1-利用数组来创建",
               "children": []
             },
             {
               "level": 4,
-              "title": "通过make来创建",
-              "slug": "通过make来创建",
+              "title": "2. 通过make来创建",
+              "slug": "_2-通过make来创建",
               "children": []
             },
             {
               "level": 4,
-              "title": "直接创建 slice 对象，自动分配底层数组。",
-              "slug": "直接创建-slice-对象-自动分配底层数组。",
+              "title": "3. 直接创建 slice 对象，自动分配底层数组。",
+              "slug": "_3-直接创建-slice-对象-自动分配底层数组。",
               "children": []
             }
           ]
@@ -227,12 +227,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1649262751000,
+    "updatedTime": 1649350510000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 1
+        "commits": 2
       },
       {
         "name": "v_beckdeng",
