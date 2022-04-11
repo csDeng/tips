@@ -5,17 +5,20 @@ const routeItems = [
   ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
   ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
   ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
-  ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-2e25198a","/database/",{"title":"简介"},["/database/index.html","/database/README.md"]],
+  ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
   ["v-2d0aad32","/os/",{"title":"简介"},["/os/index.html","/os/README.md"]],
   ["v-0e5533a5","/target/",{"title":"一些公司的春招信息"},["/target/index.html","/target/Readme.md"]],
   ["v-74fc0e94","/language/go/array_slice.html",{"title":"数组和切片"},["/language/go/array_slice","/language/go/array_slice.md"]],
+  ["v-a02f428c","/language/go/function_method.html",{"title":"函数与方法"},["/language/go/function_method","/language/go/function_method.md"]],
   ["v-605ce91a","/language/go/init_main.html",{"title":"init函数与main函数"},["/language/go/init_main","/language/go/init_main.md"]],
   ["v-f4c952f4","/language/go/map.html",{"title":"Map"},["/language/go/map","/language/go/map.md"]],
   ["v-6c7135c5","/language/go/pointer.html",{"title":"1. 指针"},["/language/go/pointer","/language/go/pointer.md"]],
+  ["v-27963d16","/language/go/process_control.html",{"title":"流程控制"},["/language/go/process_control","/language/go/process_control.md"]],
   ["v-faa2900a","/language/go/struct.html",{"title":"1. 结构体"},["/language/go/struct","/language/go/struct.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
+  ["v-8436a7ea","/language/go/panic.html",{"title":""},["/language/go/panic","/language/go/panic.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(

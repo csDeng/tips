@@ -10,30 +10,23 @@ export const data = {
   "headers": [
     {
       "level": 2,
-      "title": "Go",
-      "slug": "go",
-      "children": [
-        {
-          "level": 3,
-          "title": "Go基础",
-          "slug": "go基础",
-          "children": []
-        }
-      ]
+      "title": "Go基础",
+      "slug": "go基础",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": 1649248083000,
+    "updatedTime": 1649611444000,
     "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 2
+      },
       {
         "name": "v_beckdeng",
         "email": "v_beckdeng@tencent.com",
         "commits": 2
-      },
-      {
-        "name": "CSJerry",
-        "email": "553537528@qq.com",
-        "commits": 1
       }
     ]
   },

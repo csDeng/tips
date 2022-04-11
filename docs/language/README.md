@@ -20,15 +20,15 @@ sidebar: false
 辅以个人学习感悟并编码验证。
 :::
 
-## Go
-主要分基础
-
-
-### Go基础
+## Go基础
 1. [`init`与`main`函数](./go/init_main.md)
-2. [数组array与切片slice](./go/array_slice.md)
+2. [数组`array`与切片`slice`](./go/array_slice.md)
 3. [指针](./go/pointer.md)
-4. [map](./go/map.md)
+4. [`map`](./go/map.md)
+5. [结构体](./go/struct.md)
+6. [流程控制](./go/process_control.md)
+7. [函数与方法](./go/function_method.md)
+8. [异常处理](./go/panic.md)
 
 
 
