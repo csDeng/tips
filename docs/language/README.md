@@ -26,9 +26,11 @@ sidebar: false
 3. [指针](./go/pointer.md)
 4. [`map`](./go/map.md)
 5. [结构体](./go/struct.md)
+6. [接口](./go/interface.md)
 6. [流程控制](./go/process_control.md)
 7. [函数与方法](./go/function_method.md)
 8. [异常处理](./go/panic.md)
+
 
 
 

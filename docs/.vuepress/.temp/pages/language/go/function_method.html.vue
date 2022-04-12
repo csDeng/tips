@@ -1604,7 +1604,7 @@ test04
 <ul>
 <li>自定义error：</li>
 </ul>
-<p>:::查看示例代码</p>
+<details class="custom-container details"><summary>查看示例代码</summary>
 <div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token punctuation">(</span>
@@ -1656,5 +1656,5 @@ test04
 <span class="token assign-left variable">op</span><span class="token operator">=</span>read 
 <span class="token assign-left variable">createTime</span><span class="token operator">=</span><span class="token number">2018</span>-04-05 <span class="token number">11</span>:25:17.331915 +0800 CST <span class="token assign-left variable">m</span><span class="token operator">=</span>+0.000441790 
 <span class="token assign-left variable">message</span><span class="token operator">=</span>open /Users/pprof/Desktop/go/src/test.txt: no such <span class="token function">file</span> or directory
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>:::</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></details>
 </template>

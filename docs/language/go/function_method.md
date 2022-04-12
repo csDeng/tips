@@ -2128,7 +2128,7 @@ test04
 
 * 返回异常
 
-:::details 查看示例代码
+:::details  查看示例代码
 
 ```go
 package main
@@ -2169,7 +2169,7 @@ error=> 半径不能为负
 
 * 自定义error：
 
-:::查看示例代码
+:::details 查看示例代码
 
 ```go
 package main
