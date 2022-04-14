@@ -92,6 +92,41 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></details>
+<ul>
+<li>那么如何判断一个元素是否被成功删除呢</li>
+</ul>
+<blockquote>
+<p>在<code>Go</code>的底层，如果删除元素不在<code>map</code>中，那么将是一个<code>no-op</code>（即什么都不做）。</p>
+<p>那么如果我们想要强制实现呢？</p>
+<p>也不是没有办法，毕竟<code>Go</code>天生适合造轮子，我们可以通过判断<code>map</code>的长度是否发生变化来判断。</p>
+</blockquote>
+<details class="custom-container details"><summary>查看代码</summary>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">MapDel</span><span class="token punctuation">(</span>m <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> k <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	reg <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+	<span class="token function">delete</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> reg <span class="token operator">!=</span> <span class="token function">len</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	m <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		m<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i
+	<span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> <span class="token function">MapDel</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"after del => map = "</span><span class="token punctuation">,</span> m<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>输出</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>map<span class="token punctuation">[</span><span class="token number">0</span>:0 <span class="token number">1</span>:1 <span class="token number">2</span>:2<span class="token punctuation">]</span>
+after del <span class="token operator">=</span><span class="token operator">></span> map <span class="token operator">=</span>  map<span class="token punctuation">[</span><span class="token number">0</span>:0 <span class="token number">2</span>:2<span class="token punctuation">]</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></details>
 <h3 id="_1-6-按照指定顺序遍历map" tabindex="-1"><a class="header-anchor" href="#_1-6-按照指定顺序遍历map" aria-hidden="true">#</a> 1.6. 按照指定顺序遍历map</h3>
 <div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     rand<span class="token punctuation">.</span><span class="token function">Seed</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//初始化随机数种子</span>

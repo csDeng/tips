@@ -161,6 +161,50 @@ func main(){
 
 :::
 
+* 那么如何判断一个元素是否被成功删除呢
+
+> 在`Go`的底层，如果删除元素不在`map`中，那么将是一个`no-op`（即什么都不做）。
+>
+> 那么如果我们想要强制实现呢？
+>
+> 也不是没有办法，毕竟`Go`天生适合造轮子，我们可以通过判断`map`的长度是否发生变化来判断。
+
+:::details 查看代码
+
+```go
+package main
+
+import "fmt"
+
+func MapDel(m map[int]int, k int) bool {
+	reg := len(m)
+	delete(m, k)
+	return reg != len(m)
+}
+
+func main() {
+	m := make(map[int]int)
+	for i := 0; i < 3; i++ {
+		m[i] = i
+	}
+	fmt.Println(m)
+	if MapDel(m, 1) {
+		fmt.Println("after del => map = ", m)
+	}
+
+}
+
+```
+
+输出
+
+```shell
+map[0:0 1:1 2:2]
+after del => map =  map[0:0 2:2]
+```
+
+:::
+
 ### 1.6. 按照指定顺序遍历map
 
 ```go
