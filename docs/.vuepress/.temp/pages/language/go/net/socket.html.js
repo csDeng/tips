@@ -62,11 +62,35 @@ export const data = {
           "children": []
         }
       ]
+    },
+    {
+      "level": 2,
+      "title": "服务端",
+      "slug": "服务端",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "客户端",
+      "slug": "客户端",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Reference",
+      "slug": "reference",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1649955115000,
+    "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 1
+      }
+    ]
   },
   "filePathRelative": "language/go/net/socket.md"
 }

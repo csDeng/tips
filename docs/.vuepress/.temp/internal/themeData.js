@@ -21,6 +21,19 @@ export const themeData = {
       "link": "/network/"
     },
     {
+      "text": "数据库",
+      "children": [
+        {
+          "text": "MySQL",
+          "link": "/database/MySQL/"
+        },
+        {
+          "text": "Redis",
+          "link": "/database/Redis/"
+        }
+      ]
+    },
+    {
       "text": "灯塔",
       "link": "/target/"
     }

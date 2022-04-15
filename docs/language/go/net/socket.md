@@ -203,7 +203,31 @@ func main() {
 ### 需求分析
 
 1. 服务端可以时刻收发信息
-2. 客户端也可以时刻手法信息
+2. 客户端也可以时刻收发信息
+
+## 服务端
+
+
+
+
+
+
+
+## 客户端
+
+
+
+
+
+
+
+
+
+
+
+## Reference
+
+[网络编程 - 地鼠文档 (topgoer.cn)](https://www.topgoer.cn/docs/golang/chapter08)
 
 
 

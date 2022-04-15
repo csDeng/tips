@@ -22,7 +22,7 @@ export const data = {
         "details": "去了解计算机操作系统的实现以及构成，加深对计算机的了解"
       }
     ],
-    "footer": "MIT Licensed | Copyright © 2018-present CSJerry"
+    "footer": "MIT Licensed | Copyright © 2022-present CSJerry"
   },
   "excerpt": "",
   "headers": [

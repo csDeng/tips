@@ -24,7 +24,7 @@
 </ol>
 <h2 id="网络编程" tabindex="-1"><a class="header-anchor" href="#网络编程" aria-hidden="true">#</a> 网络编程</h2>
 <ol>
-<li><RouterLink to="/language/go/net/socket.html"><code>socket</code></RouterLink></li>
-<li></li>
+<li><RouterLink to="/language/go/net/socket.html">初窥Goland的<code>socket</code></RouterLink></li>
+<li><RouterLink to="/language/go/net/tcp.html">从<code>TCP</code>切入了解</RouterLink></li>
 </ol>
 </template>
