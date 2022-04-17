@@ -32,10 +32,10 @@
 <p>高级算法</p>
 </li>
 </ul>
-<h2 id="april" tabindex="-1"><a class="header-anchor" href="#april" aria-hidden="true">#</a> April</h2>
+<h2 id="基本知识" tabindex="-1"><a class="header-anchor" href="#基本知识" aria-hidden="true">#</a> 基本知识</h2>
 <ul>
 <li><RouterLink to="/algorithm/basic_struct.html">基本数据结构</RouterLink></li>
 <li><RouterLink to="/algorithm/sort.html">排序算法</RouterLink></li>
 </ul>
-<h2 id="may" tabindex="-1"><a class="header-anchor" href="#may" aria-hidden="true">#</a> May</h2>
+<h2 id="九章算法体系" tabindex="-1"><a class="header-anchor" href="#九章算法体系" aria-hidden="true">#</a> 九章算法体系</h2>
 </template>

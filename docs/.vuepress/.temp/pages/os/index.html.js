@@ -7,7 +7,14 @@ export const data = {
     "sidebar": false
   },
   "excerpt": "",
-  "headers": [],
+  "headers": [
+    {
+      "level": 2,
+      "title": "进程间通信",
+      "slug": "进程间通信",
+      "children": []
+    }
+  ],
   "git": {
     "updatedTime": 1648829257000,
     "contributors": [
