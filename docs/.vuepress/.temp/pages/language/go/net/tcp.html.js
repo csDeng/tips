@@ -114,14 +114,14 @@ export const data = {
               "title": "4、写入超时",
               "slug": "_4、写入超时",
               "children": []
-            },
-            {
-              "level": 4,
-              "title": "Goroutine safe",
-              "slug": "goroutine-safe",
-              "children": []
             }
           ]
+        },
+        {
+          "level": 3,
+          "title": "Goroutine safe",
+          "slug": "goroutine-safe",
+          "children": []
         }
       ]
     },

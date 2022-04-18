@@ -1,31 +1,29 @@
 export const data = {
-  "key": "v-2d0aad32",
-  "path": "/os/",
-  "title": "简介",
+  "key": "v-6623d19c",
+  "path": "/target/interviewContent.html",
+  "title": "",
   "lang": "zh-CN",
-  "frontmatter": {
-    "sidebar": false
-  },
+  "frontmatter": {},
   "excerpt": "",
   "headers": [
     {
       "level": 2,
-      "title": "进程间通信",
-      "slug": "进程间通信",
+      "title": "考题类型",
+      "slug": "考题类型",
       "children": []
     }
   ],
   "git": {
-    "updatedTime": 1650217749000,
+    "updatedTime": 1650292558000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 2
+        "commits": 1
       }
     ]
   },
-  "filePathRelative": "os/README.md"
+  "filePathRelative": "target/interviewContent.md"
 }
 
 if (import.meta.webpackHot) {

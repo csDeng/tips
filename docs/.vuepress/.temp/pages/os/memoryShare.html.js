@@ -44,8 +44,14 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1650217749000,
+    "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 1
+      }
+    ]
   },
   "filePathRelative": "os/memoryShare.md"
 }
