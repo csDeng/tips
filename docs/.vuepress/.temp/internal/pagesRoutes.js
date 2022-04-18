@@ -14,11 +14,11 @@ const routeItems = [
   ["v-a02f428c","/language/go/function_method.html",{"title":"函数与方法"},["/language/go/function_method","/language/go/function_method.md"]],
   ["v-605ce91a","/language/go/init_main.html",{"title":"init函数与main函数"},["/language/go/init_main","/language/go/init_main.md"]],
   ["v-f4c952f4","/language/go/map.html",{"title":"Map"},["/language/go/map","/language/go/map.md"]],
+  ["v-8436a7ea","/language/go/panic.html",{"title":""},["/language/go/panic","/language/go/panic.md"]],
   ["v-6c7135c5","/language/go/pointer.html",{"title":"1. 指针"},["/language/go/pointer","/language/go/pointer.md"]],
   ["v-27963d16","/language/go/process_control.html",{"title":"流程控制"},["/language/go/process_control","/language/go/process_control.md"]],
   ["v-faa2900a","/language/go/struct.html",{"title":"1. 结构体"},["/language/go/struct","/language/go/struct.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
-  ["v-8436a7ea","/language/go/panic.html",{"title":""},["/language/go/panic","/language/go/panic.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(
