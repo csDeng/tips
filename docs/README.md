@@ -18,10 +18,11 @@ features:
   - title: 操作系统
     details: 去了解计算机操作系统的实现以及构成，加深对计算机的了解
 
-footer: MIT Licensed | Copyright © 2018-present CSJerry
+footer: MIT Licensed | Copyright © 2022-present CSJerry
 ---
 
 ### 写过Hello等于我学会了
+
 
 <CodeGroup>
   <CodeGroupItem title="Go" active>

@@ -1,4 +1,4 @@
-<template><nav class="table-of-contents"><ul><li><RouterLink to="#数组和切片">数组和切片</RouterLink><ul><li><RouterLink to="#数组">数组</RouterLink><ul><li><RouterLink to="#数组初始化">数组初始化</RouterLink><ul><li><RouterLink to="#一维数组">一维数组：</RouterLink></li><li><RouterLink to="#多维数组">多维数组</RouterLink></li><li><RouterLink to="#多维数组遍历">多维数组遍历：</RouterLink></li></ul></li><li><RouterLink to="#数组拷贝和传参">数组拷贝和传参</RouterLink></li><li><RouterLink to="#数组练习">数组练习</RouterLink><ul><li><RouterLink to="#求数组所有元素之和">求数组所有元素之和</RouterLink></li><li><RouterLink to="#找出数组中和为给定值的两个元素的下标-例如数组-1-3-5-8-7-找出两个元素之和等于8的下标分别是-0-4-和-1-2">找出数组中和为给定值的两个元素的下标，例如数组[1,3,5,8,7]，找出两个元素之和等于8的下标分别是（0，4）和（1，2）</RouterLink></li></ul></li></ul></li><li><RouterLink to="#切片">切片</RouterLink><ul><li><RouterLink to="#创建切片的各种方式">创建切片的各种方式</RouterLink><ul><li><RouterLink to="#_1-利用数组来创建">1. 利用数组来创建</RouterLink></li><li><RouterLink to="#_2-通过make来创建">2. 通过make来创建</RouterLink></li><li><RouterLink to="#_3-直接创建-slice-对象-自动分配底层数组。">3. 直接创建 slice 对象，自动分配底层数组。</RouterLink></li></ul></li><li><RouterLink to="#切片的内存布局">切片的内存布局</RouterLink></li><li><RouterLink to="#查">查</RouterLink></li><li><RouterLink to="#改">改</RouterLink></li><li><RouterLink to="#删">删</RouterLink></li><li><RouterLink to="#增">增</RouterLink></li></ul></li><li><RouterLink to="#扩展">扩展</RouterLink><ul><li><RouterLink to="#字符串和切片-string-and-slice">字符串和切片（string and slice）</RouterLink></li><li><RouterLink to="#含有中文字符串">含有中文字符串：</RouterLink></li><li><RouterLink to="#slice-data-6-8-两个冒号的理解">slice data[:6:8] 两个冒号的理解</RouterLink></li><li><RouterLink to="#数组or切片转字符串">数组or切片转字符串：</RouterLink></li></ul></li><li><RouterLink to="#slice的源码">slice的源码</RouterLink></li><li><RouterLink to="#slice的底层实现">slice的底层实现</RouterLink><ul><li><RouterLink to="#切片和数组">切片和数组</RouterLink></li><li><RouterLink to="#切片的数据结构">切片的数据结构</RouterLink></li><li><RouterLink to="#创建切片">创建切片</RouterLink><ul><li><RouterLink to="#make-和切片字面量">make 和切片字面量</RouterLink></li><li><RouterLink to="#nil-和空切片">nil 和空切片</RouterLink></li></ul></li><li><RouterLink to="#切片扩容">切片扩容</RouterLink><ul><li><RouterLink to="#扩容策略">扩容策略</RouterLink></li><li><RouterLink to="#新数组-or-老数组">新数组 or 老数组 ？</RouterLink></li></ul></li><li><RouterLink to="#切片拷贝">切片拷贝</RouterLink></li></ul></li></ul></li></ul></nav>
+<template><nav class="table-of-contents"><ul><li><RouterLink to="#数组和切片">数组和切片</RouterLink><ul><li><RouterLink to="#数组">数组</RouterLink><ul><li><RouterLink to="#数组初始化">数组初始化</RouterLink><ul><li><RouterLink to="#一维数组">一维数组：</RouterLink></li><li><RouterLink to="#多维数组">多维数组</RouterLink></li><li><RouterLink to="#多维数组遍历">多维数组遍历：</RouterLink></li></ul></li><li><RouterLink to="#数组拷贝和传参">数组拷贝和传参</RouterLink></li><li><RouterLink to="#数组练习">数组练习</RouterLink><ul><li><RouterLink to="#求数组所有元素之和">求数组所有元素之和</RouterLink></li><li><RouterLink to="#找出数组中和为给定值的两个元素的下标-例如数组-1-3-5-8-7-找出两个元素之和等于8的下标分别是-0-4-和-1-2">找出数组中和为给定值的两个元素的下标，例如数组[1,3,5,8,7]，找出两个元素之和等于8的下标分别是（0，4）和（1，2）</RouterLink></li></ul></li></ul></li><li><RouterLink to="#切片">切片</RouterLink><ul><li><RouterLink to="#创建切片的各种方式">创建切片的各种方式</RouterLink><ul><li><RouterLink to="#_1-利用数组来创建">1. 利用数组来创建</RouterLink></li><li><RouterLink to="#_2-通过make来创建">2. 通过make来创建</RouterLink></li><li><RouterLink to="#_3-直接创建-slice-对象-自动分配底层数组。">3. 直接创建 slice 对象，自动分配底层数组。</RouterLink></li></ul></li><li><RouterLink to="#切片的内存布局">切片的内存布局</RouterLink></li><li><RouterLink to="#查">查</RouterLink></li><li><RouterLink to="#改">改</RouterLink></li><li><RouterLink to="#删">删</RouterLink></li><li><RouterLink to="#增">增</RouterLink></li></ul></li><li><RouterLink to="#扩展">扩展</RouterLink><ul><li><RouterLink to="#字符串和切片-string-and-slice">字符串和切片（string and slice）</RouterLink></li><li><RouterLink to="#含有中文字符串">含有中文字符串：</RouterLink></li><li><RouterLink to="#slice-data-6-8-两个冒号的理解">slice data[:6:8] 两个冒号的理解</RouterLink></li><li><RouterLink to="#数组or切片转字符串">数组or切片转字符串：</RouterLink></li></ul></li><li><RouterLink to="#slice的源码">slice的源码</RouterLink></li><li><RouterLink to="#slice的底层实现">slice的底层实现</RouterLink><ul><li><RouterLink to="#切片和数组">切片和数组</RouterLink></li><li><RouterLink to="#切片的数据结构">切片的数据结构</RouterLink></li><li><RouterLink to="#创建切片">创建切片</RouterLink><ul><li><RouterLink to="#make-和切片字面量">make 和切片字面量</RouterLink></li><li><RouterLink to="#nil-和空切片">nil 和空切片</RouterLink></li></ul></li><li><RouterLink to="#切片扩容">切片扩容</RouterLink><ul><li><RouterLink to="#扩容策略">扩容策略</RouterLink></li><li><RouterLink to="#新数组-or-老数组">新数组 or 老数组 ？</RouterLink></li></ul></li><li><RouterLink to="#切片拷贝">切片拷贝</RouterLink><ul><li><RouterLink to="#slice-中拷贝方法有2个。">Slice 中拷贝方法有2个。</RouterLink></li></ul></li></ul></li></ul></li></ul></nav>
 <h1 id="数组和切片" tabindex="-1"><a class="header-anchor" href="#数组和切片" aria-hidden="true">#</a> 数组和切片</h1>
 <p>内容主要来自<a href="https://www.topgoer.cn/docs/golang/chapter03-9" target="_blank" rel="noopener noreferrer">数组Array - 地鼠文档 (topgoer.cn)<ExternalLinkIcon/></a>，<a href="https://www.topgoer.cn/docs/golang/chapter03-10" target="_blank" rel="noopener noreferrer">切片Slice - 地鼠文档 (topgoer.cn)<ExternalLinkIcon/></a>，辅以本人微微的更改。</p>
 <h2 id="数组" tabindex="-1"><a class="header-anchor" href="#数组" aria-hidden="true">#</a> 数组</h2>
@@ -172,6 +172,67 @@ x: 0xc42007c030
 <span class="token punctuation">(</span><span class="token number">1,0</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">7</span> <span class="token punctuation">(</span><span class="token number">1,1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">8</span> <span class="token punctuation">(</span><span class="token number">1,2</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">9</span> 
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></details>
 <h3 id="数组拷贝和传参" tabindex="-1"><a class="header-anchor" href="#数组拷贝和传参" aria-hidden="true">#</a> 数组拷贝和传参</h3>
+<ul>
+<li>拷贝</li>
+</ul>
+<ol>
+<li>手动复制</li>
+</ol>
+<details class="custom-container details"><summary>一段朴实无华的代码</summary>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	a <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+	<span class="token keyword">var</span> b <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> val <span class="token operator">:=</span> <span class="token keyword">range</span> a <span class="token punctuation">{</span>
+		b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> val
+	<span class="token punctuation">}</span>
+	a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">99</span>
+	b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Address a = %p ,value a = %v \r\n"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Address b = %p ,value b = %v"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>输出</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>Address a <span class="token operator">=</span> 0xc000016168 ,value a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">99</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">]</span> 
+Address b <span class="token operator">=</span> 0xc000016180 ,value b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">100</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>可以看到数组是被深拷贝了的。</p>
+</details>
+<ol start="2">
+<li>直接赋值给一个同类型的数组变量（因为在<code>Go</code>里面，数组是值拷贝，跟<code>C\C++,java</code>有点差别）</li>
+</ol>
+<details class="custom-container details"><summary>又一段朴实无华的代码</summary>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	a <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+	<span class="token keyword">var</span> b <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+	b <span class="token operator">=</span> a
+	a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">99</span>
+	b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Address a = %p ,value a = %v \r\n"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Address b = %p ,value b = %v"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>输出</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>Address a <span class="token operator">=</span> 0xc000016168 ,value a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">99</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">]</span> 
+Address b <span class="token operator">=</span> 0xc000016180 ,value b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">100</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></details>
+<ol start="3">
+<li>还有其他方法吗？</li>
+</ol>
+<blockquote>
+<p>好像没了，因为<code>Go</code>并没有为数组提供太多<code>api</code>，且没必要.</p>
+</blockquote>
+<ul>
+<li>传参</li>
+</ul>
 <details class="custom-container details"><summary>查看代码</summary>
 <div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
 
@@ -650,6 +711,31 @@ index : 9 , value : 9
 slice b : [3] , len(b) : 1
 slice c : [3 4 5] , len(c) : 3
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div></details>
+<ul>
+<li>切片的切片的更改</li>
+</ul>
+<details class="custom-container details">
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	a <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+
+	b <span class="token operator">:=</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+	b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">99</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"b: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> b<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>输出</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>a: Address 0xc00000a480 , value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span> 
+a: Address 0xc00000a480 , value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">99</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span> 
+b: Address 0xc00000a488 , value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">99</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>可以看到切片的切片的更改是会影响原数组的，因为切片是引用类型。</p>
+</details>
 <h3 id="删" tabindex="-1"><a class="header-anchor" href="#删" aria-hidden="true">#</a> 删</h3>
 <blockquote>
 <p><code>Go</code>中并没有直接提供函数删除，我们可以直接使用索引下标手动切</p>
@@ -1746,7 +1832,28 @@ After array <span class="token punctuation">[</span><span class="token number">1
 </details>
 <p>所以建议尽量避免情况一，尽量使用情况二，避免 bug 产生。</p>
 <h3 id="切片拷贝" tabindex="-1"><a class="header-anchor" href="#切片拷贝" aria-hidden="true">#</a> 切片拷贝</h3>
-<p>Slice 中拷贝方法有2个。</p>
+<p>简单展示</p>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	a <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+
+	<span class="token keyword">var</span> b <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">copy</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	b<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">99</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"b: Address %p , value = %v \r\n"</span><span class="token punctuation">,</span> b<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>输出</p>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code>a<span class="token punctuation">:</span> Address <span class="token number">0xc00000a480</span> <span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span> 
+<span class="token number">6</span>
+a<span class="token punctuation">:</span> Address <span class="token number">0xc00000a480</span> <span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span> 
+b<span class="token punctuation">:</span> Address <span class="token number">0xc00000a4b0</span> <span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">99</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="slice-中拷贝方法有2个。" tabindex="-1"><a class="header-anchor" href="#slice-中拷贝方法有2个。" aria-hidden="true">#</a> Slice 中拷贝方法有2个。</h4>
 <ul>
 <li><code>slicecopy</code></li>
 </ul>

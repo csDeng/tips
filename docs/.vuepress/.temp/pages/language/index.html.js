@@ -13,6 +13,12 @@ export const data = {
       "title": "Go基础",
       "slug": "go基础",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "网络编程",
+      "slug": "网络编程",
+      "children": []
     }
   ],
   "git": {

@@ -8,14 +8,14 @@ export const data = {
   "headers": [
     {
       "level": 2,
-      "title": "April",
-      "slug": "april",
+      "title": "基本知识",
+      "slug": "基本知识",
       "children": []
     },
     {
       "level": 2,
-      "title": "May",
-      "slug": "may",
+      "title": "算法体系",
+      "slug": "算法体系",
       "children": []
     }
   ],

@@ -228,6 +228,82 @@ func main() {
 
 ### 数组拷贝和传参
 
+* 拷贝
+
+1. 手动复制
+
+:::details 一段朴实无华的代码
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := [3]int{1, 2, 3}
+
+	var b [3]int
+	for i, val := range a {
+		b[i] = val
+	}
+	a[0] = 99
+	b[0] = 100
+	fmt.Printf("Address a = %p ,value a = %v \r\n", &a, a)
+	fmt.Printf("Address b = %p ,value b = %v", &b, b)
+}
+
+```
+
+输出
+
+```shell
+Address a = 0xc000016168 ,value a = [99 2 3] 
+Address b = 0xc000016180 ,value b = [100 2 3]
+```
+
+可以看到数组是被深拷贝了的。
+
+:::
+
+2. 直接赋值给一个同类型的数组变量（因为在`Go`里面，数组是值拷贝，跟`C\C++,java`有点差别）
+
+:::details 又一段朴实无华的代码
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := [3]int{1, 2, 3}
+
+	var b [3]int
+	b = a
+	a[0] = 99
+	b[0] = 100
+	fmt.Printf("Address a = %p ,value a = %v \r\n", &a, a)
+	fmt.Printf("Address b = %p ,value b = %v", &b, b)
+}
+
+```
+
+输出
+
+```shell
+Address a = 0xc000016168 ,value a = [99 2 3] 
+Address b = 0xc000016180 ,value b = [100 2 3]
+```
+
+:::
+
+3. 还有其他方法吗？
+
+> 好像没了，因为`Go`并没有为数组提供太多`api`，且没必要.
+
+
+
+* 传参
+
 :::details 查看代码
 ```go
 package main
@@ -836,6 +912,40 @@ slice c : [3 4 5] , len(c) : 3
 
 :::
 
+* 切片的切片的更改
+
+:::details
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := []int{1, 2, 3, 4, 5, 6}
+	fmt.Printf("a: Address %p , value = %v \r\n", a, a)
+
+	b := a[1:]
+	b[0] = 99
+	fmt.Printf("a: Address %p , value = %v \r\n", a, a)
+	fmt.Printf("b: Address %p , value = %v \r\n", b, b)
+
+}
+
+```
+
+输出
+
+```shell
+a: Address 0xc00000a480 , value = [1 2 3 4 5 6] 
+a: Address 0xc00000a480 , value = [1 99 3 4 5 6] 
+b: Address 0xc00000a488 , value = [99 3 4 5 6]
+```
+
+可以看到切片的切片的更改是会影响原数组的，因为切片是引用类型。
+
+:::
+
 ### 删
 > `Go`中并没有直接提供函数删除，我们可以直接使用索引下标手动切
 :::details 查看代码
@@ -868,6 +978,8 @@ func main() {
 [2]
 ```
 :::
+
+
 
 ### 增
 
@@ -2271,7 +2383,38 @@ After array [10 20 30 40], Pointer = 0xc0000121c0
 
 ### 切片拷贝
 
-Slice 中拷贝方法有2个。
+简单展示
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := []int{1, 2, 3, 4, 5, 6}
+	fmt.Printf("a: Address %p , value = %v \r\n", a, a)
+
+	var b []int = make([]int, len(a))
+	fmt.Println(copy(b, a))
+	b[0] = 99
+	fmt.Printf("a: Address %p , value = %v \r\n", a, a)
+	fmt.Printf("b: Address %p , value = %v \r\n", b, b)
+}
+
+```
+
+输出
+
+```go
+a: Address 0xc00000a480 , value = [1 2 3 4 5 6] 
+6
+a: Address 0xc00000a480 , value = [1 2 3 4 5 6] 
+b: Address 0xc00000a4b0 , value = [99 2 3 4 5 6]
+```
+
+
+
+#### Slice 中拷贝方法有2个。
 
 * `slicecopy`
 
