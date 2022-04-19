@@ -1,4 +1,4 @@
-<template><nav class="table-of-contents"><ul><li><RouterLink to="#go语言tcp-socket编程">Go语言TCP Socket编程</RouterLink><ul><li><RouterLink to="#一、模型">一、模型</RouterLink></li><li><RouterLink to="#二、tcp连接的建立">二、TCP连接的建立</RouterLink><ul><li><RouterLink to="#对于客户端而言-连接的建立会遇到如下几种情形">对于客户端而言，连接的建立会遇到如下几种情形：</RouterLink><ul><li><RouterLink to="#_1、网络不可达或对方服务未启动">1、网络不可达或对方服务未启动</RouterLink></li><li><RouterLink to="#_2、对方服务的listen-backlog满">2、对方服务的listen backlog满</RouterLink></li><li><RouterLink to="#_3、网络延迟较大-dial阻塞并超时">3、网络延迟较大，Dial阻塞并超时</RouterLink></li></ul></li></ul></li><li><RouterLink to="#三、socket读写">三、Socket读写</RouterLink><ul><li><RouterLink to="#conn-read">conn.Read</RouterLink><ul><li><RouterLink to="#_1、socket中无数据">1、Socket中无数据</RouterLink></li><li><RouterLink to="#_2、socket中有部分数据">2、Socket中有部分数据</RouterLink></li><li><RouterLink to="#_3、socket中有足够数据">3、Socket中有足够数据</RouterLink></li><li><RouterLink to="#_4、socket关闭">4、Socket关闭</RouterLink></li><li><RouterLink to="#_5、读取操作超时">5、读取操作超时</RouterLink></li></ul></li><li><RouterLink to="#conn-write">conn.Write</RouterLink><ul><li><RouterLink to="#_1、成功写">1、成功写</RouterLink></li><li><RouterLink to="#_2、写阻塞">2、写阻塞</RouterLink></li><li><RouterLink to="#_3、写入部分数据">3、写入部分数据</RouterLink></li><li><RouterLink to="#_4、写入超时">4、写入超时</RouterLink></li><li><RouterLink to="#goroutine-safe">Goroutine safe</RouterLink></li></ul></li></ul></li><li><RouterLink to="#四、socket属性">四、Socket属性</RouterLink></li><li><RouterLink to="#五、关闭连接">五、关闭连接</RouterLink><ul><li><RouterLink to="#六、小结">六、小结</RouterLink></li></ul></li></ul></li></ul></nav>
+<template><nav class="table-of-contents"><ul><li><RouterLink to="#go语言tcp-socket编程">Go语言TCP Socket编程</RouterLink><ul><li><RouterLink to="#一、模型">一、模型</RouterLink></li><li><RouterLink to="#二、tcp连接的建立">二、TCP连接的建立</RouterLink><ul><li><RouterLink to="#对于客户端而言-连接的建立会遇到如下几种情形">对于客户端而言，连接的建立会遇到如下几种情形：</RouterLink><ul><li><RouterLink to="#_1、网络不可达或对方服务未启动">1、网络不可达或对方服务未启动</RouterLink></li><li><RouterLink to="#_2、对方服务的listen-backlog满">2、对方服务的listen backlog满</RouterLink></li><li><RouterLink to="#_3、网络延迟较大-dial阻塞并超时">3、网络延迟较大，Dial阻塞并超时</RouterLink></li></ul></li></ul></li><li><RouterLink to="#三、socket读写">三、Socket读写</RouterLink><ul><li><RouterLink to="#conn-read">conn.Read</RouterLink><ul><li><RouterLink to="#_1、socket中无数据">1、Socket中无数据</RouterLink></li><li><RouterLink to="#_2、socket中有部分数据">2、Socket中有部分数据</RouterLink></li><li><RouterLink to="#_3、socket中有足够数据">3、Socket中有足够数据</RouterLink></li><li><RouterLink to="#_4、socket关闭">4、Socket关闭</RouterLink></li><li><RouterLink to="#_5、读取操作超时">5、读取操作超时</RouterLink></li></ul></li><li><RouterLink to="#conn-write">conn.Write</RouterLink><ul><li><RouterLink to="#_1、成功写">1、成功写</RouterLink></li><li><RouterLink to="#_2、写阻塞">2、写阻塞</RouterLink></li><li><RouterLink to="#_3、写入部分数据">3、写入部分数据</RouterLink></li><li><RouterLink to="#_4、写入超时">4、写入超时</RouterLink></li></ul></li><li><RouterLink to="#goroutine-safe">Goroutine safe</RouterLink></li></ul></li><li><RouterLink to="#四、socket属性">四、Socket属性</RouterLink></li><li><RouterLink to="#五、关闭连接">五、关闭连接</RouterLink><ul><li><RouterLink to="#六、小结">六、小结</RouterLink></li></ul></li></ul></li></ul></nav>
 <h1 id="go语言tcp-socket编程" tabindex="-1"><a class="header-anchor" href="#go语言tcp-socket编程" aria-hidden="true">#</a> Go语言TCP Socket编程</h1>
 <div class="custom-container tip"><p class="custom-container-title">声明</p>
 <p>本文源于<a href="https://tonybai.com/2015/11/17/tcp-programming-in-golang/" target="_blank" rel="noopener noreferrer">Go语言TCP Socket编程 | Tony Bai<ExternalLinkIcon/></a>，可能会有稍微的修改。</p>
@@ -186,12 +186,12 @@ kern.ipc.somaxconn: <span class="token number">128</span>
 </blockquote>
 </details>
 <h2 id="三、socket读写" tabindex="-1"><a class="header-anchor" href="#三、socket读写" aria-hidden="true">#</a> 三、Socket读写</h2>
-<p>连接建立起来后，我们就要在conn上进行读写，以完成业务逻辑。前面说过Go runtime隐藏了I/O多路复用的复杂性。语言使用者只需采用goroutine+Block I/O的模式即可满足大部分场景需求。Dial成功后，方法返回一个net.Conn接口类型变量值，这个接口变量的动态类型为一个*TCPConn：</p>
+<p>连接建立起来后，我们就要在conn上进行读写，以完成业务逻辑。前面说过Go runtime隐藏了I/O多路复用的复杂性。语言使用者只需采用goroutine+Block I/O的模式即可满足大部分场景需求。Dial成功后，方法返回一个net.Conn接口类型变量值，这个接口变量的动态类型为一个<code>*TCPConn</code>：</p>
 <div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">//$GOROOT/src/net/tcpsock_posix.go</span>
 <span class="token keyword">type</span> TCPConn <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     conn
 <span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>TCPConn内嵌了一个unexported类型：conn，因此TCPConn”继承”了conn的Read和Write方法，后续通过Dial返回值调用的Write和Read方法均是net.conn的方法：</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>TCPConn内嵌了一个<code>unexported</code>类型：<code>conn</code>，因此TCPConn”继承”了conn的Read和Write方法，后续通过Dial返回值调用的Write和Read方法均是<code>net.conn</code>的方法：</p>
 <div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">//$GOROOT/src/net/net.go</span>
 <span class="token keyword">type</span> conn <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     fd <span class="token operator">*</span>netFD
@@ -229,345 +229,509 @@ kern.ipc.somaxconn: <span class="token number">128</span>
 <hr>
 <h4 id="_1、socket中无数据" tabindex="-1"><a class="header-anchor" href="#_1、socket中无数据" aria-hidden="true">#</a> 1、Socket中无数据</h4>
 <p>连接建立后，如果对方未发送数据到socket，接收方(Server)会阻塞在Read操作上，这和前面提到的“模型”原理是一致的。执行该Read操作的goroutine也会被挂起。runtime会监视该socket，直到其有数据才会重新
-调度该socket对应的Goroutine完成read。由于篇幅原因，这里就不列代码了，例子对应的代码文件：go-tcpsock/read_write下的client1.go和server1.go。</p>
+调度该socket对应的Goroutine完成read。</p>
+<details class="custom-container details">
+<CodeGroup>
+<CodeGroupItem title='server.go' active>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"log"</span>
+	<span class="token string">"net"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">process</span><span class="token punctuation">(</span>con net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">defer</span> con<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		<span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin--"</span><span class="token punctuation">)</span>
+		n<span class="token punctuation">,</span> err <span class="token operator">:=</span> con<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"conn read occur error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+		log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	listen<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8000"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span><span class="token string">"listen occur error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		c<span class="token punctuation">,</span> err <span class="token operator">:=</span> listen<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"accept occur error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			<span class="token keyword">break</span>
+		<span class="token punctuation">}</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"accept a new connection"</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token function">process</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title='client.go'>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"log"</span>
+	<span class="token string">"net"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial begin--"</span><span class="token punctuation">)</span>
+	con<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8000"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"connect occur error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">defer</span> con<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial ok"</span><span class="token punctuation">)</span>
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div></CodeGroupItem>
+</CodeGroup>
+<p>运行结果：</p>
+<CodeGroup>
+<CodeGroupItem title='server' active>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>PS<span class="token operator">></span> go run .<span class="token punctuation">\</span>server1.go
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:30:19 accept a new connection
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:30:19 begin--
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title='client'>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>PS<span class="token operator">></span> go run .<span class="token punctuation">\</span>client1.go
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:30:19 dial begin--
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:30:19 dial ok
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div></CodeGroupItem>
+</CodeGroup>
+<p>可以看到<code>server</code>的<code>process</code>协程堵塞在<code>read</code>操作。</p>
+</details>
 <h4 id="_2、socket中有部分数据" tabindex="-1"><a class="header-anchor" href="#_2、socket中有部分数据" aria-hidden="true">#</a> 2、Socket中有部分数据</h4>
 <p>如果socket中有部分数据，且长度小于一次Read操作所期望读出的数据长度，那么Read将会成功读出这部分数据并返回，而不是等待所有期望数据全部读取后再返回。</p>
-<p>Client端：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>//go-tcpsock/read_write/client2.go
-... ...
-func main() {
-    if len(os.Args) &lt;= 1 {
-        fmt.Println("usage: go run client2.go YOUR_CONTENT")
-        return
-    }
-    log.Println("begin dial...")
-    conn, err := net.Dial("tcp", ":8888")
-    if err != nil {
-        log.Println("dial error:", err)
-        return
-    }
-    defer conn.Close()
-    log.Println("dial ok")
+<details class="custom-container details">
+<CodeGroup>
+<CodeGroupItem title='client2.go' active>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"usage: go run client2.go YOUR_CONTENT"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin dial..."</span><span class="token punctuation">)</span>
+    conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial ok"</span><span class="token punctuation">)</span>
 
-    time.Sleep(time.Second * 2)
-    data := os.Args[1]
-    conn.Write([]byte(data))
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    data <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    conn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    time.Sleep(time.Second * 10000)
-}
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>Server端：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>//go-tcpsock/read_write/server2.go
-... ...
-func handleConn(c net.Conn) {
-    defer c.Close()
-    for {
-        // read from the connection
-        var buf = make([]byte, 10)
-        log.Println("start to read from conn")
-        n, err := c.Read(buf)
-        if err != nil {
-            log.Println("conn read error:", err)
-            return
-        }
-        log.Printf("read %d bytes, content is %s\n", n, string(buf[:n]))
-    }
-}
-... ...
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>我们通过client2.go发送”hi”到Server端：
-运行结果:</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run client2.go hi
-2015/11/17 13:30:53 begin dial...
-2015/11/17 13:30:53 dial ok
-
-$go run server2.go
-2015/11/17 13:33:45 accept a new connection
-2015/11/17 13:33:45 start to read from conn
-2015/11/17 13:33:47 read 2 bytes, content is hi
-...
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>Client向socket中写入两个字节数据(“hi”)，Server端创建一个len = 10的slice，等待Read将读取的数据放入slice；Server随后读取到那两个字节：”hi”。Read成功返回，n =2 ，err = nil。</p>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">10000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title='server2.go'>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        <span class="token comment">// read from the connection</span>
+        <span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start to read from conn"</span><span class="token punctuation">)</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"conn read error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div></CodeGroupItem>
+</CodeGroup>
+运行结果:
+<p><img src="@source/language/go/net/pics/tcp/image-20220418235005495.png" alt="image-20220418235005495"></p>
+<p>Client向socket中写入两个字节数据(“hi”)，Server端创建一个len = 10的slice，等待Read将读取的数据放入slice；Server随后读取到那两个字节：”hi”。Read成功返回，n =2 ，err = nil。</p>
+</details>
 <h4 id="_3、socket中有足够数据" tabindex="-1"><a class="header-anchor" href="#_3、socket中有足够数据" aria-hidden="true">#</a> 3、Socket中有足够数据</h4>
 <p>如果socket中有数据，且长度大于等于一次Read操作所期望读出的数据长度，那么Read将会成功读出这部分数据并返回。这个情景是最符合我们对Read的期待的了：Read将用Socket中的数据将我们传入的slice填满后返回：n = 10, err = nil。</p>
-<p>我们通过client2.go向Server2发送如下内容：abcdefghij12345，执行结果如下：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run client2.go abcdefghij12345
-2015/11/17 13:38:00 begin dial...
-2015/11/17 13:38:00 dial ok
-
-$go run server2.go
-2015/11/17 13:38:00 accept a new connection
-2015/11/17 13:38:00 start to read from conn
-2015/11/17 13:38:02 read 10 bytes, content is abcdefghij
-2015/11/17 13:38:02 start to read from conn
-2015/11/17 13:38:02 read 5 bytes, content is 12345
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>client端发送的内容长度为15个字节，Server端Read buffer的长度为10，因此Server Read第一次返回时只会读取10个字节；Socket中还剩余5个字节数据，Server再次Read时会把剩余数据读出（如：情形2）。</p>
+<p>我们通过client2.go向Server2发送如下内容：<code>worldsadasda</code>，则</p>
+<blockquote>
+<p>client端发送的内容长度为12个字节，Server端Read buffer的长度为10，因此Server Read第一次返回时只会读取10个字节；Socket中还剩余2个字节数据，Server再次Read时会把剩余数据读出。</p>
+</blockquote>
 <h4 id="_4、socket关闭" tabindex="-1"><a class="header-anchor" href="#_4、socket关闭" aria-hidden="true">#</a> 4、Socket关闭</h4>
 <p>如果client端主动关闭了socket，那么Server的Read将会读到什么呢？这里分为“有数据关闭”和“无数据关闭”。</p>
-<p>“有数据关闭”是指在client关闭时，socket中还有server端未读取的数据，我们在go-tcpsock/read_write/client3.go和server3.go中模拟这种情况：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run client3.go hello
-2015/11/17 13:50:57 begin dial...
-2015/11/17 13:50:57 dial ok
+<p>“有数据关闭”是指在client关闭时，socket中还有server端未读取的数据，我们在<code>client3.go</code>和<code>server3.go</code>中模拟这种情况：</p>
+<details class="custom-container details">
+<CodeGroup>
+<CodeGroupItem title='server3.go' active>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
 
-$go run server3.go
-2015/11/17 13:50:57 accept a new connection
-2015/11/17 13:51:07 start to read from conn
-2015/11/17 13:51:07 read 5 bytes, content is hello
-2015/11/17 13:51:17 start to read from conn
-2015/11/17 13:51:17 conn read error: EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>从输出结果来看，当client端close socket退出后，server3依旧没有开始Read，10s后第一次Read成功读出了5个字节的数据，当第二次Read时，由于client端 socket关闭，Read返回EOF error。</p>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"log"</span>
+	<span class="token string">"net"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		<span class="token comment">// read from the connection</span>
+		time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+		<span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start to read from conn"</span><span class="token punctuation">)</span>
+		n<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"conn read error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+		log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	l<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"listen error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">{</span>
+		c<span class="token punctuation">,</span> err <span class="token operator">:=</span> l<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"accept error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			<span class="token keyword">break</span>
+		<span class="token punctuation">}</span>
+		<span class="token comment">// start a new goroutine to handle</span>
+		<span class="token comment">// the new connection.</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"accept a new connection"</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title='client3.go'>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"log"</span>
+	<span class="token string">"net"</span>
+	<span class="token string">"os"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"usage: go run client3.go YOUR_CONTENT"</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin dial..."</span><span class="token punctuation">)</span>
+	conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial ok"</span><span class="token punctuation">)</span>
+
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+	data <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	conn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div></CodeGroupItem>
+</CodeGroup>
+<p>输出结果</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token operator">></span> go run .<span class="token punctuation">\</span>server3.go
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:11 accept a new connection2022/04/18 <span class="token number">23</span>:56:21 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:21 <span class="token builtin class-name">read</span> <span class="token number">5</span> bytes, content is hello
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:31 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:31 conn <span class="token builtin class-name">read</span> error: EOF
+
+
+<span class="token punctuation">..</span>.
+
+<span class="token operator">></span> go run .<span class="token punctuation">\</span>client3.go hello
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:11 begin dial<span class="token punctuation">..</span>.
+<span class="token number">2022</span>/04/18 <span class="token number">23</span>:56:11 dial ok
+
+
+
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>从输出结果来看，当client端close socket退出后，server3依旧没有开始Read，10s后第一次Read成功读出了5个字节的数据，当第二次Read时，由于client端 socket关闭，Read返回EOF error。</p>
+</details>
 <p>通过上面这个例子，我们也可以猜测出“无数据关闭”情形下的结果，那就是Read直接返回EOF error。</p>
 <h4 id="_5、读取操作超时" tabindex="-1"><a class="header-anchor" href="#_5、读取操作超时" aria-hidden="true">#</a> 5、读取操作超时</h4>
 <p>有些场合对Read的阻塞时间有严格限制，在这种情况下，Read的行为到底是什么样的呢？在返回超时错误时，是否也同时Read了一部分数据了呢？这个实验比较难于模拟，下面的测试结果也未必能反映出所有可能结果。我们编写了client4.go和server4.go来模拟这一情形。</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>//go-tcpsock/read_write/client4.go
-... ...
-func main() {
-    log.Println("begin dial...")
-    conn, err := net.Dial("tcp", ":8888")
-    if err != nil {
-        log.Println("dial error:", err)
-        return
-    }
-    defer conn.Close()
-    log.Println("dial ok")
+<details class="custom-container details">
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">//go-tcpsock/read_write/client4.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin dial..."</span><span class="token punctuation">)</span>
+    conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial ok"</span><span class="token punctuation">)</span>
 
-    data := make([]byte, 65536)
-    conn.Write(data)
+    data <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">65536</span><span class="token punctuation">)</span>
+    conn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
 
-    time.Sleep(time.Second * 10000)
-}
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">10000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-//go-tcpsock/read_write/server4.go
-... ...
-func handleConn(c net.Conn) {
-    defer c.Close()
-    for {
-        // read from the connection
-        time.Sleep(10 * time.Second)
-        var buf = make([]byte, 65536)
-        log.Println("start to read from conn")
-        c.SetReadDeadline(time.Now().Add(time.Microsecond * 10))
-        n, err := c.Read(buf)
-        if err != nil {
-            log.Printf("conn read %d bytes,  error: %s", n, err)
-            if nerr, ok := err.(net.Error); ok &amp;&amp; nerr.Timeout() {
-                continue
-            }
-            return
-        }
-        log.Printf("read %d bytes, content is %s\n", n, string(buf[:n]))
-    }
-}
+<span class="token comment">//go-tcpsock/read_write/server4.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        <span class="token comment">// read from the connection</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+        <span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">65536</span><span class="token punctuation">)</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start to read from conn"</span><span class="token punctuation">)</span>
+        c<span class="token punctuation">.</span><span class="token function">SetReadDeadline</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Microsecond <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"conn read %d bytes,  error: %s"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> nerr<span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span>net<span class="token punctuation">.</span>Error<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token operator">&amp;&amp;</span> nerr<span class="token punctuation">.</span><span class="token function">Timeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><p>在Server端我们通过Conn的SetReadDeadline方法设置了10微秒的读超时时间，Server的执行结果如下：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run server4.go
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code>$<span class="token keyword">go</span> run server4<span class="token punctuation">.</span><span class="token keyword">go</span>
 
-2015/11/17 14:21:17 accept a new connection
-2015/11/17 14:21:27 start to read from conn
-2015/11/17 14:21:27 conn read 0 bytes,  error: read tcp 127.0.0.1:8888->127.0.0.1:60970: i/o timeout
-2015/11/17 14:21:37 start to read from conn
-2015/11/17 14:21:37 read 65536 bytes, content is
+<span class="token number">2015</span><span class="token operator">/</span><span class="token number">11</span><span class="token operator">/</span><span class="token number">17</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">17</span> accept a <span class="token builtin">new</span> connection
+<span class="token number">2015</span><span class="token operator">/</span><span class="token number">11</span><span class="token operator">/</span><span class="token number">17</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">27</span> start to read from conn
+<span class="token number">2015</span><span class="token operator">/</span><span class="token number">11</span><span class="token operator">/</span><span class="token number">17</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">27</span> conn read <span class="token number">0</span> bytes<span class="token punctuation">,</span>  <span class="token builtin">error</span><span class="token punctuation">:</span> read tcp <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8888</span><span class="token operator">-</span><span class="token operator">></span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">60970</span><span class="token punctuation">:</span> i<span class="token operator">/</span>o timeout
+<span class="token number">2015</span><span class="token operator">/</span><span class="token number">11</span><span class="token operator">/</span><span class="token number">17</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">37</span> start to read from conn
+<span class="token number">2015</span><span class="token operator">/</span><span class="token number">11</span><span class="token operator">/</span><span class="token number">17</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">37</span> read <span class="token number">65536</span> bytes<span class="token punctuation">,</span> content is
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>虽然每次都是10微秒超时，但结果不同，第一次Read超时，读出数据长度为0；第二次读取所有数据成功，没有超时。反复执行了多次，没能出现“读出部分数据且返回超时错误”的情况。</p>
+</details>
 <hr>
 <h3 id="conn-write" tabindex="-1"><a class="header-anchor" href="#conn-write" aria-hidden="true">#</a> <code>conn.Write</code></h3>
 <p>和读相比，Write遇到的情形一样不少，我们也逐一看一下。</p>
 <hr>
 <h4 id="_1、成功写" tabindex="-1"><a class="header-anchor" href="#_1、成功写" aria-hidden="true">#</a> 1、成功写</h4>
-<p>前面例子着重于Read，client端在Write时并未判断Write的返回值。所谓“成功写”指的就是Write调用返回的n与预期要写入的数据长度相等，且error = nil。这是我们在调用Write时遇到的最常见的情形，这里不再举例了。</p>
+<p>前面例子着重于Read，client端在Write时并未判断Write的返回值。所谓“成功写”指的就是Write调用返回的n与预期要写入的数据长度相等，且<code>error == nil</code>。这是我们在调用Write时遇到的最常见的情形，这里不再举例了。</p>
 <h4 id="_2、写阻塞" tabindex="-1"><a class="header-anchor" href="#_2、写阻塞" aria-hidden="true">#</a> 2、写阻塞</h4>
 <p>TCP连接通信两端的OS都会为该连接保留数据缓冲，一端调用Write后，实际上数据是写入到OS的协议栈的数据缓冲的。TCP是全双工通信，因此每个方向都有独立的数据缓冲。当发送方将对方的接收缓冲区以及自身的发送缓冲区写满后，Write就会阻塞。我们来看一个例子：client5.go和server.go。</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>//go-tcpsock/read_write/client5.go
-... ...
-func main() {
-    log.Println("begin dial...")
-    conn, err := net.Dial("tcp", ":8888")
-    if err != nil {
-        log.Println("dial error:", err)
-        return
-    }
-    defer conn.Close()
-    log.Println("dial ok")
+<details class="custom-container details">
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">//go-tcpsock/read_write/client5.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin dial..."</span><span class="token punctuation">)</span>
+    conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial ok"</span><span class="token punctuation">)</span>
 
-    data := make([]byte, 65536)
-    var total int
-    for {
-        n, err := conn.Write(data)
-        if err != nil {
-            total += n
-            log.Printf("write %d bytes, error:%s\n", n, err)
-            break
-        }
-        total += n
-        log.Printf("write %d bytes this time, %d bytes in total\n", n, total)
-    }
+    data <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">65536</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> total <span class="token builtin">int</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">:=</span> conn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            total <span class="token operator">+=</span> n
+            log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes, error:%s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        total <span class="token operator">+=</span> n
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes this time, %d bytes in total\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> total<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    log.Printf("write %d bytes in total\n", total)
-    time.Sleep(time.Second * 10000)
-}
+    log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes in total\n"</span><span class="token punctuation">,</span> total<span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">10000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-//go-tcpsock/read_write/server5.go
-... ...
-func handleConn(c net.Conn) {
-    defer c.Close()
-    time.Sleep(time.Second * 10)
-    for {
-        // read from the connection
-        time.Sleep(5 * time.Second)
-        var buf = make([]byte, 60000)
-        log.Println("start to read from conn")
-        n, err := c.Read(buf)
-        if err != nil {
-            log.Printf("conn read %d bytes,  error: %s", n, err)
-            if nerr, ok := err.(net.Error); ok &amp;&amp; nerr.Timeout() {
-                continue
-            }
-        }
+<span class="token comment">//go-tcpsock/read_write/server5.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        <span class="token comment">// read from the connection</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+        <span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">60000</span><span class="token punctuation">)</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start to read from conn"</span><span class="token punctuation">)</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"conn read %d bytes,  error: %s"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> nerr<span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span>net<span class="token punctuation">.</span>Error<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token operator">&amp;&amp;</span> nerr<span class="token punctuation">.</span><span class="token function">Timeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        log.Printf("read %d bytes, content is %s\n", n, string(buf[:n]))
-    }
-}
-... ...
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><p>Server5在前10s中并不Read数据，因此当client5一直尝试写入时，写到一定量后就会发生阻塞：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run client5.go
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token variable">$go</span> run client5.go
 
-2015/11/17 14:57:33 begin dial...
-2015/11/17 14:57:33 dial ok
-2015/11/17 14:57:33 write 65536 bytes this time, 65536 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 131072 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 196608 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 262144 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 327680 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 393216 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 458752 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 524288 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 589824 bytes in total
-2015/11/17 14:57:33 write 65536 bytes this time, 655360 bytes in total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 begin dial<span class="token punctuation">..</span>.
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 dial ok
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">65536</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">131072</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">196608</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">262144</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">327680</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">393216</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">458752</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">524288</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">589824</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">14</span>:57:33 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">655360</span> bytes <span class="token keyword">in</span> total
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>在Darwin上，这个size大约在679468bytes。后续当server5每隔5s进行Read时，OS socket缓冲区腾出了空间，client5就又可以写入了：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run server5.go
-2015/11/17 15:07:01 accept a new connection
-2015/11/17 15:07:16 start to read from conn
-2015/11/17 15:07:16 read 60000 bytes, content is
-2015/11/17 15:07:21 start to read from conn
-2015/11/17 15:07:21 read 60000 bytes, content is
-2015/11/17 15:07:26 start to read from conn
-2015/11/17 15:07:26 read 60000 bytes, content is
-....
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token variable">$go</span> run server5.go
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:01 accept a new connection
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:16 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:16 <span class="token builtin class-name">read</span> <span class="token number">60000</span> bytes, content is
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:21 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:21 <span class="token builtin class-name">read</span> <span class="token number">60000</span> bytes, content is
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:26 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:26 <span class="token builtin class-name">read</span> <span class="token number">60000</span> bytes, content is
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
 
 client端：
 
-2015/11/17 15:07:01 write 65536 bytes this time, 720896 bytes in total
-2015/11/17 15:07:06 write 65536 bytes this time, 786432 bytes in total
-2015/11/17 15:07:16 write 65536 bytes this time, 851968 bytes in total
-2015/11/17 15:07:16 write 65536 bytes this time, 917504 bytes in total
-2015/11/17 15:07:27 write 65536 bytes this time, 983040 bytes in total
-2015/11/17 15:07:27 write 65536 bytes this time, 1048576 bytes in total
-.... ...
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h4 id="_3、写入部分数据" tabindex="-1"><a class="header-anchor" href="#_3、写入部分数据" aria-hidden="true">#</a> 3、写入部分数据</h4>
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:01 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">720896</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:06 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">786432</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:16 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">851968</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:16 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">917504</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:27 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">983040</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:07:27 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">1048576</span> bytes <span class="token keyword">in</span> total
+<span class="token punctuation">..</span><span class="token punctuation">..</span> <span class="token punctuation">..</span>.
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div></details>
+<h4 id="_3、写入部分数据" tabindex="-1"><a class="header-anchor" href="#_3、写入部分数据" aria-hidden="true">#</a> 3、写入部分数据</h4>
 <p>Write操作存在写入部分数据的情况，比如上面例子中，当client端输出日志停留在“write 65536 bytes this time, 655360 bytes in total”时，我们杀掉server5，这时我们会看到client5输出以下日志：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>...
-2015/11/17 15:19:14 write 65536 bytes this time, 655360 bytes in total
-2015/11/17 15:19:16 write 24108 bytes, error:write tcp 127.0.0.1:62245->127.0.0.1:8888: write: broken pipe
-2015/11/17 15:19:16 write 679468 bytes in total
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token punctuation">..</span>.
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:19:14 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">655360</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:19:16 <span class="token function">write</span> <span class="token number">24108</span> bytes, error:write tcp <span class="token number">127.0</span>.0.1:62245-<span class="token operator">></span><span class="token number">127.0</span>.0.1:8888: write: broken pipe
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:19:16 <span class="token function">write</span> <span class="token number">679468</span> bytes <span class="token keyword">in</span> total
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>显然Write并非在655360这个地方阻塞的，而是后续又写入24108后发生了阻塞，server端socket关闭后，我们看到Wrote返回er != nil且n = 24108，程序需要对这部分写入的24108字节做特定处理。</p>
 <h4 id="_4、写入超时" tabindex="-1"><a class="header-anchor" href="#_4、写入超时" aria-hidden="true">#</a> 4、写入超时</h4>
 <p>如果非要给Write增加一个期限，那我们可以调用SetWriteDeadline方法。我们copy一份client5.go，形成client6.go，在client6.go的Write之前增加一行timeout设置代码：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>conn.SetWriteDeadline(time.Now().Add(time.Microsecond * 10))
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code>conn<span class="token punctuation">.</span><span class="token function">SetWriteDeadline</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Microsecond <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div><p>启动server6.go，启动client6.go，我们可以看到写入超时的情况下，Write的返回结果：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run client6.go
-2015/11/17 15:26:34 begin dial...
-2015/11/17 15:26:34 dial ok
-2015/11/17 15:26:34 write 65536 bytes this time, 65536 bytes in total
-... ...
-2015/11/17 15:26:34 write 65536 bytes this time, 655360 bytes in total
-2015/11/17 15:26:34 write 24108 bytes, error:write tcp 127.0.0.1:62325->127.0.0.1:8888: i/o timeout
-2015/11/17 15:26:34 write 679468 bytes in total
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token variable">$go</span> run client6.go
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 begin dial<span class="token punctuation">..</span>.
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 dial ok
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">65536</span> bytes <span class="token keyword">in</span> total
+<span class="token punctuation">..</span>. <span class="token punctuation">..</span>.
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 <span class="token function">write</span> <span class="token number">65536</span> bytes this time, <span class="token number">655360</span> bytes <span class="token keyword">in</span> total
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 <span class="token function">write</span> <span class="token number">24108</span> bytes, error:write tcp <span class="token number">127.0</span>.0.1:62325-<span class="token operator">></span><span class="token number">127.0</span>.0.1:8888: i/o <span class="token function">timeout</span>
+<span class="token number">2015</span>/11/17 <span class="token number">15</span>:26:34 <span class="token function">write</span> <span class="token number">679468</span> bytes <span class="token keyword">in</span> total
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>可以看到在写入超时时，依旧存在部分数据写入的情况。</p>
 <hr>
-<p>综上例子，虽然Go给我们提供了阻塞I/O的便利，但在调用Read和Write时依旧要综合需要方法返回的n和err的结果，以做出正确处理。net.conn实现了io.Reader和io.Writer接口，因此可以试用一些wrapper包进行socket读写，比如bufio包下面的Writer和Reader、io/ioutil下的函数等。</p>
-<h4 id="goroutine-safe" tabindex="-1"><a class="header-anchor" href="#goroutine-safe" aria-hidden="true">#</a> Goroutine safe</h4>
+<p>综上例子，虽然Go给我们提供了阻塞I/O的便利，但在调用Read和Write时依旧要综合需要方法返回的n和err的结果，以做出正确处理。<code>net.conn</code>实现了<code>io.Reader</code>和<code>io.Writer</code>接口，因此可以试用一些wrapper包进行socket读写，比如bufio包下面的Writer和Reader、io/ioutil下的函数等。</p>
+<h3 id="goroutine-safe" tabindex="-1"><a class="header-anchor" href="#goroutine-safe" aria-hidden="true">#</a> Goroutine safe</h3>
 <p>基于goroutine的网络架构模型，存在在不同goroutine间共享conn的情况，那么conn的读写是否是goroutine safe的呢？在深入这个问题之前，我们先从应用意义上来看read操作和write操作的goroutine-safe必要性。</p>
 <p>对于read操作而言，由于TCP是面向字节流，conn.Read无法正确区分数据的业务边界，因此多个goroutine对同一个conn进行read的意义不大，goroutine读到不完整的业务包反倒是增加了业务处理的难度。对与Write操作而言，倒是有多个goroutine并发写的情况。不过conn读写是否goroutine-safe的测试不是很好做，我们先深入一下runtime代码，先从理论上给这个问题定个性：</p>
-<p>net.conn只是*netFD的wrapper结构，最终Write和Read都会落在其中的fd上：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>type conn struct {
-    fd *netFD
-}
+<p><code>net.conn</code>只是<code>*netFD</code>的wrapper结构，最终Write和Read都会落在其中的fd上：</p>
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">type</span> conn <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    fd <span class="token operator">*</span>netFD
+<span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>netFD在不同平台上有着不同的实现，我们以net/fd_unix.go中的netFD为例：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>// Network file descriptor.
-type netFD struct {
-    // locking/lifetime of sysfd + serialize access to Read and Write methods
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">// Network file descriptor.</span>
+<span class="token keyword">type</span> netFD <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    <span class="token comment">// locking/lifetime of sysfd + serialize access to Read and Write methods</span>
     fdmu fdMutex
 
-    // immutable until Close
-    sysfd       int
-    family      int
-    sotype      int
-    isConnected bool
-    net         string
+    <span class="token comment">// immutable until Close</span>
+    sysfd       <span class="token builtin">int</span>
+    family      <span class="token builtin">int</span>
+    sotype      <span class="token builtin">int</span>
+    isConnected <span class="token builtin">bool</span>
+    net         <span class="token builtin">string</span>
     laddr       Addr
     raddr       Addr
 
-    // wait server
+    <span class="token comment">// wait server</span>
     pd pollDesc
-}
+<span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>我们看到netFD中包含了一个runtime实现的fdMutex类型字段，从注释上来看，该fdMutex用来串行化对该netFD对应的sysfd的Write和Read操作。从这个注释上来看，所有对conn的Read和Write操作都是有fdMutex互斥的，从netFD的Read和Write方法的实现也证实了这一点：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>func (fd *netFD) Read(p []byte) (n int, err error) {
-    if err := fd.readLock(); err != nil {
-        return 0, err
-    }
-    defer fd.readUnlock()
-    if err := fd.pd.PrepareRead(); err != nil {
-        return 0, err
-    }
-    for {
-        n, err = syscall.Read(fd.sysfd, p)
-        if err != nil {
-            n = 0
-            if err == syscall.EAGAIN {
-                if err = fd.pd.WaitRead(); err == nil {
-                    continue
-                }
-            }
-        }
-        err = fd.eofError(n, err)
-        break
-    }
-    if _, ok := err.(syscall.Errno); ok {
-        err = os.NewSyscallError("read", err)
-    }
-    return
-}
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token keyword">func</span> <span class="token punctuation">(</span>fd <span class="token operator">*</span>netFD<span class="token punctuation">)</span> <span class="token function">Read</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> fd<span class="token punctuation">.</span><span class="token function">readLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> fd<span class="token punctuation">.</span><span class="token function">readUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> fd<span class="token punctuation">.</span>pd<span class="token punctuation">.</span><span class="token function">PrepareRead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">=</span> syscall<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>fd<span class="token punctuation">.</span>sysfd<span class="token punctuation">,</span> p<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            n <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">if</span> err <span class="token operator">==</span> syscall<span class="token punctuation">.</span>EAGAIN <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> err <span class="token operator">=</span> fd<span class="token punctuation">.</span>pd<span class="token punctuation">.</span><span class="token function">WaitRead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">continue</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        err <span class="token operator">=</span> fd<span class="token punctuation">.</span><span class="token function">eofError</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span>syscall<span class="token punctuation">.</span>Errno<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
+        err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">NewSyscallError</span><span class="token punctuation">(</span><span class="token string">"read"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span>
+<span class="token punctuation">}</span>
 
-func (fd *netFD) Write(p []byte) (nn int, err error) {
-    if err := fd.writeLock(); err != nil {
-        return 0, err
-    }
-    defer fd.writeUnlock()
-    if err := fd.pd.PrepareWrite(); err != nil {
-        return 0, err
-    }
-    for {
-        var n int
-        n, err = syscall.Write(fd.sysfd, p[nn:])
-        if n > 0 {
-            nn += n
-        }
-        if nn == len(p) {
-            break
-        }
-        if err == syscall.EAGAIN {
-            if err = fd.pd.WaitWrite(); err == nil {
-                continue
-            }
-        }
-        if err != nil {
-            break
-        }
-        if n == 0 {
-            err = io.ErrUnexpectedEOF
-            break
-        }
-    }
-    if _, ok := err.(syscall.Errno); ok {
-        err = os.NewSyscallError("write", err)
-    }
-    return nn, err
-}
+<span class="token keyword">func</span> <span class="token punctuation">(</span>fd <span class="token operator">*</span>netFD<span class="token punctuation">)</span> <span class="token function">Write</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>nn <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> fd<span class="token punctuation">.</span><span class="token function">writeLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> fd<span class="token punctuation">.</span><span class="token function">writeUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> fd<span class="token punctuation">.</span>pd<span class="token punctuation">.</span><span class="token function">PrepareWrite</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> n <span class="token builtin">int</span>
+        n<span class="token punctuation">,</span> err <span class="token operator">=</span> syscall<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>fd<span class="token punctuation">.</span>sysfd<span class="token punctuation">,</span> p<span class="token punctuation">[</span>nn<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> n <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            nn <span class="token operator">+=</span> n
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> nn <span class="token operator">==</span> <span class="token function">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> err <span class="token operator">==</span> syscall<span class="token punctuation">.</span>EAGAIN <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> err <span class="token operator">=</span> fd<span class="token punctuation">.</span>pd<span class="token punctuation">.</span><span class="token function">WaitWrite</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            err <span class="token operator">=</span> io<span class="token punctuation">.</span>ErrUnexpectedEOF
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span>syscall<span class="token punctuation">.</span>Errno<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
+        err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">NewSyscallError</span><span class="token punctuation">(</span><span class="token string">"write"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> nn<span class="token punctuation">,</span> err
+<span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div><p>每次Write操作都是受lock保护，直到此次数据全部write完。因此在应用层面，要想保证多个goroutine在一个conn上write操作的Safe，需要一次write完整写入一个“业务包”；一旦将业务包的写入拆分为多次write，那就无法保证某个Goroutine的某“业务包”数据在conn发送的连续性。</p>
 <p>同时也可以看出即便是Read操作，也是lock保护的。多个Goroutine对同一conn的并发读不会出现读出内容重叠的情况，但内容断点是依 runtime调度来随机确定的。存在一个业务包数据，1/3内容被goroutine-1读走，另外2/3被另外一个goroutine-2读 走的情况。比如一个完整包：world，当goroutine的read slice size &lt; 5时，存在可能：一个goroutine读到 “worl”,另外一个goroutine读出”d”。</p>
 <h2 id="四、socket属性" tabindex="-1"><a class="header-anchor" href="#四、socket属性" aria-hidden="true">#</a> 四、Socket属性</h2>
@@ -590,75 +754,73 @@ tcpConn.SetNoDelay(true)
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>对于listener socket, golang默认采用了 SO_REUSEADDR，这样当你重启 listener程序时，不会因为address in use的错误而启动失败。而listen backlog的默认值是通过获取系统的设置值得到的。不同系统不同：mac 128, linux 512等。</p>
 <h2 id="五、关闭连接" tabindex="-1"><a class="header-anchor" href="#五、关闭连接" aria-hidden="true">#</a> 五、关闭连接</h2>
 <p>和前面的方法相比，关闭连接算是最简单的操作了。由于socket是全双工的，client和server端在己方已关闭的socket和对方关闭的socket上操作的结果有不同。看下面例子：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>//go-tcpsock/conn_close/client1.go
-... ...
-func main() {
-    log.Println("begin dial...")
-    conn, err := net.Dial("tcp", ":8888")
-    if err != nil {
-        log.Println("dial error:", err)
-        return
-    }
-    conn.Close()
-    log.Println("close ok")
+<div class="language-go ext-go line-numbers-mode"><pre v-pre class="language-go"><code><span class="token comment">//go-tcpsock/conn_close/client1.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"begin dial..."</span><span class="token punctuation">)</span>
+    conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> <span class="token string">":8888"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"dial error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"close ok"</span><span class="token punctuation">)</span>
 
-    var buf = make([]byte, 32)
-    n, err := conn.Read(buf)
-    if err != nil {
-        log.Println("read error:", err)
-    } else {
-        log.Printf("read % bytes, content is %s\n", n, string(buf[:n]))
-    }
+    <span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span>
+    n<span class="token punctuation">,</span> err <span class="token operator">:=</span> conn<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"read error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read % bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    n, err = conn.Write(buf)
-    if err != nil {
-        log.Println("write error:", err)
-    } else {
-        log.Printf("write % bytes, content is %s\n", n, string(buf[:n]))
-    }
+    n<span class="token punctuation">,</span> err <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"write error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"write % bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    time.Sleep(time.Second * 1000)
-}
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-//go-tcpsock/conn_close/server1.go
-... ...
-func handleConn(c net.Conn) {
-    defer c.Close()
+<span class="token comment">//go-tcpsock/conn_close/server1.go</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    // read from the connection
-    var buf = make([]byte, 10)
-    log.Println("start to read from conn")
-    n, err := c.Read(buf)
-    if err != nil {
-        log.Println("conn read error:", err)
-    } else {
-        log.Printf("read %d bytes, content is %s\n", n, string(buf[:n]))
-    }
+    <span class="token comment">// read from the connection</span>
+    <span class="token keyword">var</span> buf <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start to read from conn"</span><span class="token punctuation">)</span>
+    n<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"conn read error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    n, err = c.Write(buf)
-    if err != nil {
-        log.Println("conn write error:", err)
-    } else {
-        log.Printf("write %d bytes, content is %s\n", n, string(buf[:n]))
-    }
-}
-... ...
+    n<span class="token punctuation">,</span> err <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"conn write error:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes, content is %s\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span> <span class="token operator">...</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><p>上述例子的执行结果如下：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>$go run server1.go
-2015/11/17 17:00:51 accept a new connection
-2015/11/17 17:00:51 start to read from conn
-2015/11/17 17:00:51 conn read error: EOF
-2015/11/17 17:00:51 write 10 bytes, content is
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token variable">$go</span> run server1.go
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 accept a new connection
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 start to <span class="token builtin class-name">read</span> from conn
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 conn <span class="token builtin class-name">read</span> error: EOF
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 <span class="token function">write</span> <span class="token number">10</span> bytes, content is
 
-$go run client1.go
-2015/11/17 17:00:51 begin dial...
-2015/11/17 17:00:51 close ok
-2015/11/17 17:00:51 read error: read tcp 127.0.0.1:64195->127.0.0.1:8888: use of closed network connection
-2015/11/17 17:00:51 write error: write tcp 127.0.0.1:64195->127.0.0.1:8888: use of closed network connection
+<span class="token variable">$go</span> run client1.go
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 begin dial<span class="token punctuation">..</span>.
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 close ok
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 <span class="token builtin class-name">read</span> error: <span class="token builtin class-name">read</span> tcp <span class="token number">127.0</span>.0.1:64195-<span class="token operator">></span><span class="token number">127.0</span>.0.1:8888: use of closed network connection
+<span class="token number">2015</span>/11/17 <span class="token number">17</span>:00:51 <span class="token function">write</span> error: <span class="token function">write</span> tcp <span class="token number">127.0</span>.0.1:64195-<span class="token operator">></span><span class="token number">127.0</span>.0.1:8888: use of closed network connection
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>从client1的结果来看，在己方已经关闭的socket上再进行read和write操作，会得到”use of closed network connection” error；
 从server1的执行结果来看，在对方关闭的socket上执行read操作会得到EOF error，但write操作会成功，因为数据会成功写入己方的内核socket缓冲区中，即便最终发不到对方socket缓冲区了，因为己方socket并未关闭。因此当发现对方socket关闭后，己方应该正确合理处理自己的socket，再继续write已经无任何意义了。</p>
 <h3 id="六、小结" tabindex="-1"><a class="header-anchor" href="#六、小结" aria-hidden="true">#</a> 六、小结</h3>
 <p>本文比较基础，但却很重要，毕竟golang是面向大规模服务后端的，对通信环节的细节的深入理解会大有裨益。另外Go的goroutine+阻塞通信的网络通信模型降低了开发者心智负担，简化了通信的复杂性，这点尤为重要。</p>
-<p>本文代码实验环境：go 1.5.1 on Darwin amd64以及部分在ubuntu 14.04 amd64。</p>
-<p>本文demo代码在<a href="https://github.com/bigwhite/experiments/tree/master/go-tcpsock" target="_blank" rel="noopener noreferrer">这里<ExternalLinkIcon/></a>可以找到。</p>
 </template>

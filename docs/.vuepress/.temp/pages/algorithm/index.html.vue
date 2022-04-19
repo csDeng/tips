@@ -36,29 +36,34 @@
 <li><a href="https://algorithm-visualizer.org/" target="_blank" rel="noopener noreferrer">算法可视化（有源码） <ExternalLinkIcon/></a></li>
 </ul>
 </div>
+<details class="custom-container details"><summary>考察范围</summary>
+<p><img src="@source/algorithm/pics/README/image-20220418212647675.png" alt="image-20220418212647675"></p>
 <ul>
-<li>面试官的注重点</li>
+<li>一个判断算法考不考的技巧</li>
 </ul>
-<details class="custom-container details">
+<blockquote>
+<p>带人名的一般不考，因为他们一般用来解决特定的问题。</p>
+</blockquote>
 <ul>
-<li>
-<p>代码到底写完没有</p>
-</li>
-<li>
-<p>代码风格好不好</p>
+<li>面试难度的变化</li>
+</ul>
+<p><img src="@source/algorithm/pics/README/image-20220418212931761.png" alt="image-20220418212931761"></p>
 <ul>
-<li>可读性</li>
-<li>变量名，函数名</li>
-<li>空格以及换行的正确使用</li>
+<li>考察频率</li>
 </ul>
-</li>
-<li>
-<p>异常检测</p>
-</li>
-<li>
-<p><code>BUG FREE</code></p>
-</li>
+<p><img src="@source/algorithm/pics/README/image-20220418213846592.png" alt="image-20220418213846592"></p>
+<p><img src="@source/algorithm/pics/README/image-20220418214137759.png" alt="image-20220418214137759"></p>
+<ul>
+<li>常见数据结构的时间复杂度</li>
 </ul>
+<p><img src="@source/algorithm/pics/README/image-20220418214503140.png" alt="image-20220418214503140"></p>
+<ul>
+<li>面试难度</li>
+</ul>
+<blockquote>
+<p>相对而言，越接近核心数据越难，或者说越后端越难。</p>
+</blockquote>
+<p><img src="@source/algorithm/pics/README/image-20220418214737238.png" alt="image-20220418214737238"></p>
 </details>
 <p>学习方向主要分以下几个阶段:</p>
 <ul>

@@ -60,20 +60,20 @@ export const data = {
           "title": "需求分析",
           "slug": "需求分析",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "服务端",
+          "slug": "服务端",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "客户端",
+          "slug": "客户端",
+          "children": []
         }
       ]
-    },
-    {
-      "level": 2,
-      "title": "服务端",
-      "slug": "服务端",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "客户端",
-      "slug": "客户端",
-      "children": []
     },
     {
       "level": 2,

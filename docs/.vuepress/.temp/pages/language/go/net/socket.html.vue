@@ -160,8 +160,8 @@
 <li>服务端可以时刻收发信息</li>
 <li>客户端也可以时刻收发信息</li>
 </ol>
-<h2 id="服务端" tabindex="-1"><a class="header-anchor" href="#服务端" aria-hidden="true">#</a> 服务端</h2>
-<h2 id="客户端" tabindex="-1"><a class="header-anchor" href="#客户端" aria-hidden="true">#</a> 客户端</h2>
+<h3 id="服务端" tabindex="-1"><a class="header-anchor" href="#服务端" aria-hidden="true">#</a> 服务端</h3>
+<h3 id="客户端" tabindex="-1"><a class="header-anchor" href="#客户端" aria-hidden="true">#</a> 客户端</h3>
 <h2 id="reference" tabindex="-1"><a class="header-anchor" href="#reference" aria-hidden="true">#</a> Reference</h2>
 <p><a href="https://www.topgoer.cn/docs/golang/chapter08" target="_blank" rel="noopener noreferrer">网络编程 - 地鼠文档 (topgoer.cn)<ExternalLinkIcon/></a></p>
 </template>
