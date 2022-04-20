@@ -1,26 +1,28 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/code/tips/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
-  // path: /language/
-  "v-58f42cfe": () => import(/* webpackChunkName: "v-58f42cfe" */"D:/code/tips/docs/.vuepress/.temp/pages/language/index.html.js").then(({ data }) => data),
   // path: /algorithm/basic_struct.html
   "v-1739c35a": () => import(/* webpackChunkName: "v-1739c35a" */"D:/code/tips/docs/.vuepress/.temp/pages/algorithm/basic_struct.html.js").then(({ data }) => data),
   // path: /algorithm/
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"D:/code/tips/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /algorithm/sort.html
-  "v-4ffc68c2": () => import(/* webpackChunkName: "v-4ffc68c2" */"D:/Github/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.js").then(({ data }) => data),
+  "v-4ffc68c2": () => import(/* webpackChunkName: "v-4ffc68c2" */"D:/code/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.js").then(({ data }) => data),
   // path: /network/
-  "v-24f2d5ba": () => import(/* webpackChunkName: "v-24f2d5ba" */"D:/Github/tips/docs/.vuepress/.temp/pages/network/index.html.js").then(({ data }) => data),
+  "v-24f2d5ba": () => import(/* webpackChunkName: "v-24f2d5ba" */"D:/code/tips/docs/.vuepress/.temp/pages/network/index.html.js").then(({ data }) => data),
   // path: /language/
-  "v-58f42cfe": () => import(/* webpackChunkName: "v-58f42cfe" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/index.html.js").then(({ data }) => data),
+  "v-58f42cfe": () => import(/* webpackChunkName: "v-58f42cfe" */"D:/code/tips/docs/.vuepress/.temp/pages/language/index.html.js").then(({ data }) => data),
   // path: /os/memoryShare.html
   "v-50e5196d": () => import(/* webpackChunkName: "v-50e5196d" */"D:/code/tips/docs/.vuepress/.temp/pages/os/memoryShare.html.js").then(({ data }) => data),
   // path: /os/
-  "v-2d0aad32": () => import(/* webpackChunkName: "v-2d0aad32" */"D:/Github/tips/docs/.vuepress/.temp/pages/os/index.html.js").then(({ data }) => data),
+  "v-2d0aad32": () => import(/* webpackChunkName: "v-2d0aad32" */"D:/code/tips/docs/.vuepress/.temp/pages/os/index.html.js").then(({ data }) => data),
   // path: /target/interviewContent.html
-  "v-6623d19c": () => import(/* webpackChunkName: "v-6623d19c" */"D:/Github/tips/docs/.vuepress/.temp/pages/target/interviewContent.html.js").then(({ data }) => data),
+  "v-6623d19c": () => import(/* webpackChunkName: "v-6623d19c" */"D:/code/tips/docs/.vuepress/.temp/pages/target/interviewContent.html.js").then(({ data }) => data),
   // path: /target/
   "v-0e5533a5": () => import(/* webpackChunkName: "v-0e5533a5" */"D:/code/tips/docs/.vuepress/.temp/pages/target/index.html.js").then(({ data }) => data),
+  // path: /database/MySQL/
+  "v-29dfd9f0": () => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.js").then(({ data }) => data),
+  // path: /database/Redis/
+  "v-1af2dda2": () => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.js").then(({ data }) => data),
   // path: /language/go/array_slice.html
   "v-74fc0e94": () => import(/* webpackChunkName: "v-74fc0e94" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.js").then(({ data }) => data),
   // path: /language/go/function_method.html
@@ -39,10 +41,6 @@ export const pagesData = {
   "v-27963d16": () => import(/* webpackChunkName: "v-27963d16" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/process_control.html.js").then(({ data }) => data),
   // path: /language/go/struct.html
   "v-faa2900a": () => import(/* webpackChunkName: "v-faa2900a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/struct.html.js").then(({ data }) => data),
-  // path: /database/MySQL/
-  "v-29dfd9f0": () => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.js").then(({ data }) => data),
-  // path: /database/Redis/
-  "v-1af2dda2": () => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.js").then(({ data }) => data),
   // path: /language/go/net/socket.html
   "v-794513aa": () => import(/* webpackChunkName: "v-794513aa" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/socket.html.js").then(({ data }) => data),
   // path: /language/go/net/tcp.html

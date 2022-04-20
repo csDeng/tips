@@ -83,8 +83,14 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1650299918000,
+    "contributors": [
+      {
+        "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 3
+      }
+    ]
   },
   "filePathRelative": "language/go/net/socket.md"
 }

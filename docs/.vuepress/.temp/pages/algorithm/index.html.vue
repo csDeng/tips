@@ -36,6 +36,30 @@
 <li><a href="https://algorithm-visualizer.org/" target="_blank" rel="noopener noreferrer">算法可视化（有源码） <ExternalLinkIcon/></a></li>
 </ul>
 </div>
+<ul>
+<li>面试官的注重点</li>
+</ul>
+<details class="custom-container details">
+<ul>
+<li>
+<p>代码到底写完没有</p>
+</li>
+<li>
+<p>代码风格好不好</p>
+<ul>
+<li>可读性</li>
+<li>变量名，函数名</li>
+<li>空格以及换行的正确使用</li>
+</ul>
+</li>
+<li>
+<p>异常检测</p>
+</li>
+<li>
+<p><code>BUG FREE</code></p>
+</li>
+</ul>
+</details>
 <details class="custom-container details"><summary>考察范围</summary>
 <p><img src="@source/algorithm/pics/README/image-20220418212647675.png" alt="image-20220418212647675"></p>
 <ul>
