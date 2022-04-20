@@ -16,8 +16,20 @@ export const data = {
     },
     {
       "level": 2,
+      "title": "面向对象",
+      "slug": "面向对象",
+      "children": []
+    },
+    {
+      "level": 2,
       "title": "网络编程",
       "slug": "网络编程",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "设计模式",
+      "slug": "设计模式",
       "children": []
     }
   ],

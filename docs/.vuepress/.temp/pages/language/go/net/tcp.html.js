@@ -135,14 +135,13 @@ export const data = {
       "level": 2,
       "title": "五、关闭连接",
       "slug": "五、关闭连接",
-      "children": [
-        {
-          "level": 3,
-          "title": "六、小结",
-          "slug": "六、小结",
-          "children": []
-        }
-      ]
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "六、小结",
+      "slug": "六、小结",
+      "children": []
     }
   ],
   "git": {

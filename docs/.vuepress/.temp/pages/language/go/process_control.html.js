@@ -63,6 +63,51 @@ export const data = {
           ]
         }
       ]
+    },
+    {
+      "level": 2,
+      "title": "2. switch",
+      "slug": "_2-switch",
+      "children": [
+        {
+          "level": 3,
+          "title": "2.1. switch 语句",
+          "slug": "_2-1-switch-语句",
+          "children": [
+            {
+              "level": 4,
+              "title": "语法",
+              "slug": "语法-1",
+              "children": []
+            },
+            {
+              "level": 4,
+              "title": "实例:",
+              "slug": "实例",
+              "children": []
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "title": "2.2. Type Switch",
+          "slug": "_2-2-type-switch",
+          "children": [
+            {
+              "level": 4,
+              "title": "Type Switch 语法格式如下：",
+              "slug": "type-switch-语法格式如下",
+              "children": []
+            },
+            {
+              "level": 4,
+              "title": "实例：",
+              "slug": "实例-1",
+              "children": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "git": {

@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-8436a7ea",
   "path": "/language/go/panic.html",
-  "title": "",
+  "title": "异常处理",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
