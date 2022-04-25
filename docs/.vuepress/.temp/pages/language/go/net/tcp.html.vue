@@ -743,7 +743,7 @@ exit status <span class="token number">0xc000013a</span>
 <span class="token number">2022</span>/04/20 <span class="token number">22</span>:55:06 <span class="token function">write</span> <span class="token number">2293760</span> bytes <span class="token keyword">in</span> total
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>测试了很多次，并没有出现以下结果，可能是因为版本的问题。</p>
 <blockquote>
-<p>显然Write并非在655360这个地方阻塞的，而是后续又写入24108后发生了阻塞，server端socket关闭后，我们看到Wrote返回er != nil且n = 24108，程序需要对这部分写入的24108字节做特定处理。</p>
+<p>显然Write并非在65536这个地方阻塞的，而是后续又写入<strong>很多数据</strong>后发生了阻塞，server端socket关闭后，我们看到Wrote返回er != nil且n = 24108，程序需要对这部分写入的24108字节做特定处理。</p>
 </blockquote>
 <h4 id="_4、写入超时" tabindex="-1"><a class="header-anchor" href="#_4、写入超时" aria-hidden="true">#</a> 4、写入超时</h4>
 <p>如果非要给Write增加一个期限，那我们可以调用SetWriteDeadline方法。</p>

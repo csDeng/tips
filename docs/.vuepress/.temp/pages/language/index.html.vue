@@ -26,7 +26,8 @@
 <h2 id="网络编程" tabindex="-1"><a class="header-anchor" href="#网络编程" aria-hidden="true">#</a> 网络编程</h2>
 <ol>
 <li><RouterLink to="/language/go/net/socket.html">初窥Goland的<code>socket</code></RouterLink></li>
-<li><RouterLink to="/language/go/net/tcp.html">从<code>TCP</code>切入了解</RouterLink></li>
+<li><RouterLink to="/language/go/net/tcp.html"><code>TCP</code> Socket编程</RouterLink></li>
+<li><RouterLink to="/language/go/net/udp.html"><code>UDP</code> Socket编程</RouterLink></li>
 </ol>
 <h2 id="设计模式" tabindex="-1"><a class="header-anchor" href="#设计模式" aria-hidden="true">#</a> 设计模式</h2>
 </template>

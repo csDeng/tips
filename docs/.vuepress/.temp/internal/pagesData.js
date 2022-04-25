@@ -19,6 +19,10 @@ export const pagesData = {
   "v-6623d19c": () => import(/* webpackChunkName: "v-6623d19c" */"D:/code/tips/docs/.vuepress/.temp/pages/target/interviewContent.html.js").then(({ data }) => data),
   // path: /target/
   "v-0e5533a5": () => import(/* webpackChunkName: "v-0e5533a5" */"D:/code/tips/docs/.vuepress/.temp/pages/target/index.html.js").then(({ data }) => data),
+  // path: /database/MySQL/
+  "v-29dfd9f0": () => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.js").then(({ data }) => data),
+  // path: /database/Redis/
+  "v-1af2dda2": () => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.js").then(({ data }) => data),
   // path: /language/go/array_slice.html
   "v-74fc0e94": () => import(/* webpackChunkName: "v-74fc0e94" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.js").then(({ data }) => data),
   // path: /language/go/function_method.html
@@ -37,14 +41,12 @@ export const pagesData = {
   "v-27963d16": () => import(/* webpackChunkName: "v-27963d16" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/process_control.html.js").then(({ data }) => data),
   // path: /language/go/struct.html
   "v-faa2900a": () => import(/* webpackChunkName: "v-faa2900a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/struct.html.js").then(({ data }) => data),
-  // path: /database/MySQL/
-  "v-29dfd9f0": () => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.js").then(({ data }) => data),
-  // path: /database/Redis/
-  "v-1af2dda2": () => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.js").then(({ data }) => data),
   // path: /language/go/net/socket.html
   "v-794513aa": () => import(/* webpackChunkName: "v-794513aa" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/socket.html.js").then(({ data }) => data),
   // path: /language/go/net/tcp.html
   "v-213952d3": () => import(/* webpackChunkName: "v-213952d3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
+  // path: /language/go/net/udp.html
+  "v-83fe8a1a": () => import(/* webpackChunkName: "v-83fe8a1a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/udp.html.js").then(({ data }) => data),
 }

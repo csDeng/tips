@@ -21,6 +21,10 @@ export const pagesComponents = {
   "v-6623d19c": defineAsyncComponent(() => import(/* webpackChunkName: "v-6623d19c" */"D:/code/tips/docs/.vuepress/.temp/pages/target/interviewContent.html.vue")),
   // path: /target/
   "v-0e5533a5": defineAsyncComponent(() => import(/* webpackChunkName: "v-0e5533a5" */"D:/code/tips/docs/.vuepress/.temp/pages/target/index.html.vue")),
+  // path: /database/MySQL/
+  "v-29dfd9f0": defineAsyncComponent(() => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.vue")),
+  // path: /database/Redis/
+  "v-1af2dda2": defineAsyncComponent(() => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.vue")),
   // path: /language/go/array_slice.html
   "v-74fc0e94": defineAsyncComponent(() => import(/* webpackChunkName: "v-74fc0e94" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.vue")),
   // path: /language/go/function_method.html
@@ -39,14 +43,12 @@ export const pagesComponents = {
   "v-27963d16": defineAsyncComponent(() => import(/* webpackChunkName: "v-27963d16" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/process_control.html.vue")),
   // path: /language/go/struct.html
   "v-faa2900a": defineAsyncComponent(() => import(/* webpackChunkName: "v-faa2900a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/struct.html.vue")),
-  // path: /database/MySQL/
-  "v-29dfd9f0": defineAsyncComponent(() => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.vue")),
-  // path: /database/Redis/
-  "v-1af2dda2": defineAsyncComponent(() => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.vue")),
   // path: /language/go/net/socket.html
   "v-794513aa": defineAsyncComponent(() => import(/* webpackChunkName: "v-794513aa" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/socket.html.vue")),
   // path: /language/go/net/tcp.html
   "v-213952d3": defineAsyncComponent(() => import(/* webpackChunkName: "v-213952d3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.vue")),
+  // path: /language/go/net/udp.html
+  "v-83fe8a1a": defineAsyncComponent(() => import(/* webpackChunkName: "v-83fe8a1a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/udp.html.vue")),
 }
