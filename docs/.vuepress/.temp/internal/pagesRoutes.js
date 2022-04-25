@@ -25,7 +25,8 @@ const routeItems = [
   ["v-794513aa","/language/go/net/socket.html",{"title":"socket 编程"},["/language/go/net/socket","/language/go/net/socket.md"]],
   ["v-213952d3","/language/go/net/tcp.html",{"title":"Go语言TCP Socket编程"},["/language/go/net/tcp","/language/go/net/tcp.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
-  ["v-83fe8a1a","/language/go/net/udp.html",{"title":"UDP"},["/language/go/net/udp","/language/go/net/udp.md"]],
+  ["v-4fe4d797","/language/go/net/tcp_sticky.html",{"title":"TCP粘包"},["/language/go/net/tcp_sticky","/language/go/net/tcp_sticky.md"]],
+  ["v-39b1e776","/language/go/net/http.html",{"title":""},["/language/go/net/http","/language/go/net/http.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(

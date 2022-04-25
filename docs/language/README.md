@@ -46,7 +46,8 @@ sidebar: false
 
 1. [初窥Goland的`socket`](./go/net/socket.md)
 2. [`TCP` Socket编程](./go/net/tcp.md)
-3. [`UDP` Socket编程](./go/net/udp.md)
+3. [TCP粘包](./go/net/tcp_sticky.md)
+4. [TCP - HTTP 1.x](./go/net/http.md)
 
 
 

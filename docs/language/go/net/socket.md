@@ -132,34 +132,44 @@ UDP协议（User Datagram Protocol）中文名称是用户数据报协议，是O
 使用Go语言的net包实现的UDP服务端代码如下：
 
 ```go
-// UDP/server/main.go
+package main
 
-// UDP server端
+import (
+	"log"
+	"net"
+)
+
 func main() {
-    listen, err := net.ListenUDP("udp", &net.UDPAddr{
-        IP:   net.IPv4(0, 0, 0, 0),
-        Port: 30000,
-    })
-    if err != nil {
-        fmt.Println("listen failed, err:", err)
-        return
-    }
-    defer listen.Close()
-    for {
-        var data [1024]byte
-        n, addr, err := listen.ReadFromUDP(data[:]) // 接收数据
-        if err != nil {
-            fmt.Println("read udp failed, err:", err)
-            continue
-        }
-        fmt.Printf("data:%v addr:%v count:%v\n", string(data[:n]), addr, n)
-        _, err = listen.WriteToUDP(data[:n], addr) // 发送数据
-        if err != nil {
-            fmt.Println("write to udp failed, err:", err)
-            continue
-        }
-    }
-}   
+	listen, err := net.ListenUDP("udp", &net.UDPAddr{
+		IP:   net.IPv4(127, 0, 0, 1),
+		Port: 8080,
+	})
+
+	if err != nil {
+		log.Fatalln("listen occurs error: ", err)
+	}
+	defer listen.Close()
+
+	for {
+		var data [1024]byte
+
+		n, addr, err := listen.ReadFromUDP(data[:])
+		if err != nil {
+			log.Fatalln("read from udp occurs error: ", err)
+		}
+
+		log.Printf("read from %v , content is %s, length = %d", addr, data[:n], n)
+
+		_, err = listen.WriteToUDP(data[:n], addr)
+
+		if err != nil {
+			log.Println("write occurs error: ", err)
+			continue
+		}
+
+	}
+}
+
 ```
 
 ### UDP客户端
@@ -167,31 +177,45 @@ func main() {
 使用Go语言的net包实现的UDP客户端代码如下：
 
 ```go
-// UDP 客户端
+package main
+
+import (
+	"fmt"
+	"log"
+	"net"
+)
+
+var Size int16
+
+func init() {
+	Size = 1024
+	fmt.Println("size = ", Size)
+}
 func main() {
-    socket, err := net.DialUDP("udp", nil, &net.UDPAddr{
-        IP:   net.IPv4(0, 0, 0, 0),
-        Port: 30000,
-    })
-    if err != nil {
-        fmt.Println("连接服务端失败，err:", err)
-        return
-    }
-    defer socket.Close()
-    sendData := []byte("Hello server")
-    _, err = socket.Write(sendData) // 发送数据
-    if err != nil {
-        fmt.Println("发送数据失败，err:", err)
-        return
-    }
-    data := make([]byte, 4096)
-    n, remoteAddr, err := socket.ReadFromUDP(data) // 接收数据
-    if err != nil {
-        fmt.Println("接收数据失败，err:", err)
-        return
-    }
-    fmt.Printf("recv:%v addr:%v count:%v\n", string(data[:n]), remoteAddr, n)
-}  
+	socket, err := net.DialUDP("udp", nil, &net.UDPAddr{
+		IP:   net.IPv4(127, 0, 0, 1),
+		Port: 8080,
+	})
+	if err != nil {
+		log.Fatal("udp dial occurs error: ", err)
+	}
+	defer socket.Close()
+
+	sendData := []byte("hello world")
+	_, err = socket.Write(sendData)
+	if err != nil {
+		log.Println("write occurs error: ", err)
+	}
+
+	data := make([]byte, Size)
+	n, remoteAddr, err := socket.ReadFromUDP(data)
+	if err != nil {
+		log.Printf("read from %v occurs error: %v\r\n", remoteAddr, err)
+	}
+	log.Printf("recv:%s addr:%v length:%d", data[:n], remoteAddr, n)
+
+}
+
 ```
 
 ## 4. 实现一个全双工的简易聊天室
