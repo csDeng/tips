@@ -31,6 +31,7 @@ sidebar: false
 6. [流程控制](./go/process_control.md)
 7. [函数与方法](./go/function_method.md)
 8. [异常处理](./go/panic.md)
+9. [依赖管理](./go/dependence.md)
 
 
 
@@ -48,6 +49,7 @@ sidebar: false
 2. [`TCP` Socket编程](./go/net/tcp.md)
 3. [TCP粘包](./go/net/tcp_sticky.md)
 4. [TCP - HTTP 1.x](./go/net/http.md)
+5. [WebSocket](./go/net/websocket.md)
 
 
 

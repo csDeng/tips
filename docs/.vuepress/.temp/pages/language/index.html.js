@@ -34,12 +34,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1650888804000,
+    "updatedTime": 1650907643000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 7
+        "commits": 8
       },
       {
         "name": "v_beckdeng",

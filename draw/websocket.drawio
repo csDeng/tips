@@ -1,0 +1,40 @@
+<mxfile host="65bd71144e">
+    <diagram id="dWbOuvCcGxIH4RtN2E_a" name="第 1 页">
+        <mxGraphModel dx="1203" dy="636" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="4">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="270" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="http 连接" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="120" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="4" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="400" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="将http升级为websocket长连接&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;pre class=&quot;language-go&quot; style=&quot;font-size: 16px ; text-align: left ; word-break: normal ; overflow-wrap: normal ; line-height: 1.4 ; padding: 1.3rem 1.5rem 1.3rem 1rem ; margin-top: 0.85rem ; margin-bottom: 0.85rem ; overflow: auto ; border-radius: 6px ; position: relative ; z-index: 1 ; vertical-align: middle ; background: transparent&quot;&gt;&lt;code style=&quot;padding: 0px ; margin: 0px ; font-size: 0.85em ; background-color: transparent ; border-radius: 0px&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;websocket&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Upgrader&lt;/font&gt;&lt;/code&gt;&lt;/pre&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;size=20;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="250" width="160" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="490" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="数据收发" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="370" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="结束" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

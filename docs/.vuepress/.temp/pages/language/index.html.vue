@@ -21,6 +21,7 @@
 <li><RouterLink to="/language/go/process_control.html">流程控制</RouterLink></li>
 <li><RouterLink to="/language/go/function_method.html">函数与方法</RouterLink></li>
 <li><RouterLink to="/language/go/panic.html">异常处理</RouterLink></li>
+<li><RouterLink to="/language/go/dependence.html">依赖管理</RouterLink></li>
 </ol>
 <h2 id="面向对象" tabindex="-1"><a class="header-anchor" href="#面向对象" aria-hidden="true">#</a> 面向对象</h2>
 <h2 id="网络编程" tabindex="-1"><a class="header-anchor" href="#网络编程" aria-hidden="true">#</a> 网络编程</h2>
@@ -29,6 +30,7 @@
 <li><RouterLink to="/language/go/net/tcp.html"><code>TCP</code> Socket编程</RouterLink></li>
 <li><RouterLink to="/language/go/net/tcp_sticky.html">TCP粘包</RouterLink></li>
 <li><RouterLink to="/language/go/net/http.html">TCP - HTTP 1.x</RouterLink></li>
+<li><RouterLink to="/language/go/net/websocket.html">WebSocket</RouterLink></li>
 </ol>
 <h2 id="设计模式" tabindex="-1"><a class="header-anchor" href="#设计模式" aria-hidden="true">#</a> 设计模式</h2>
 </template>
