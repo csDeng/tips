@@ -27,8 +27,8 @@ module.exports =  {
             {text:'Redis', link:'/database/Redis/'}],
         },
         {
-            text:'灯塔',
-            link:'/target/'
+            text:'其他',
+            link:'/other/'
         }
         // // NavbarGroup
         // {

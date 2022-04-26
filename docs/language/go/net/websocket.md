@@ -1,13 +1,138 @@
 # Websocket 编程
 
-## webSocket是什么
+:::tip 本章主要参考
 
-* WebSocket是一种在单个TCP连接上进行全双工通信的协议
-* WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据
-* 在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输
+* [WebSocket - 维基百科，自由的百科全书 (wikipedia.org)](https://zh.wikipedia.org/wiki/WebSocket)
+* [WebSocket编程 · Go语言中文文档 (topgoer.com)](https://www.topgoer.com/网络编程/WebSocket编程.html)
+* [GO实现千万级WebSocket消息推送服务技术分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/100770431)
+
+* [websocket - 云+社区 - 腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1835078)
+
+:::
+
+
+
+## 是什么
+
+1. WebSocket是一种在单个TCP连接上进行全双工通信的协议
+
+2. WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据
+
+3. 在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输
+
+## 出现的背景
+
+:::details
+
+早期，很多网站为了实现[推送技术](https://zh.wikipedia.org/wiki/推送技术)，所用的技术都是[轮询](https://zh.wikipedia.org/wiki/輪詢)。轮询是指由浏览器每隔一段时间（如每秒）向服务器发出HTTP请求，然后服务器返回最新的数据给客户端。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求与回复可能会包含较长的[头部](https://zh.wikipedia.org/wiki/HTTP头字段)，其中真正有效的数据可能只是很小的一部分，所以这样会消耗很多带宽资源。
+
+比较新的轮询技术是[Comet](https://zh.wikipedia.org/wiki/Comet_(web技术))。这种技术虽然可以实现双向通信，但仍然需要反复发出请求。而且在Comet中普遍采用的[HTTP长连接](https://zh.wikipedia.org/wiki/HTTP持久链接)也会消耗服务器资源。
+
+在这种情况下，[HTML5](https://zh.wikipedia.org/wiki/HTML5)定义了WebSocket协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。
+
+Websocket使用`ws`或`wss`的[统一资源标志符](https://zh.wikipedia.org/wiki/统一资源标志符)（URI）。其中`wss`表示使用了[TLS](https://zh.wikipedia.org/wiki/TLS)的Websocket。如：
+
+```
+ws://example.com/wsapi
+wss://secure.example.com/wsapi
+```
+
+Websocket与HTTP和HTTPS使用相同的TCP[端口](https://zh.wikipedia.org/wiki/TCP/UDP端口列表)，可以绕过大多数[防火墙](https://zh.wikipedia.org/wiki/防火墙)的限制。默认情况下，Websocket协议使用80端口；运行在TLS之上时，默认使用443端口。
+
+:::
+
+## 主要应用场景
+
+`websocket`主要应用于前端页面实时刷新的场景，比如说聊天室，视频直播，实体轨迹等等。
+
+而在`websocket`出现之前，如果想要实时刷新，一般是通过前端不停地轮询后端接口，以获取实时数据。
+
+这样的形式有什么问题呢？
+
+> 设想后端是一个事件触发型服务，也就是说它的数据只会在某一个事件触发之后才会发生变化，此时前端在一直轮询的过程，将会获得大量相同的数据包也就是无效包，导致了大量的资源损耗。
+
+为了解决类似问题，`websocket`应运而生，它允许后端通过连接主动向前端推送数据，前端不再需要大量的轮询，只需要维护与后端的一个长连接即可，一定程度上避免了资源损耗。
+
+
+
+
+
+## websocket的优点
+
+:::details
+
+- 较少的控制开销。在连接创建后，服务器和客户端之间交换数据时，用于协议控制的数据包头部相对较小。在不包含扩展的情况下，对于服务器到客户端的内容，此头部大小只有2至10[字节](https://zh.wikipedia.org/wiki/字节)（和数据包长度有关）；对于客户端到服务器的内容，此头部还需要加上额外的4字节的[掩码](https://zh.wikipedia.org/wiki/掩码)。相对于HTTP请求每次都要携带完整的头部，此项开销显著减少了。
+
+- 更强的实时性。由于协议是全双工的，所以服务器可以随时主动给客户端下发数据。相对于HTTP请求需要等待客户端发起请求服务端才能响应，延迟明显更少；即使是和Comet等类似的[长轮询](https://zh.wikipedia.org/w/index.php?title=长轮询&action=edit&redlink=1)比较，其也能在短时间内更多次地传递数据。
+
+- 保持连接状态。与HTTP不同的是，Websocket需要先创建连接，这就使得其成为一种有状态的协议，之后通信时可以省略部分状态信息。而HTTP请求可能需要在每个请求都携带状态信息（如身份认证等）。
+
+- 更好的二进制支持。Websocket定义了[二进制](https://zh.wikipedia.org/wiki/二进制)帧，相对HTTP，可以更轻松地处理二进制内容。
+
+- 可以支持扩展。Websocket定义了扩展，用户可以扩展协议、实现部分自定义的子协议。如部分浏览器支持[压缩](https://zh.wikipedia.org/wiki/数据压缩)等。
+
+- 更好的压缩效果。相对于[HTTP压缩](https://zh.wikipedia.org/wiki/HTTP压缩)，Websocket在适当的扩展支持下，可以沿用之前内容的[上下文](https://zh.wikipedia.org/wiki/上下文)，在传递类似的数据时，可以显著地提高压缩率。[[14\]](https://zh.wikipedia.org/wiki/WebSocket#cite_note-14)
+
+:::
+
+
+
+## websocket的协议切换
+
+WebSocket 是独立的、创建在TCP上的协议。
+
+Websocket 通过 [HTTP](https://zh.wikipedia.org/wiki/HTTP)/1.1 协议的101[状态码](https://zh.wikipedia.org/wiki/HTTP状态码)进行握手。
+
+为了创建Websocket连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为“[握手](https://zh.wikipedia.org/wiki/握手_(技术))”（Handshaking）。
+
+一个典型的Websocket握手请求如下[[15\]](https://zh.wikipedia.org/wiki/WebSocket#cite_note-15)：
+
+:::details 
+
+客户端请求：
+
+```shell
+GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Origin: http://example.com
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+```
+
+服务器回应：
+
+```shell
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+Sec-WebSocket-Protocol: chat
+```
+
+字段说明
+
+- `Connection`必须设置`Upgrade`，表示客户端希望连接升级。
+- `Upgrade`字段必须设置`Websocket`，表示希望升级到Websocket协议。
+- `Sec-WebSocket-Key`是随机的字符串，服务器端会用这些数据来构造出一个SHA-1的信息摘要。把“`Sec-WebSocket-Key`”加上一个特殊字符串“`258EAFA5-E914-47DA-95CA-C5AB0DC85B11`”，然后计算[SHA-1](https://zh.wikipedia.org/wiki/SHA-1)摘要，之后进行[Base64](https://zh.wikipedia.org/wiki/Base64)编码，将结果做为“`Sec-WebSocket-Accept`”头的值，返回给客户端。如此操作，可以尽量避免普通HTTP请求被误认为Websocket协议。
+- `Sec-WebSocket-Version` 表示支持的Websocket版本。RFC6455要求使用的版本是13，之前草案的版本均应当弃用。
+- `Origin`字段是必须的。如果缺少`origin`字段，`WebSocket`服务器需要回复HTTP 403 状态码（禁止访问）。[[16\]](https://zh.wikipedia.org/wiki/WebSocket#cite_note-16)
+- 其他一些定义在HTTP协议中的字段，如[Cookie](https://zh.wikipedia.org/wiki/Cookie)等，也可以在Websocket中使用。
+
+:::
+
+
+
+---
+
+
+
 需要安装第三方包：
 cmd中：`go get -u -v github.com/gorilla/websocket`
-举个聊天室的小例子
+
+## 举个聊天室的小例子
 
 :::details
 
@@ -347,9 +472,54 @@ func del(slice []string, user string) []string {
 
 运行结果
 
-![](./pics/websocket/20220426191149.png)  
+![image-20220426232344710](./pics/websocket/image-20220426232344710.png)
+
+
+
 :::
 
 * 整体流程
 
 ![websocket](./pics/websocket/websocket.png)
+
+## 关于websocket的一些疑问
+
+有疑问才能学得更好哦
+
+
+
+### 1. 如何保证webscket的高可用
+
+
+
+### 2. 怎么判断某个连接是否有效
+
+
+
+
+
+### 3. 如何及时关闭无效连接
+
+
+
+
+
+## 扩展
+
+### 拉模式与推模式的区别
+
+* 拉模式（定时轮询访问接口获取数据）
+
+  1. 数据更新频率低，则大多数的数据请求时无效的
+
+  2. 在线用户数量多，则服务端的查询负载很高
+
+  3. 定时轮询拉取，无法满足时效性要求
+
+* 推模式（向客户端进行数据的推送）
+
+  1. 仅在数据更新时，才有推送
+
+  2. 需要维护大量的在线长连接
+
+  3. 数据更新后，可以立即推送

@@ -34,8 +34,8 @@ export const themeData = {
       ]
     },
     {
-      "text": "灯塔",
-      "link": "/target/"
+      "text": "其他",
+      "link": "/other/"
     }
   ],
   "logo": "https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg",
