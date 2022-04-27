@@ -7,6 +7,8 @@
 <li><a href="https://github.com/golang/go/wiki" target="_blank" rel="noopener noreferrer">Home · golang/go Wiki (github.com)<ExternalLinkIcon/></a></li>
 <li><a href="https://www.topgoer.cn/docs/golang/chapter24" target="_blank" rel="noopener noreferrer">go语言中文文档<ExternalLinkIcon/></a></li>
 <li><a href="https://www.liwenzhou.com/?fr=topgoer" target="_blank" rel="noopener noreferrer">李文周的博客<ExternalLinkIcon/></a></li>
+<li><a href="https://qcrao.com/" target="_blank" rel="noopener noreferrer">qcrao | 码农桃花源<ExternalLinkIcon/></a></li>
+<li><a href="https://learnku.com/go" target="_blank" rel="noopener noreferrer">Go 技术论坛 | Golang / Go 语言中国知识社区 (learnku.com)<ExternalLinkIcon/></a></li>
 </ul>
 <p>辅以个人学习感悟并编码验证。</p>
 </div>
@@ -33,4 +35,5 @@
 <li><RouterLink to="/language/go/net/websocket.html">WebSocket</RouterLink></li>
 </ol>
 <h2 id="设计模式" tabindex="-1"><a class="header-anchor" href="#设计模式" aria-hidden="true">#</a> 设计模式</h2>
+<h2 id="其他" tabindex="-1"><a class="header-anchor" href="#其他" aria-hidden="true">#</a> 其他</h2>
 </template>

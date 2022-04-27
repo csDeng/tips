@@ -482,6 +482,537 @@ func del(slice []string, user string) []string {
 
 ![websocket](./pics/websocket/websocket.png)
 
+### 加入心跳检测机制
+
+* 心跳检测流程
+
+![heartbeat](./pics/websocket/heartbeat.drawio.png)
+
+
+:::details
+
+<CodeGroup>
+<CodeGroupItem title='server.go' active>
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/websocket"
+)
+
+type Data struct {
+	Ip       string   `json:"ip"`
+	User     string   `json:"user"`
+	From     string   `json:"from"`
+	Type     string   `json:"type"`
+	Content  string   `json:"content"`
+	UserList []string `json:"user_list"`
+}
+
+func main() {
+
+	http.HandleFunc("/ws", myws)
+
+	go h.run()
+
+	if err := http.ListenAndServe("127.0.0.1:8080", nil); err != nil {
+		fmt.Println("err:", err)
+	}
+}
+
+type hub struct {
+	c map[*connection]bool
+	b chan []byte
+	r chan *connection
+	u chan *connection
+}
+
+var h = hub{
+	c: make(map[*connection]bool),
+	u: make(chan *connection),
+	b: make(chan []byte),
+	r: make(chan *connection),
+}
+
+func (h *hub) run() {
+	for {
+		select {
+		case connection := <-h.r:
+			h.c[connection] = true
+			connection.data.Ip = connection.ws.RemoteAddr().String()
+			connection.data.Type = "handshake"
+			log.Println(connection.data.Ip, "handshake")
+			connection.data.UserList = user_list
+			data_b, _ := json.Marshal(connection.data)
+			connection.sc <- data_b
+		case connection := <-h.u:
+			if _, ok := h.c[connection]; ok {
+				delete(h.c, connection)
+				log.Println(connection.data.Ip, "delete")
+				close(connection.sc)
+			}
+		case data := <-h.b:
+			for c := range h.c {
+				select {
+				case c.sc <- data:
+				default:
+					delete(h.c, c)
+					close(c.sc)
+				}
+			}
+		}
+	}
+}
+
+/**
+连接
+**/
+type connection struct {
+	ws   *websocket.Conn
+	sc   chan []byte
+	data *Data
+}
+
+/**
+将http协议升级到websocket协议
+**/
+var wu = &websocket.Upgrader{
+	HandshakeTimeout: 0,
+	ReadBufferSize:   512,
+	WriteBufferSize:  512,
+	WriteBufferPool:  nil,
+	Subprotocols:     []string{},
+	Error: func(w http.ResponseWriter, r *http.Request, status int, reason error) {
+	},
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+	EnableCompression: false,
+}
+
+/**
+http 的handleFunc
+**/
+func myws(w http.ResponseWriter, r *http.Request) {
+	ws, err := wu.Upgrade(w, r, nil)
+	if err != nil {
+		return
+	}
+	c := &connection{sc: make(chan []byte, 256), ws: ws, data: &Data{}}
+	h.r <- c
+	go c.writer()
+	c.reader()
+	defer func() {
+		c.data.Type = "logout"
+		user_list = del(user_list, c.data.User)
+		c.data.UserList = user_list
+		c.data.Content = c.data.User
+		data_b, _ := json.Marshal(c.data)
+		h.b <- data_b
+		h.r <- c
+	}()
+}
+
+func (c *connection) writer() {
+	for message := range c.sc {
+		c.ws.WriteMessage(websocket.TextMessage, message)
+	}
+	c.ws.Close()
+}
+
+var user_list = []string{}
+
+func (c *connection) reader() {
+	for {
+		_, message, err := c.ws.ReadMessage()
+		if err != nil {
+			h.r <- c
+			break
+		}
+		log.Printf("recv from %v, data = %s\r\n", c.data.Ip, string(message[:]))
+		json.Unmarshal(message, &c.data)
+		switch c.data.Type {
+		case "login":
+			c.data.User = c.data.Content
+			c.data.From = c.data.User
+			user_list = append(user_list, c.data.User)
+			c.data.UserList = user_list
+			data_b, _ := json.Marshal(c.data)
+			h.b <- data_b
+		case "user":
+			c.data.Type = "user"
+			data_b, _ := json.Marshal(c.data)
+			h.b <- data_b
+
+		/**
+			心跳包
+		**/
+		case "heartbeat":
+			c.data.Type = "heartbeat"
+			c.data.Content = "heartbeat"
+			data_b, _ := json.Marshal(c.data)
+			h.b <- data_b
+		case "logout":
+			c.data.Type = "logout"
+			user_list = del(user_list, c.data.User)
+			data_b, _ := json.Marshal(c.data)
+			h.b <- data_b
+			h.r <- c
+		default:
+			fmt.Print("========default================")
+		}
+	}
+}
+
+func del(slice []string, user string) []string {
+	count := len(slice)
+	if count == 0 {
+		return slice
+	}
+	if count == 1 && slice[0] == user {
+		return []string{}
+	}
+	var n_slice = []string{}
+	for i := range slice {
+		if slice[i] == user && i == count {
+			return slice[:count]
+		} else if slice[i] == user {
+			n_slice = append(slice[:i], slice[i+1:]...)
+			break
+		}
+	}
+	fmt.Println(n_slice)
+	return n_slice
+}
+
+
+```
+</CodeGroupItem>
+<CodeGroupItem title='client.html'>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <style>
+      p {
+        text-align: left;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="width: 800px; height: 600px; margin: 30px auto; text-align: center"
+    >
+      <h1>演示聊天室</h1>
+      <div style="width: 800px; border: 1px solid gray; height: 300px">
+        <div style="width: 200px; height: 300px; float: left; text-align: left">
+          <p><span>当前在线:</span><span id="user_num">0</span></p>
+          <div id="user_list" style="overflow: auto"></div>
+        </div>
+        <div
+          id="msg_list"
+          style="
+            width: 598px;
+            border: 1px solid gray;
+            height: 300px;
+            overflow: scroll;
+            float: left;
+          "
+        ></div>
+      </div>
+      <br />
+      <textarea
+        id="msg_box"
+        rows="6"
+        cols="50"
+        onkeydown="confirm(event)"
+      ></textarea
+      ><br />
+      <input type="button" value="发送" onclick="send()" />
+      <input type="button" value="关闭连接" onclick="_close()" />
+      <input type="button" value="重新连接" onclick="_reconnect()" />
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  /**
+   * ws 的readyState
+   * */
+  const CONNECTING = 0;
+  const OPEN = 1;
+  const CLOSING = 2;
+  const CLOSED = 3;
+
+  /**
+   * 上锁避免重连
+   * */
+  let LOCK = true;
+  let TIMER = null;
+  const MyURL = "ws://127.0.0.1:8080/ws";
+
+  var uname = prompt("请输入用户名", "user" + uuid(8, 16));
+
+  let ws = null;
+  const create = () =>
+    new Promise((resolve, reject) => {
+      ws = new WebSocket(MyURL);
+      setTimeout(() => resolve(ws));
+    }).then(
+      (r) => {
+        console.log("new promise r = ", r);
+        r.onopen = ev._open;
+      },
+      (e) => {
+        console.log("new promise e = ", r);
+        _reconnect();
+      }
+    );
+  const _reconnect = () => {
+    console.log("开始重新连接");
+    if (LOCK) {
+      console.log("链接已存在");
+      return;
+    }
+    LOCK = true;
+    TIMER && clearTimeout(TIMER);
+    TIMER = setTimeout(() => {
+      listMsg("开始重新连接");
+      create();
+      bindEvent(ws);
+    }, 0);
+  };
+  const _close = () => {
+    if (!LOCK) {
+      listMsg("系统消息：手动关闭连接不存在");
+      return;
+    }
+    ws && ws.close();
+    listMsg("系统消息：手动关闭");
+  };
+  const ev = {
+    _open: () => {
+      var data = "系统消息：建立连接成功";
+      /**
+       * 连接成功，上锁
+       * */
+      LOCK = true;
+      listMsg(data);
+      bindEvent(ws);
+
+      //心跳检测重置
+      heartCheck.reset().start();
+    },
+    _message: (e) => {
+      heartCheck.reset().start();
+      // console.log(e);
+      var msg = JSON.parse(e.data ?? "");
+      var sender, user_name, name_list, change_type;
+      switch (msg.type) {
+        case "system":
+          sender = "系统消息: ";
+          break;
+        case "user":
+          sender = msg.from + ": ";
+          break;
+        case "handshake":
+          var user_info = { type: "login", content: uname };
+          sendMsg(user_info);
+          return;
+        case "login":
+        case "logout":
+          user_name = msg.content;
+          name_list = msg.user_list;
+          change_type = msg.type;
+          dealUser(user_name, change_type, name_list);
+          return;
+        default:
+          console.log(e);
+          return;
+      }
+      var data = sender + msg.content;
+      listMsg(data);
+    },
+    _error: () => {
+      var data = "系统消息 : 出错了,请退出重试.";
+      listMsg(data);
+      LOCK = false;
+      _reconnect();
+    },
+    _close: (e) => {
+      listMsg("连接已断开");
+      console.log("连接断开==>", e);
+      LOCK = false;
+      heartCheck.reset().start();
+    },
+  };
+  const bindEvent = (ws) => {
+    if (!ws instanceof WebSocket) {
+      console.log("不是ws");
+      return;
+    }
+    listMsg("系统消息：绑定事件");
+    /**
+     * 监听消息
+     * */
+    ws.onmessage = ev._message;
+    /**
+     * 监听连接异常
+     * */
+    ws.onerror = ev._error;
+    /**
+     * 检测连接关闭
+     * */
+    ws.onclose = ev._close;
+  };
+
+  /**
+   * 心跳检测
+   * */
+  const heartCheck = {
+    timeout: 5000,
+    timeoutObj: null,
+    serverTimeoutObj: null,
+    reset: function () {
+      console.log("reset-------");
+      clearTimeout(this.timeoutObj);
+      clearTimeout(this.serverTimeoutObj);
+      return this;
+    },
+    start: function () {
+      var self = this;
+      this.timeoutObj && clearTimeout(this.timeoutObj);
+      this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
+      this.timeoutObj = setTimeout(function () {
+        //这里发送一个心跳，后端收到后，返回一个心跳消息，
+        //onmessage拿到返回的心跳就说明连接正常
+        if (ws) {
+          try {
+            var msg = { content: "heartbeat", type: "heartbeat" };
+            sendMsg(msg);
+            console.log("ping");
+            const { readyState } = ws;
+            if (readyState === CONNECTING) {
+              console.log("connection is connecting");
+            } else if (readyState === OPEN) {
+              console.log("connection is open");
+            } else if (readyState === CLOSING) {
+              console.log("connection is closing");
+            } else if (readyState === CLOSED) {
+              self.serverTimeoutObj = setTimeout(function () {
+                // 如果超过一定时间还没重置，说明后端主动断开了
+                console.log("关闭服务");
+                _reconnect()
+              }, self.timeout);
+            }
+          } catch (error) {
+            console.log("心跳检测异常=>", e);
+            ws && ws.close();
+          }
+        }
+      }, this.timeout);
+    },
+  };
+
+  function confirm(event) {
+    var key_num = event.keyCode;
+    if (13 == key_num) {
+      send();
+    } else {
+      return false;
+    }
+  }
+  function send() {
+    var msg_box = document.getElementById("msg_box");
+    var content = msg_box.value;
+    var reg = new RegExp("\r\n", "g");
+    content = content.replace(reg, "");
+    var msg = { content: content.trim(), type: "user" };
+    sendMsg(msg);
+    msg_box.value = "";
+  }
+  function listMsg(data) {
+    var msg_list = document.getElementById("msg_list");
+    var msg = document.createElement("p");
+    msg.innerHTML = data;
+    msg_list.appendChild(msg);
+    msg_list.scrollTop = msg_list.scrollHeight;
+  }
+  function dealUser(user_name, type, name_list) {
+    var user_list = document.getElementById("user_list");
+    var user_num = document.getElementById("user_num");
+    while (user_list.hasChildNodes()) {
+      user_list.removeChild(user_list.firstChild);
+    }
+    for (var index in name_list) {
+      var user = document.createElement("p");
+      user.innerHTML = name_list[index];
+      user_list.appendChild(user);
+    }
+    user_num.innerHTML = name_list.length;
+    user_list.scrollTop = user_list.scrollHeight;
+    var change = type == "login" ? "上线" : "下线";
+    var data = "系统消息: " + user_name + " 已" + change;
+    listMsg(data);
+  }
+
+  function sendMsg(msg) {
+    console.log("msg=>", msg);
+    var data = JSON.stringify(msg);
+    // console.log(ws)
+    ws && ws.send(data);
+  }
+
+  /**
+   * 获取随机uuid
+   * */
+  function uuid(len, radix) {
+    var chars =
+      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(
+        ""
+      );
+    var uuid = [],
+      i;
+    radix = radix || chars.length;
+    if (len) {
+      for (i = 0; i < len; i++) uuid[i] = chars[0 | (Math.random() * radix)];
+    } else {
+      var r;
+      uuid[8] = uuid[13] = uuid[18] = uuid[23] = "-";
+      uuid[14] = "4";
+      for (i = 0; i < 36; i++) {
+        if (!uuid[i]) {
+          r = 0 | (Math.random() * 16);
+          uuid[i] = chars[i == 19 ? (r & 0x3) | 0x8 : r];
+        }
+      }
+    }
+    return uuid.join("");
+  }
+
+  create();
+</script>
+
+
+```
+</CodeGroupItem>
+</CodeGroup>
+
+
+
+:::
+
+
+
 ## 关于websocket的一些疑问
 
 有疑问才能学得更好哦
@@ -494,13 +1025,14 @@ func del(slice []string, user string) []string {
 
 ### 2. 怎么判断某个连接是否有效
 
-
-
-
+> 
 
 ### 3. 如何及时关闭无效连接
 
-
+> 无效连接的定义：
+>
+> * 长时间没有数据交流
+> * 不可达
 
 
 

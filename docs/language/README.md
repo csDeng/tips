@@ -16,6 +16,8 @@ sidebar: false
 * [Home · golang/go Wiki (github.com)](https://github.com/golang/go/wiki)
 * [go语言中文文档](https://www.topgoer.cn/docs/golang/chapter24)
 * [李文周的博客](https://www.liwenzhou.com/?fr=topgoer)
+* [qcrao | 码农桃花源](https://qcrao.com/)
+* [Go 技术论坛 | Golang / Go 语言中国知识社区 (learnku.com)](https://learnku.com/go)
 
 辅以个人学习感悟并编码验证。
 :::
@@ -60,6 +62,10 @@ sidebar: false
 ## 设计模式
 
 
+
+
+
+## 其他
 
 
 

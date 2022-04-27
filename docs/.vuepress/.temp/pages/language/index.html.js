@@ -31,6 +31,12 @@ export const data = {
       "title": "设计模式",
       "slug": "设计模式",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "其他",
+      "slug": "其他",
+      "children": []
     }
   ],
   "git": {
