@@ -28,6 +28,12 @@ export const data = {
     },
     {
       "level": 2,
+      "title": "并发编程",
+      "slug": "并发编程",
+      "children": []
+    },
+    {
+      "level": 2,
       "title": "设计模式",
       "slug": "设计模式",
       "children": []
@@ -40,12 +46,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1650972464000,
+    "updatedTime": 1651073940000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 8
+        "commits": 9
       },
       {
         "name": "csDeng",

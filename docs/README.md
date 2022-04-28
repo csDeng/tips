@@ -17,7 +17,6 @@ features:
     details: 以 Go 为核心，学习计算机知识
   - title: 操作系统
     details: 去了解计算机操作系统的实现以及构成，加深对计算机的了解
-
 footer: MIT Licensed | Copyright © 2022-present CSJerry
 ---
 

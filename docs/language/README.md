@@ -18,6 +18,7 @@ sidebar: false
 * [李文周的博客](https://www.liwenzhou.com/?fr=topgoer)
 * [qcrao | 码农桃花源](https://qcrao.com/)
 * [Go 技术论坛 | Golang / Go 语言中国知识社区 (learnku.com)](https://learnku.com/go)
+* [The Go Programming Language](https://go.dev/)
 
 辅以个人学习感悟并编码验证。
 :::
@@ -55,7 +56,10 @@ sidebar: false
 
 
 
-
+## 并发编程
+1. [并发介绍](./go/concurrence/introduce.md)
+2.  [`GoRoutine`](./go/concurrence/Goroutine.md)
+3.  [`runtime`包](./go/concurrence/runtime.md)
 
 
 
@@ -66,8 +70,7 @@ sidebar: false
 
 
 ## 其他
-
-
+1. [常用的包](./go/other/package.md)
 
 
 

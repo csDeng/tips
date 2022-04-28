@@ -9,6 +9,7 @@
 <li><a href="https://www.liwenzhou.com/?fr=topgoer" target="_blank" rel="noopener noreferrer">李文周的博客<ExternalLinkIcon/></a></li>
 <li><a href="https://qcrao.com/" target="_blank" rel="noopener noreferrer">qcrao | 码农桃花源<ExternalLinkIcon/></a></li>
 <li><a href="https://learnku.com/go" target="_blank" rel="noopener noreferrer">Go 技术论坛 | Golang / Go 语言中国知识社区 (learnku.com)<ExternalLinkIcon/></a></li>
+<li><a href="https://go.dev/" target="_blank" rel="noopener noreferrer">The Go Programming Language<ExternalLinkIcon/></a></li>
 </ul>
 <p>辅以个人学习感悟并编码验证。</p>
 </div>
@@ -34,6 +35,15 @@
 <li><RouterLink to="/language/go/net/http.html">TCP - HTTP 1.x</RouterLink></li>
 <li><RouterLink to="/language/go/net/websocket.html">WebSocket</RouterLink></li>
 </ol>
+<h2 id="并发编程" tabindex="-1"><a class="header-anchor" href="#并发编程" aria-hidden="true">#</a> 并发编程</h2>
+<ol>
+<li><RouterLink to="/language/go/concurrence/introduce.html">并发介绍</RouterLink></li>
+<li><RouterLink to="/language/go/concurrence/Goroutine.html"><code>GoRoutine</code></RouterLink></li>
+<li><RouterLink to="/language/go/concurrence/runtime.html"><code>runtime</code>包</RouterLink></li>
+</ol>
 <h2 id="设计模式" tabindex="-1"><a class="header-anchor" href="#设计模式" aria-hidden="true">#</a> 设计模式</h2>
 <h2 id="其他" tabindex="-1"><a class="header-anchor" href="#其他" aria-hidden="true">#</a> 其他</h2>
+<ol>
+<li><RouterLink to="/language/go/other/package.html">常用的包</RouterLink></li>
+</ol>
 </template>
