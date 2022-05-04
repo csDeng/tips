@@ -6,7 +6,11 @@ module.exports =  {
         },
         {
             text: '数据结构与算法',
-            link: '/algorithm/',
+            children: [
+                {text:'数据结构与算法', link:'/algorithm/'},
+                {text:'leet code', link:'/leetcode/'}
+            ],
+
         },
         {
             text: '计算机语言',
