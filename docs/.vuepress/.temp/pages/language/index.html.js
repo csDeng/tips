@@ -36,7 +36,26 @@ export const data = {
       "level": 2,
       "title": "设计模式",
       "slug": "设计模式",
-      "children": []
+      "children": [
+        {
+          "level": 3,
+          "title": "创建型模式",
+          "slug": "创建型模式",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "结构型模式",
+          "slug": "结构型模式",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "行为型模式",
+          "slug": "行为型模式",
+          "children": []
+        }
+      ]
     },
     {
       "level": 2,

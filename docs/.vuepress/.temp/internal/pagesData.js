@@ -7,16 +7,16 @@ export const pagesData = {
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"D:/Github/tips/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /algorithm/sort.html
   "v-4ffc68c2": () => import(/* webpackChunkName: "v-4ffc68c2" */"D:/Github/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.js").then(({ data }) => data),
-  // path: /leetcode/
-  "v-31987621": () => import(/* webpackChunkName: "v-31987621" */"D:/Github/tips/docs/.vuepress/.temp/pages/leetcode/index.html.js").then(({ data }) => data),
   // path: /language/
   "v-58f42cfe": () => import(/* webpackChunkName: "v-58f42cfe" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/index.html.js").then(({ data }) => data),
+  // path: /leetcode/
+  "v-31987621": () => import(/* webpackChunkName: "v-31987621" */"D:/Github/tips/docs/.vuepress/.temp/pages/leetcode/index.html.js").then(({ data }) => data),
+  // path: /network/
+  "v-24f2d5ba": () => import(/* webpackChunkName: "v-24f2d5ba" */"D:/Github/tips/docs/.vuepress/.temp/pages/network/index.html.js").then(({ data }) => data),
   // path: /os/memoryShare.html
   "v-50e5196d": () => import(/* webpackChunkName: "v-50e5196d" */"D:/Github/tips/docs/.vuepress/.temp/pages/os/memoryShare.html.js").then(({ data }) => data),
   // path: /os/
   "v-2d0aad32": () => import(/* webpackChunkName: "v-2d0aad32" */"D:/Github/tips/docs/.vuepress/.temp/pages/os/index.html.js").then(({ data }) => data),
-  // path: /network/
-  "v-24f2d5ba": () => import(/* webpackChunkName: "v-24f2d5ba" */"D:/Github/tips/docs/.vuepress/.temp/pages/network/index.html.js").then(({ data }) => data),
   // path: /other/company_info.html
   "v-e95b895e": () => import(/* webpackChunkName: "v-e95b895e" */"D:/Github/tips/docs/.vuepress/.temp/pages/other/company_info.html.js").then(({ data }) => data),
   // path: /other/interviewContent.html
@@ -67,6 +67,12 @@ export const pagesData = {
   "v-7fd75e6d": () => import(/* webpackChunkName: "v-7fd75e6d" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.js").then(({ data }) => data),
   // path: /language/go/other/package.html
   "v-0a939f3b": () => import(/* webpackChunkName: "v-0a939f3b" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.js").then(({ data }) => data),
+  // path: /language/go/design/create/factory_method.html
+  "v-59f6d0d8": () => import(/* webpackChunkName: "v-59f6d0d8" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/design/create/factory_method.html.js").then(({ data }) => data),
+  // path: /language/go/design/create/simple_factory.html
+  "v-84b6491e": () => import(/* webpackChunkName: "v-84b6491e" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/design/create/simple_factory.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/Github/tips/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
+  // path: /language/go/design/create/abstract_factory.html
+  "v-a6362c7e": () => import(/* webpackChunkName: "v-a6362c7e" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/design/create/abstract_factory.html.js").then(({ data }) => data),
 }

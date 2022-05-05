@@ -16,6 +16,7 @@ sidebar: false
 * [Home · golang/go Wiki (github.com)](https://github.com/golang/go/wiki)
 * [go语言中文文档](https://www.topgoer.cn/docs/golang/chapter24)
 * [李文周的博客](https://www.liwenzhou.com/?fr=topgoer)
+* [Mohuishou (lailin.xyz)](https://lailin.xyz/)
 * [qcrao | 码农桃花源](https://qcrao.com/)
 * [Go 技术论坛 | Golang / Go 语言中国知识社区 (learnku.com)](https://learnku.com/go)
 * [The Go Programming Language](https://go.dev/)
@@ -64,6 +65,34 @@ sidebar: false
 
 
 ## 设计模式
+
+:::details 主要参考
+
+* [senghoo/golang-design-pattern: 设计模式 Golang实现－《研磨设计模式》读书笔记 (github.com)](https://github.com/senghoo/golang-design-pattern)
+* [Go设计模式24-总结(更新完毕) - Mohuishou (lailin.xyz)](https://lailin.xyz/post/go-design-pattern.html)
+* [设计模式 | 菜鸟教程 (runoob.com)](https://www.runoob.com/design-pattern/design-pattern-tutorial.html)
+
+:::
+
+### 创建型模式
+
+1. [简单工厂模式](./go/design/create/simple_factory.md)
+2. [工厂方法模式](./go/design/create/factory_method.md)
+2. [抽象工厂模式](./go/design/create/abstract_factory.md)
+
+
+
+### 结构型模式
+
+
+
+
+
+### 行为型模式
+
+
+
+
 
 
 

@@ -5,11 +5,11 @@ const routeItems = [
   ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
   ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
   ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
-  ["v-31987621","/leetcode/",{"title":"刷题吧"},["/leetcode/index.html","/leetcode/Readme.md"]],
   ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
+  ["v-31987621","/leetcode/",{"title":"刷题吧"},["/leetcode/index.html","/leetcode/Readme.md"]],
+  ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
   ["v-50e5196d","/os/memoryShare.html",{"title":"进程间通信 共享内存"},["/os/memoryShare","/os/memoryShare.md"]],
   ["v-2d0aad32","/os/",{"title":"简介"},["/os/index.html","/os/README.md"]],
-  ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
   ["v-e95b895e","/other/company_info.html",{"title":"一些公司的春招信息"},["/other/company_info","/other/company_info.md"]],
   ["v-b950286e","/other/interviewContent.html",{"title":""},["/other/interviewContent","/other/interviewContent.md"]],
   ["v-e4cb1150","/other/",{"title":"其他"},["/other/index.html","/other/Readme.md"]],
@@ -35,7 +35,10 @@ const routeItems = [
   ["v-4fe4d797","/language/go/net/tcp_sticky.html",{"title":"TCP粘包"},["/language/go/net/tcp_sticky","/language/go/net/tcp_sticky.md"]],
   ["v-7fd75e6d","/language/go/net/websocket.html",{"title":"Websocket 编程"},["/language/go/net/websocket","/language/go/net/websocket.md"]],
   ["v-0a939f3b","/language/go/other/package.html",{"title":"Go包"},["/language/go/other/package","/language/go/other/package.md"]],
+  ["v-59f6d0d8","/language/go/design/create/factory_method.html",{"title":""},["/language/go/design/create/factory_method","/language/go/design/create/factory_method.md"]],
+  ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
+  ["v-a6362c7e","/language/go/design/create/abstract_factory.html",{"title":"抽象工厂模式"},["/language/go/design/create/abstract_factory","/language/go/design/create/abstract_factory.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(
