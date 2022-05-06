@@ -71,6 +71,7 @@ sidebar: false
 * [senghoo/golang-design-pattern: 设计模式 Golang实现－《研磨设计模式》读书笔记 (github.com)](https://github.com/senghoo/golang-design-pattern)
 * [Go设计模式24-总结(更新完毕) - Mohuishou (lailin.xyz)](https://lailin.xyz/post/go-design-pattern.html)
 * [设计模式 | 菜鸟教程 (runoob.com)](https://www.runoob.com/design-pattern/design-pattern-tutorial.html)
+* [《99+种软件模式》 | Laravel China 社区 (learnku.com)](https://learnku.com/docs/99-software-pattern)
 
 :::
 
