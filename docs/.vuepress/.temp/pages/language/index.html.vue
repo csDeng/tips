@@ -48,6 +48,7 @@
 <li><a href="https://github.com/senghoo/golang-design-pattern" target="_blank" rel="noopener noreferrer">senghoo/golang-design-pattern: 设计模式 Golang实现－《研磨设计模式》读书笔记 (github.com)<ExternalLinkIcon/></a></li>
 <li><a href="https://lailin.xyz/post/go-design-pattern.html" target="_blank" rel="noopener noreferrer">Go设计模式24-总结(更新完毕) - Mohuishou (lailin.xyz)<ExternalLinkIcon/></a></li>
 <li><a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer">设计模式 | 菜鸟教程 (runoob.com)<ExternalLinkIcon/></a></li>
+<li><a href="https://learnku.com/docs/99-software-pattern" target="_blank" rel="noopener noreferrer">《99+种软件模式》 | Laravel China 社区 (learnku.com)<ExternalLinkIcon/></a></li>
 </ul>
 </details>
 <h3 id="创建型模式" tabindex="-1"><a class="header-anchor" href="#创建型模式" aria-hidden="true">#</a> 创建型模式</h3>

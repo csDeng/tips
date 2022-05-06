@@ -75,7 +75,7 @@ func search(nums []int, target int) int {
 
 
 
-### 2.移除元素 E
+### 2. 移除元素 E
 
 :::details
 
@@ -375,7 +375,7 @@ func generateMatrix(n int) [][]int {
 
 ## 链表
 
-### 1. 移除链表元素
+### 1. 移除链表元素 E
 
 :::details
 
@@ -384,26 +384,25 @@ func generateMatrix(n int) [][]int {
 >
 > 示例 1：
 >
->
-> 输入：head = [1,2,6,3,4,5,6], val = 6
+>输入：head = [1,2,6,3,4,5,6], val = 6
 > 输出：[1,2,3,4,5]
 > 示例 2：
->
-> 输入：head = [], val = 1
+> 
+>输入：head = [], val = 1
 > 输出：[]
 > 示例 3：
->
-> 输入：head = [7,7,7,7], val = 7
+> 
+>输入：head = [7,7,7,7], val = 7
 > 输出：[]
+> 
 >
->
-> 提示：
->
-> 列表中的节点数目在范围 [0, 104] 内
+>提示：
+> 
+>列表中的节点数目在范围 [0, 104] 内
 > 1 <= Node.val <= 50
 > 0 <= val <= 50
->
-> 来源：力扣（LeetCode）
+> 
+>来源：力扣（LeetCode）
 > 链接：https://leetcode-cn.com/problems/remove-linked-list-elements
 > 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
@@ -441,7 +440,7 @@ func removeElements(head *ListNode, val int) *ListNode {
 
 
 
-### 2. 设计链表
+### 2. 设计链表 M
 
 :::details
 
@@ -621,7 +620,7 @@ func (this *MyLinkedList) show() {
 
 
 
-### 3. 翻转链表
+### 3. 反转链表 E
 
 :::details
 
@@ -630,26 +629,25 @@ func (this *MyLinkedList) show() {
 >
 > 示例 1：
 >
->
-> 输入：head = [1,2,3,4,5]
+>输入：head = [1,2,3,4,5]
 > 输出：[5,4,3,2,1]
 > 示例 2：
+> 
 >
->
-> 输入：head = [1,2]
+>输入：head = [1,2]
 > 输出：[2,1]
 > 示例 3：
->
-> 输入：head = []
+> 
+>输入：head = []
 > 输出：[]
+> 
 >
->
-> 提示：
->
-> 链表中节点的数目范围是 [0, 5000]
+>提示：
+> 
+>链表中节点的数目范围是 [0, 5000]
 > -5000 <= Node.val <= 5000
->
-> 来源：力扣（LeetCode）
+> 
+>来源：力扣（LeetCode）
 > 链接：https://leetcode-cn.com/problems/reverse-linked-list
 > 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
@@ -684,7 +682,7 @@ func reverseList(head *ListNode) *ListNode {
 
 
 
-### 4.链表相交
+### 4. 链表相交 E
 
 :::details
 
@@ -770,7 +768,7 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 
 **示例 1：**
 
-### 5. 环形链表Ⅱ
+### 5. 环形链表Ⅱ M
 
 :::details
 
@@ -845,13 +843,227 @@ func detectCycle(head *ListNode) *ListNode {
 }
 ```
 
+:::
+
+### 6. 两两相交链表节点 M
+
+:::details
+
+> 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+>
+>  ![img](./pics/Readme/swap_ex1.jpg)
+>
+> 示例 1：
+>
+> 输入：head = [1,2,3,4]
+> 输出：[2,1,4,3]
+> 示例 2：
+>
+> 输入：head = []
+> 输出：[]
+> 示例 3：
+>
+> 输入：head = [1]
+> 输出：[1]
+>
+>
+> 提示：
+>
+> 链表中节点的数目在范围 [0, 100] 内
+> 0 <= Node.val <= 100
+>
+> 来源：力扣（LeetCode）
+> 链接：https://leetcode-cn.com/problems/swap-nodes-in-pairs
+> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+在头部加一个空节点，方便操作。
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func swapPairs(head *ListNode) *ListNode {
+    myHead := &ListNode{Next:head}
+    var prev, nex *ListNode
+
+    prev = myHead
+    for head != nil && head.Next != nil {
+        prev.Next = head.Next
+
+        // 先保存下一轮要用的节点，避免覆盖
+        nex = head.Next.Next
+        head.Next.Next = head
+        head.Next = nex
+
+        prev = head
+        head = nex
+    }
+    return myHead.Next
+}
+```
+
 
 
 :::
 
+
+
+### 7. 删除链表的倒数第N个节点 M
+
+:::details
+
+> 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+>
+>  ![19.删除链表的倒数第N个节点](./pics/Readme/20210510085957392.png)
+>
+> 示例 1：
+>
+> 输入：head = [1,2,3,4,5], n = 2
+> 输出：[1,2,3,5]
+> 示例 2：
+>
+> 输入：head = [1], n = 1
+> 输出：[]
+> 示例 3：
+>
+> 输入：head = [1,2], n = 1
+> 输出：[1]
+>
+> 提示：
+>
+> 链表中结点的数目为 sz
+> 1 <= sz <= 30
+> 0 <= Node.val <= 100
+> 1 <= n <= sz
+>
+>
+> 进阶：你能尝试使用一趟扫描实现吗？
+>
+> 来源：力扣（LeetCode）
+> 链接：https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list
+> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+    if head == nil || ( head.Next == nil && n==1 ) {
+        return nil
+    }
+    len := 0
+    cur := head
+    for cur != nil {
+        len ++
+        cur = cur.Next
+    }
+    if len == n {
+        return head.Next
+    }
+    cnt := len - n - 1
+    cur = head
+    for cnt > 0  {
+        cur = cur.Next
+        cnt--
+    }
+    cur.Next = cur.Next.Next
+    return head
+}
+```
+
+```go
+// 快慢指针，新加个节点，避免删除头节点的情况出现的错误
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+    myHead := &ListNode{Next:head}
+
+    slow, fast := myHead, myHead
+    for n > 0 && fast != nil {
+        fast = fast.Next
+        n--
+    } 
+    for slow != nil && fast != nil && fast.Next != nil {
+        slow = slow.Next
+        fast = fast.Next
+    }
+    slow.Next = slow.Next.Next
+    return myHead.Next
+}
+```
+
+:::
+
+
+
 ## 哈希表
 
+### 1.有效字母的异位词 E
 
+:::details
+
+> 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+>
+> 注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
+>
+>  
+>
+> 示例 1:
+>
+> 输入: s = "anagram", t = "nagaram"
+> 输出: true
+> 示例 2:
+>
+> 输入: s = "rat", t = "car"
+> 输出: false
+>
+>
+> 提示:
+>
+> 1 <= s.length, t.length <= 5 * 104
+> s 和 t 仅包含小写字母
+>
+>
+> 进阶: 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
+>
+> 来源：力扣（LeetCode）
+> 链接：https://leetcode-cn.com/problems/valid-anagram
+> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+```go
+func isAnagram(s string, t string) bool {
+    if len(s) != len(t) {
+        return false
+    }
+    n := len(s)
+    hashMap := make(map[byte]int)
+    for i:=0; i<n; i++ {
+        v := s[i]
+        if n,ok := hashMap[v]; ok {
+            hashMap[v] = n + 1
+        } else {
+            hashMap[v] = 1
+        }
+    }
+    for i:=0; i<n; i++  {
+        v := t[i]
+        if n,ok := hashMap[v]; n > 0 && ok {
+            hashMap[v] = n - 1
+        } else {
+            return false
+        }
+    }
+    return true
+}
+```
+
+:::
 
 
 
