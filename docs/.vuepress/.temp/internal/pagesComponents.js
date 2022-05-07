@@ -81,4 +81,12 @@ export const pagesComponents = {
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.vue")),
   // path: /database/Redis/data_structure/data.html
   "v-c4b57c26": defineAsyncComponent(() => import(/* webpackChunkName: "v-c4b57c26" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.vue")),
+  // path: /database/MySQL/index/data_btree.html
+  "v-005c2849": defineAsyncComponent(() => import(/* webpackChunkName: "v-005c2849" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/data_btree.html.vue")),
+  // path: /database/MySQL/index/why_btree.html
+  "v-04c72495": defineAsyncComponent(() => import(/* webpackChunkName: "v-04c72495" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/why_btree.html.vue")),
+  // path: /database/MySQL/transaction/how.html
+  "v-52d7f4bc": defineAsyncComponent(() => import(/* webpackChunkName: "v-52d7f4bc" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how.html.vue")),
+  // path: /database/MySQL/index/index_no_work.html
+  "v-ec18e5c8": defineAsyncComponent(() => import(/* webpackChunkName: "v-ec18e5c8" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/index_no_work.html.vue")),
 }

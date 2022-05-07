@@ -1,13 +1,32 @@
 export const data = {
   "key": "v-29dfd9f0",
   "path": "/database/MySQL/",
-  "title": "",
+  "title": "MYSQL",
   "lang": "zh-CN",
   "frontmatter": {
     "sidebar": false
   },
   "excerpt": "",
-  "headers": [],
+  "headers": [
+    {
+      "level": 2,
+      "title": "索引篇",
+      "slug": "索引篇",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "事务篇",
+      "slug": "事务篇",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "锁篇",
+      "slug": "锁篇",
+      "children": []
+    }
+  ],
   "git": {
     "updatedTime": 1650041069000,
     "contributors": [
