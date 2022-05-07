@@ -13,7 +13,7 @@ const routeItems = [
   ["v-e95b895e","/other/company_info.html",{"title":"一些公司的春招信息"},["/other/company_info","/other/company_info.md"]],
   ["v-b950286e","/other/interviewContent.html",{"title":""},["/other/interviewContent","/other/interviewContent.md"]],
   ["v-e4cb1150","/other/",{"title":"其他"},["/other/index.html","/other/Readme.md"]],
-  ["v-29dfd9f0","/database/MySQL/",{"title":""},["/database/MySQL/index.html","/database/MySQL/Readme.md"]],
+  ["v-29dfd9f0","/database/MySQL/",{"title":"MYSQL"},["/database/MySQL/index.html","/database/MySQL/Readme.md"]],
   ["v-1af2dda2","/database/Redis/",{"title":"redis"},["/database/Redis/index.html","/database/Redis/Readme.md"]],
   ["v-74fc0e94","/language/go/array_slice.html",{"title":"数组和切片"},["/language/go/array_slice","/language/go/array_slice.md"]],
   ["v-c9400b4e","/language/go/dependence.html",{"title":"Go语言之依赖管理"},["/language/go/dependence","/language/go/dependence.md"]],
@@ -43,6 +43,14 @@ const routeItems = [
   ["v-59f6d0d8","/language/go/design/create/factory_method.html",{"title":"工厂方法模式"},["/language/go/design/create/factory_method","/language/go/design/create/factory_method.md"]],
   ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
+<<<<<<< HEAD
+=======
+  ["v-c4b57c26","/database/Redis/data_structure/data.html",{"title":"Redis 数据结构"},["/database/Redis/data_structure/data","/database/Redis/data_structure/data.md"]],
+  ["v-005c2849","/database/MySQL/index/data_btree.html",{"title":"从数据页的角度看 B+ 树"},["/database/MySQL/index/data_btree","/database/MySQL/index/data_btree.md"]],
+  ["v-04c72495","/database/MySQL/index/why_btree.html",{"title":"为什么 MySQL 采用 B+ 树作为索引？"},["/database/MySQL/index/why_btree","/database/MySQL/index/why_btree.md"]],
+  ["v-52d7f4bc","/database/MySQL/transaction/how.html",{"title":"事务隔离级别是怎么实现的？"},["/database/MySQL/transaction/how","/database/MySQL/transaction/how.md"]],
+  ["v-ec18e5c8","/database/MySQL/index/index_no_work.html",{"title":"索引失效有哪些？"},["/database/MySQL/index/index_no_work","/database/MySQL/index/index_no_work.md"]],
+>>>>>>> 0c4a6833c03294eb80d353d117089a531226cf9a
 ]
 
 export const pagesRoutes = routeItems.reduce(
