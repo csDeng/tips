@@ -84,9 +84,6 @@ export const pagesComponents = {
   // path: /language/go/design/create/simple_factory.html
   "v-84b6491e": defineAsyncComponent(() => import(/* webpackChunkName: "v-84b6491e" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/design/create/simple_factory.html.vue")),
   // path: /404.html
-<<<<<<< HEAD
-  "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/Github/tips/docs/.vuepress/.temp/pages/404.html.vue")),
-=======
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.vue")),
   // path: /database/Redis/data_structure/data.html
   "v-c4b57c26": defineAsyncComponent(() => import(/* webpackChunkName: "v-c4b57c26" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.vue")),
@@ -98,5 +95,4 @@ export const pagesComponents = {
   "v-52d7f4bc": defineAsyncComponent(() => import(/* webpackChunkName: "v-52d7f4bc" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how.html.vue")),
   // path: /database/MySQL/index/index_no_work.html
   "v-ec18e5c8": defineAsyncComponent(() => import(/* webpackChunkName: "v-ec18e5c8" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/index_no_work.html.vue")),
->>>>>>> 0c4a683 (mysql)
 }

@@ -82,19 +82,5 @@ export const pagesData = {
   // path: /language/go/design/create/simple_factory.html
   "v-84b6491e": () => import(/* webpackChunkName: "v-84b6491e" */"D:/Github/tips/docs/.vuepress/.temp/pages/language/go/design/create/simple_factory.html.js").then(({ data }) => data),
   // path: /404.html
-<<<<<<< HEAD
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/Github/tips/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
-=======
-  "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
-  // path: /database/Redis/data_structure/data.html
-  "v-c4b57c26": () => import(/* webpackChunkName: "v-c4b57c26" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.js").then(({ data }) => data),
-  // path: /database/MySQL/index/data_btree.html
-  "v-005c2849": () => import(/* webpackChunkName: "v-005c2849" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/data_btree.html.js").then(({ data }) => data),
-  // path: /database/MySQL/index/why_btree.html
-  "v-04c72495": () => import(/* webpackChunkName: "v-04c72495" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/why_btree.html.js").then(({ data }) => data),
-  // path: /database/MySQL/transaction/how.html
-  "v-52d7f4bc": () => import(/* webpackChunkName: "v-52d7f4bc" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how.html.js").then(({ data }) => data),
-  // path: /database/MySQL/index/index_no_work.html
-  "v-ec18e5c8": () => import(/* webpackChunkName: "v-ec18e5c8" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index/index_no_work.html.js").then(({ data }) => data),
->>>>>>> 0c4a683 (mysql)
 }
