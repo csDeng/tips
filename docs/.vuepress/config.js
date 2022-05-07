@@ -9,7 +9,7 @@ module.exports = {
     // 站点配置
     lang: 'zh-CN',
     title: 'CSJerry',
-    description: 'CTRL + F + CV',
+    description: '弱小与无知不是生存的障碍，傲慢才是',
     dst: `../../dist`,
     // 主题和它的配置
     theme: '@vuepress/theme-default',

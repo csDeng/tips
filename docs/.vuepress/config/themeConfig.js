@@ -1,4 +1,4 @@
-module.exports =  {
+module.exports = {
     navbar: [
         {
             text: '驿站',
@@ -7,8 +7,8 @@ module.exports =  {
         {
             text: '数据结构与算法',
             children: [
-                {text:'数据结构与算法', link:'/algorithm/'},
-                {text:'leet code', link:'/leetcode/'}
+                { text: '数据结构与算法', link: '/algorithm/' },
+                { text: 'leet code', link: '/leetcode/' }
             ],
 
         },
@@ -25,14 +25,27 @@ module.exports =  {
             link: '/network/',
         },
         {
-        text: '数据库',
-        children: [
-            {text:'MySQL', link:'/database/MySQL/'},
-            {text:'Redis', link:'/database/Redis/'}],
+            text: '数据库',
+            children: [
+                { text: 'MySQL', link: '/database/MySQL/' },
+                { text: 'Redis', link: '/database/Redis/' }],
         },
         {
-            text:'其他',
-            link:'/other/'
+            text: "其他",
+            children: [
+                {
+                    text: "nginx",
+                    link: "/other/Nginx"
+                },
+                {
+                    text: "docker",
+                    link: "/other/Docker/"
+                },
+                {
+                    text: "other",
+                    link: "/other/"
+                }
+            ]
         }
         // // NavbarGroup
         // {
@@ -42,6 +55,6 @@ module.exports =  {
         // // 字符串 - 页面文件路径
         // '/bar/README.md',
     ],
-    logo:'https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg',
+    logo: 'https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg',
     repo: 'https://github.com/csDeng/tips',
 }

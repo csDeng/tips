@@ -28,27 +28,19 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1650041069000,
+    "updatedTime": 1651836492000,
     "contributors": [
       {
         "name": "CSJerry",
+        "email": "553537528@qq.com",
+        "commits": 1
+      },
+      {
+        "name": "csDeng",
         "email": "553537528@qq.com",
         "commits": 1
       }
     ]
   },
   "filePathRelative": "database/MySQL/Readme.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

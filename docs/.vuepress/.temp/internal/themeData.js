@@ -44,7 +44,20 @@ export const themeData = {
     },
     {
       "text": "其他",
-      "link": "/other/"
+      "children": [
+        {
+          "text": "nginx",
+          "link": "/other/Nginx"
+        },
+        {
+          "text": "docker",
+          "link": "/other/Docker/"
+        },
+        {
+          "text": "other",
+          "link": "/other/"
+        }
+      ]
     }
   ],
   "logo": "https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg",
@@ -75,17 +88,4 @@ export const themeData = {
   "openInNewWindow": "open in new window",
   "toggleDarkMode": "toggle dark mode",
   "toggleSidebar": "toggle sidebar"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updateThemeData) {
-    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ themeData }) => {
-    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
-  })
 }
