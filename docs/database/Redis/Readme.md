@@ -28,6 +28,8 @@ sidebar: false
 
 ## 持久化篇
 
+1. [AOF持久化怎么实现](./data_persistence/aof.md)
+2. [RDB持久化怎么实现](./data_persistence/rdb.md)
 
 
 

@@ -65,7 +65,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1651765624000,
+    "updatedTime": 1651836492000,
     "contributors": [
       {
         "name": "CSJerry",
@@ -75,7 +75,7 @@ export const data = {
       {
         "name": "csDeng",
         "email": "553537528@qq.com",
-        "commits": 2
+        "commits": 3
       },
       {
         "name": "v_beckdeng",

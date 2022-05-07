@@ -27,6 +27,9 @@ const routeItems = [
   ["v-faa2900a","/language/go/struct.html",{"title":"1. 结构体"},["/language/go/struct","/language/go/struct.md"]],
   ["v-3b73db5d","/other/study/http_api_design.html",{"title":"HTTP API 设计指南"},["/other/study/http_api_design","/other/study/http_api_design.md"]],
   ["v-44200f69","/database/Redis/architecture/data_consistency.html",{"title":"数据库和缓存如何保证一致性？"},["/database/Redis/architecture/data_consistency","/database/Redis/architecture/data_consistency.md"]],
+  ["v-9e9da312","/database/Redis/data_persistence/aof.html",{"title":"AOF 持久化是怎么实现的？"},["/database/Redis/data_persistence/aof","/database/Redis/data_persistence/aof.md"]],
+  ["v-49ed3aff","/database/Redis/data_persistence/rdb.html",{"title":"RDB 快照是怎么实现的？"},["/database/Redis/data_persistence/rdb","/database/Redis/data_persistence/rdb.md"]],
+  ["v-c4b57c26","/database/Redis/data_structure/data.html",{"title":"Redis 数据结构"},["/database/Redis/data_structure/data","/database/Redis/data_structure/data.md"]],
   ["v-d9c3a514","/language/go/concurrence/Goroutine.html",{"title":"1. Goroutine"},["/language/go/concurrence/Goroutine","/language/go/concurrence/Goroutine.md"]],
   ["v-0ccb48f3","/language/go/concurrence/introduce.html",{"title":"1. 并发介绍"},["/language/go/concurrence/introduce","/language/go/concurrence/introduce.md"]],
   ["v-67961fcc","/language/go/concurrence/runtime.html",{"title":"1. runtime包"},["/language/go/concurrence/runtime","/language/go/concurrence/runtime.md"]],
@@ -40,7 +43,6 @@ const routeItems = [
   ["v-59f6d0d8","/language/go/design/create/factory_method.html",{"title":"工厂方法模式"},["/language/go/design/create/factory_method","/language/go/design/create/factory_method.md"]],
   ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
-  ["v-c4b57c26","/database/Redis/data_structure/data.html",{"title":"Redis 数据结构"},["/database/Redis/data_structure/data","/database/Redis/data_structure/data.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(

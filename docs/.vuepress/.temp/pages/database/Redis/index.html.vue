@@ -7,6 +7,10 @@
 <li><RouterLink to="/database/Redis/data_structure/data.html">redis数据结构</RouterLink></li>
 </ol>
 <h2 id="持久化篇" tabindex="-1"><a class="header-anchor" href="#持久化篇" aria-hidden="true">#</a> 持久化篇</h2>
+<ol>
+<li><RouterLink to="/database/Redis/data_persistence/aof.html">AOF持久化怎么实现</RouterLink></li>
+<li><RouterLink to="/database/Redis/data_persistence/rdb.html">RDB持久化怎么实现</RouterLink></li>
+</ol>
 <h2 id="集群篇" tabindex="-1"><a class="header-anchor" href="#集群篇" aria-hidden="true">#</a> 集群篇</h2>
 <h2 id="架构篇" tabindex="-1"><a class="header-anchor" href="#架构篇" aria-hidden="true">#</a> 架构篇</h2>
 <ol>
