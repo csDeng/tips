@@ -1,3 +1,3 @@
 npm install yarn
 yarn
-yarn dev
+yarn build
