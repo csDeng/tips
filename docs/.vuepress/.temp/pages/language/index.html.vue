@@ -56,6 +56,9 @@
 <li><RouterLink to="/language/go/design/create/simple_factory.html">简单工厂模式</RouterLink></li>
 <li><RouterLink to="/language/go/design/create/factory_method.html">工厂方法模式</RouterLink></li>
 <li><RouterLink to="/language/go/design/create/abstract_factory.html">抽象工厂模式</RouterLink></li>
+<li><RouterLink to="/language/design/create/builder.html">建造者模式</RouterLink></li>
+<li><RouterLink to="/language/create/prototype.html">原型模式</RouterLink></li>
+<li><RouterLink to="/language/create/singleton.html">单例模式</RouterLink></li>
 </ol>
 <h3 id="结构型模式" tabindex="-1"><a class="header-anchor" href="#结构型模式" aria-hidden="true">#</a> 结构型模式</h3>
 <h3 id="行为型模式" tabindex="-1"><a class="header-anchor" href="#行为型模式" aria-hidden="true">#</a> 行为型模式</h3>

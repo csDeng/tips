@@ -80,6 +80,11 @@ sidebar: false
 1. [简单工厂模式](./go/design/create/simple_factory.md)
 2. [工厂方法模式](./go/design/create/factory_method.md)
 2. [抽象工厂模式](./go/design/create/abstract_factory.md)
+2. [建造者模式](./design/create/builder.md)
+2. [原型模式](./create/prototype.md)
+2. [单例模式](./create/singleton.md)
+
+
 
 
 
