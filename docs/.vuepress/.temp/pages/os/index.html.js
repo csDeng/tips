@@ -13,17 +13,36 @@ export const data = {
       "title": "进程间通信",
       "slug": "进程间通信",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "体系",
+      "slug": "体系",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": 1651683145000,
+    "updatedTime": 1652025887000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 3
+        "commits": 4
       }
     ]
   },
   "filePathRelative": "os/README.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

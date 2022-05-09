@@ -101,14 +101,27 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1649955115000,
+    "updatedTime": 1651944356000,
     "contributors": [
       {
         "name": "CSJerry",
         "email": "553537528@qq.com",
-        "commits": 2
+        "commits": 3
       }
     ]
   },
   "filePathRelative": "language/go/map.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }
