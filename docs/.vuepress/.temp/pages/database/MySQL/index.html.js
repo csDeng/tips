@@ -28,15 +28,15 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1651836492000,
+    "updatedTime": 1652178722000,
     "contributors": [
       {
-        "name": "CSJerry",
+        "name": "csDeng",
         "email": "553537528@qq.com",
-        "commits": 1
+        "commits": 2
       },
       {
-        "name": "csDeng",
+        "name": "CSJerry",
         "email": "553537528@qq.com",
         "commits": 1
       }
