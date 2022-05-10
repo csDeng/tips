@@ -7,6 +7,8 @@
 <li><RouterLink to="/database/MySQL/index/data_btree.html">从数据页的角度来看B+树</RouterLink></li>
 <li><RouterLink to="/database/MySQL/index/why_btree.html">为什么MYSQL使用B+树作为索引</RouterLink></li>
 <li><RouterLink to="/database/MySQL/index/index_no_work.html">索引失效有哪些</RouterLink></li>
+<li><RouterLink to="/database/MySQL/index/index_issure.html">MySQL 使用 like “%x“，索引一定会失效吗？</RouterLink></li>
+<li></li>
 </ol>
 <h2 id="事务篇" tabindex="-1"><a class="header-anchor" href="#事务篇" aria-hidden="true">#</a> 事务篇</h2>
 <ol>
@@ -16,6 +18,6 @@
 <h2 id="锁篇" tabindex="-1"><a class="header-anchor" href="#锁篇" aria-hidden="true">#</a> 锁篇</h2>
 <h1 id="调优篇" tabindex="-1"><a class="header-anchor" href="#调优篇" aria-hidden="true">#</a> 调优篇</h1>
 <ol>
-<li></li>
+<li><RouterLink to="/database/MySQL/optimize/division.html">分库分表</RouterLink></li>
 </ol>
 </template>

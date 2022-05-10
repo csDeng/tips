@@ -2,14 +2,14 @@ import { Vuepress } from '@vuepress/client/lib/components/Vuepress'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":"首页"},["/index.html","/README.md"]],
-  ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
-  ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
-  ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
   ["v-647b5f01","/leetcode/array.html",{"title":"数组"},["/leetcode/array","/leetcode/array.md"]],
   ["v-fe7e50ec","/leetcode/hash.html",{"title":"哈希表"},["/leetcode/hash","/leetcode/hash.md"]],
   ["v-255621fa","/leetcode/list.html",{"title":"链表"},["/leetcode/list","/leetcode/list.md"]],
   ["v-31987621","/leetcode/",{"title":"刷题吧"},["/leetcode/index.html","/leetcode/Readme.md"]],
   ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
+  ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
+  ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
+  ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
   ["v-24f2d5ba","/network/",{"title":"简介"},["/network/index.html","/network/README.md"]],
   ["v-50e5196d","/os/memoryShare.html",{"title":"进程间通信 共享内存"},["/os/memoryShare","/os/memoryShare.md"]],
   ["v-2d0aad32","/os/",{"title":"简介"},["/os/index.html","/os/README.md"]],
@@ -60,12 +60,16 @@ const routeItems = [
   ["v-49ed3aff","/database/Redis/data_persistence/rdb.html",{"title":"RDB 快照是怎么实现的？"},["/database/Redis/data_persistence/rdb","/database/Redis/data_persistence/rdb.md"]],
   ["v-c4b57c26","/database/Redis/data_structure/data.html",{"title":"Redis 数据结构"},["/database/Redis/data_structure/data","/database/Redis/data_structure/data.md"]],
   ["v-a6362c7e","/language/go/design/create/abstract_factory.html",{"title":"抽象工厂模式"},["/language/go/design/create/abstract_factory","/language/go/design/create/abstract_factory.md"]],
-  ["v-59f6d0d8","/language/go/design/create/factory_method.html",{"title":"工厂方法模式"},["/language/go/design/create/factory_method","/language/go/design/create/factory_method.md"]],
-  ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
-  ["v-3706649a","/404.html",{"title":""},["/404"]],
   ["v-b018f06e","/language/go/design/create/builder.html",{"title":"建造者者模式"},["/language/go/design/create/builder","/language/go/design/create/builder.md"]],
+  ["v-59f6d0d8","/language/go/design/create/factory_method.html",{"title":"工厂方法模式"},["/language/go/design/create/factory_method","/language/go/design/create/factory_method.md"]],
   ["v-7dcaefe2","/language/go/design/create/prototype.html",{"title":"原型模式"},["/language/go/design/create/prototype","/language/go/design/create/prototype.md"]],
+  ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
   ["v-6fab0699","/language/go/design/create/singleton.html",{"title":"单例模式"},["/language/go/design/create/singleton","/language/go/design/create/singleton.md"]],
+  ["v-3706649a","/404.html",{"title":""},["/404"]],
+  ["v-77ffb7a2","/database/MySQL/optimize/.html",{"title":""},["/database/MySQL/optimize/","/database/MySQL/optimize/.md"]],
+  ["v-b8bcbcbc","/database/MySQL/optimize/division.html",{"title":"分库分表"},["/database/MySQL/optimize/division","/database/MySQL/optimize/division.md"]],
+  ["v-7bbd2c6f","/database/MySQL/index/Untitled.html",{"title":""},["/database/MySQL/index/Untitled","/database/MySQL/index/Untitled.md"]],
+  ["v-a8d14ff0","/database/MySQL/index/index_issure.html",{"title":"MySQL 使用 like “%x“，索引一定会失效吗？"},["/database/MySQL/index/index_issure","/database/MySQL/index/index_issure.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(
