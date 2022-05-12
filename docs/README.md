@@ -22,7 +22,6 @@ footer: MIT Licensed | Copyright © 2022-present CSJerry
 
 ### 写过Hello等于我学会了
 
-
 <CodeGroup>
   <CodeGroupItem title="Go" active>
 
@@ -67,7 +66,7 @@ int main() {
 
   </CodeGroupItem>
 
-    
+
   <CodeGroupItem title="Python">
 
 ```py
@@ -79,7 +78,7 @@ if __name__ == "__main__":
 ```
 
   </CodeGroupItem>
- 
+
 
   <CodeGroupItem title="Java">
 
