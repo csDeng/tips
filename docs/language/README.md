@@ -59,8 +59,10 @@ sidebar: false
 
 ## 并发编程
 1. [并发介绍](./go/concurrence/introduce.md)
-2.  [`GoRoutine`](./go/concurrence/Goroutine.md)
-3.  [`runtime`包](./go/concurrence/runtime.md)
+2. [`GoRoutine`](./go/concurrence/Goroutine.md)
+3. [`runtime`包](./go/concurrence/runtime.md)
+4. [channel](./go/concurrence/channel.md)
+5. 
 
 
 
