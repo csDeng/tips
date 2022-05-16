@@ -62,3 +62,68 @@ func sumOfLeftLeaves(root *TreeNode) int {
 
 
 :::
+
+
+
+## 2. 翻转二叉树 E
+
+:::details
+
+> 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
+>
+>  ![image-20220517000107288](./pics/binaryTree/image-20220517000107288.png)
+>
+> 示例 1：
+>
+> 
+>
+> 输入：root = [4,2,7,1,3,6,9]
+> 输出：[4,7,2,9,6,3,1]
+> 示例 2：
+>
+> 
+>
+> 输入：root = [2,1,3]
+> 输出：[2,3,1]
+> 示例 3：
+>
+> 输入：root = []
+> 输出：[]
+>
+> 来源：力扣（LeetCode）
+> 链接：https://leetcode.cn/problems/invert-binary-tree
+> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func invertTree(root *TreeNode) *TreeNode {
+    dfs(root)
+    return root
+}
+
+func dfs(root *TreeNode) {
+    if root == nil {
+        return 
+    }
+    reg := root.Left
+    root.Left = root.Right
+    root.Right = reg
+    dfs(root.Left)
+    dfs(root.Right)
+}
+```
+
+
+
+
+
+:::
