@@ -9,6 +9,8 @@ export const pagesComponents = {
   "v-70bc2959": defineAsyncComponent(() => import(/* webpackChunkName: "v-70bc2959" */"D:/code/tips/docs/.vuepress/.temp/pages/algorithm/index.html.vue")),
   // path: /algorithm/sort.html
   "v-4ffc68c2": defineAsyncComponent(() => import(/* webpackChunkName: "v-4ffc68c2" */"D:/code/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.vue")),
+  // path: /language/
+  "v-58f42cfe": defineAsyncComponent(() => import(/* webpackChunkName: "v-58f42cfe" */"D:/code/tips/docs/.vuepress/.temp/pages/language/index.html.vue")),
   // path: /leetcode/array.html
   "v-647b5f01": defineAsyncComponent(() => import(/* webpackChunkName: "v-647b5f01" */"D:/code/tips/docs/.vuepress/.temp/pages/leetcode/array.html.vue")),
   // path: /leetcode/binaryTree.html
@@ -21,8 +23,6 @@ export const pagesComponents = {
   "v-31987621": defineAsyncComponent(() => import(/* webpackChunkName: "v-31987621" */"D:/code/tips/docs/.vuepress/.temp/pages/leetcode/index.html.vue")),
   // path: /leetcode/string.html
   "v-3a6b42b2": defineAsyncComponent(() => import(/* webpackChunkName: "v-3a6b42b2" */"D:/code/tips/docs/.vuepress/.temp/pages/leetcode/string.html.vue")),
-  // path: /language/
-  "v-58f42cfe": defineAsyncComponent(() => import(/* webpackChunkName: "v-58f42cfe" */"D:/code/tips/docs/.vuepress/.temp/pages/language/index.html.vue")),
   // path: /network/
   "v-24f2d5ba": defineAsyncComponent(() => import(/* webpackChunkName: "v-24f2d5ba" */"D:/code/tips/docs/.vuepress/.temp/pages/network/index.html.vue")),
   // path: /os/memoryShare.html
@@ -35,10 +35,6 @@ export const pagesComponents = {
   "v-b950286e": defineAsyncComponent(() => import(/* webpackChunkName: "v-b950286e" */"D:/code/tips/docs/.vuepress/.temp/pages/other/interviewContent.html.vue")),
   // path: /other/
   "v-e4cb1150": defineAsyncComponent(() => import(/* webpackChunkName: "v-e4cb1150" */"D:/code/tips/docs/.vuepress/.temp/pages/other/index.html.vue")),
-  // path: /database/MySQL/
-  "v-29dfd9f0": defineAsyncComponent(() => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.vue")),
-  // path: /database/Redis/
-  "v-1af2dda2": defineAsyncComponent(() => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.vue")),
   // path: /language/go/array_slice.html
   "v-74fc0e94": defineAsyncComponent(() => import(/* webpackChunkName: "v-74fc0e94" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/array_slice.html.vue")),
   // path: /language/go/dependence.html
@@ -59,6 +55,10 @@ export const pagesComponents = {
   "v-27963d16": defineAsyncComponent(() => import(/* webpackChunkName: "v-27963d16" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/process_control.html.vue")),
   // path: /language/go/struct.html
   "v-faa2900a": defineAsyncComponent(() => import(/* webpackChunkName: "v-faa2900a" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/struct.html.vue")),
+  // path: /database/MySQL/
+  "v-29dfd9f0": defineAsyncComponent(() => import(/* webpackChunkName: "v-29dfd9f0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.vue")),
+  // path: /database/Redis/
+  "v-1af2dda2": defineAsyncComponent(() => import(/* webpackChunkName: "v-1af2dda2" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/index.html.vue")),
   // path: /other/Docker/01.docker%E6%A6%82%E8%BF%B0.html
   "v-6fac3808": defineAsyncComponent(() => import(/* webpackChunkName: "v-6fac3808" */"D:/code/tips/docs/.vuepress/.temp/pages/other/Docker/01.docker概述.html.vue")),
   // path: /other/Docker/02.Docker%E5%8E%86%E5%8F%B2.html
@@ -87,6 +87,26 @@ export const pagesComponents = {
   "v-31c0714d": defineAsyncComponent(() => import(/* webpackChunkName: "v-31c0714d" */"D:/code/tips/docs/.vuepress/.temp/pages/other/Nginx/index.html.vue")),
   // path: /other/study/http_api_design.html
   "v-3b73db5d": defineAsyncComponent(() => import(/* webpackChunkName: "v-3b73db5d" */"D:/code/tips/docs/.vuepress/.temp/pages/other/study/http_api_design.html.vue")),
+  // path: /language/go/concurrence/channel.html
+  "v-53ffc5cf": defineAsyncComponent(() => import(/* webpackChunkName: "v-53ffc5cf" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/channel.html.vue")),
+  // path: /language/go/concurrence/Goroutine.html
+  "v-d9c3a514": defineAsyncComponent(() => import(/* webpackChunkName: "v-d9c3a514" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/Goroutine.html.vue")),
+  // path: /language/go/concurrence/introduce.html
+  "v-0ccb48f3": defineAsyncComponent(() => import(/* webpackChunkName: "v-0ccb48f3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/introduce.html.vue")),
+  // path: /language/go/concurrence/runtime.html
+  "v-67961fcc": defineAsyncComponent(() => import(/* webpackChunkName: "v-67961fcc" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/runtime.html.vue")),
+  // path: /language/go/net/http.html
+  "v-39b1e776": defineAsyncComponent(() => import(/* webpackChunkName: "v-39b1e776" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/http.html.vue")),
+  // path: /language/go/net/socket.html
+  "v-794513aa": defineAsyncComponent(() => import(/* webpackChunkName: "v-794513aa" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/socket.html.vue")),
+  // path: /language/go/net/tcp.html
+  "v-213952d3": defineAsyncComponent(() => import(/* webpackChunkName: "v-213952d3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp.html.vue")),
+  // path: /language/go/net/tcp_sticky.html
+  "v-4fe4d797": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fe4d797" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp_sticky.html.vue")),
+  // path: /language/go/net/websocket.html
+  "v-7fd75e6d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fd75e6d" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.vue")),
+  // path: /language/go/other/package.html
+  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /database/MySQL/basic/count_how_work.html
   "v-434176a0": defineAsyncComponent(() => import(/* webpackChunkName: "v-434176a0" */"D:/code/tips/docs/.vuepress/.temp/pages/database/MySQL/basic/count_how_work.html.vue")),
   // path: /database/MySQL/basic/process.html
@@ -117,24 +137,6 @@ export const pagesComponents = {
   "v-49ed3aff": defineAsyncComponent(() => import(/* webpackChunkName: "v-49ed3aff" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/data_persistence/rdb.html.vue")),
   // path: /database/Redis/data_structure/data.html
   "v-c4b57c26": defineAsyncComponent(() => import(/* webpackChunkName: "v-c4b57c26" */"D:/code/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.vue")),
-  // path: /language/go/concurrence/Goroutine.html
-  "v-d9c3a514": defineAsyncComponent(() => import(/* webpackChunkName: "v-d9c3a514" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/Goroutine.html.vue")),
-  // path: /language/go/concurrence/introduce.html
-  "v-0ccb48f3": defineAsyncComponent(() => import(/* webpackChunkName: "v-0ccb48f3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/introduce.html.vue")),
-  // path: /language/go/concurrence/runtime.html
-  "v-67961fcc": defineAsyncComponent(() => import(/* webpackChunkName: "v-67961fcc" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/runtime.html.vue")),
-  // path: /language/go/net/http.html
-  "v-39b1e776": defineAsyncComponent(() => import(/* webpackChunkName: "v-39b1e776" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/http.html.vue")),
-  // path: /language/go/net/socket.html
-  "v-794513aa": defineAsyncComponent(() => import(/* webpackChunkName: "v-794513aa" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/socket.html.vue")),
-  // path: /language/go/net/tcp.html
-  "v-213952d3": defineAsyncComponent(() => import(/* webpackChunkName: "v-213952d3" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp.html.vue")),
-  // path: /language/go/net/tcp_sticky.html
-  "v-4fe4d797": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fe4d797" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/tcp_sticky.html.vue")),
-  // path: /language/go/net/websocket.html
-  "v-7fd75e6d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fd75e6d" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.vue")),
-  // path: /language/go/other/package.html
-  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /language/go/design/create/abstract_factory.html
   "v-a6362c7e": defineAsyncComponent(() => import(/* webpackChunkName: "v-a6362c7e" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/design/create/abstract_factory.html.vue")),
   // path: /language/go/design/create/builder.html
@@ -149,6 +151,8 @@ export const pagesComponents = {
   "v-6fab0699": defineAsyncComponent(() => import(/* webpackChunkName: "v-6fab0699" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/design/create/singleton.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/code/tips/docs/.vuepress/.temp/pages/404.html.vue")),
-  // path: /language/go/concurrence/channel.html
-  "v-53ffc5cf": defineAsyncComponent(() => import(/* webpackChunkName: "v-53ffc5cf" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/channel.html.vue")),
+  // path: /language/go/concurrence/Goroutinue_pool.html
+  "v-4d9118a0": defineAsyncComponent(() => import(/* webpackChunkName: "v-4d9118a0" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/Goroutinue_pool.html.vue")),
+  // path: /language/go/concurrence/timer.html
+  "v-6356870d": defineAsyncComponent(() => import(/* webpackChunkName: "v-6356870d" */"D:/code/tips/docs/.vuepress/.temp/pages/language/go/concurrence/timer.html.vue")),
 }

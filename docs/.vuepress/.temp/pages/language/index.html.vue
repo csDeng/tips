@@ -42,6 +42,8 @@
 <li><RouterLink to="/language/go/concurrence/Goroutine.html"><code>GoRoutine</code></RouterLink></li>
 <li><RouterLink to="/language/go/concurrence/runtime.html"><code>runtime</code>包</RouterLink></li>
 <li><RouterLink to="/language/go/concurrence/channel.html">channel</RouterLink></li>
+<li><RouterLink to="/language/go/concurrence/Goroutinue_pool.html">GoRoutinue_pool</RouterLink></li>
+<li><RouterLink to="/language/go/concurrence/timer.html">定时器</RouterLink></li>
 <li></li>
 </ol>
 <h2 id="设计模式" tabindex="-1"><a class="header-anchor" href="#设计模式" aria-hidden="true">#</a> 设计模式</h2>
