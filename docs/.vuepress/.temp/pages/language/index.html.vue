@@ -60,12 +60,34 @@
 <li><RouterLink to="/language/go/design/create/simple_factory.html">简单工厂模式</RouterLink></li>
 <li><RouterLink to="/language/go/design/create/factory_method.html">工厂方法模式</RouterLink></li>
 <li><RouterLink to="/language/go/design/create/abstract_factory.html">抽象工厂模式</RouterLink></li>
-<li><RouterLink to="/language/design/create/builder.html">建造者模式</RouterLink></li>
-<li><RouterLink to="/language/create/prototype.html">原型模式</RouterLink></li>
-<li><RouterLink to="/language/create/singleton.html">单例模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/create/builder.html">建造者模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/create/prototype.html">原型模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/create/singleton.html">单例模式</RouterLink></li>
 </ol>
 <h3 id="结构型模式" tabindex="-1"><a class="header-anchor" href="#结构型模式" aria-hidden="true">#</a> 结构型模式</h3>
+<ol>
+<li><RouterLink to="/language/go/design/structure/facade.html">外观模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/adapter.html">适配器模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/proxy.html">代理模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/composite.html">组合模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/flyweight.html">享元模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/decorator.html">装饰器模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/structure/bridge.html">桥模式</RouterLink></li>
+</ol>
 <h3 id="行为型模式" tabindex="-1"><a class="header-anchor" href="#行为型模式" aria-hidden="true">#</a> 行为型模式</h3>
+<ol>
+<li><RouterLink to="/language/go/design/behavior/mediator.html">中介者模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/observer.html">观察者模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/command.html">命令模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/iterator.html">迭代器模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/templateMethod.html">模板方法模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/strategy.html">策略模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/state.html">状态模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/memorandum.html">备忘录模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/interpreter.html">解释器模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/chainOfResponsibility.html">职责链模式</RouterLink></li>
+<li><RouterLink to="/language/go/design/behavior/visitor.html">访问者模式</RouterLink></li>
+</ol>
 <h2 id="其他" tabindex="-1"><a class="header-anchor" href="#其他" aria-hidden="true">#</a> 其他</h2>
 <ol>
 <li><RouterLink to="/language/go/other/package.html">常用的包</RouterLink></li>

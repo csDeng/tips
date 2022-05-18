@@ -6,6 +6,7 @@ sidebar: false
 
 ---
 
+
 # 计算机语言
 主要是Go的学习记录。
 
@@ -83,24 +84,38 @@ sidebar: false
 
 1. [简单工厂模式](./go/design/create/simple_factory.md)
 2. [工厂方法模式](./go/design/create/factory_method.md)
-2. [抽象工厂模式](./go/design/create/abstract_factory.md)
-2. [建造者模式](./design/create/builder.md)
-2. [原型模式](./create/prototype.md)
-2. [单例模式](./create/singleton.md)
-
-
-
+3. [抽象工厂模式](./go/design/create/abstract_factory.md)
+4. [建造者模式](./go/design/create/builder.md)
+5. [原型模式](./go/design/create/prototype.md)
+6. [单例模式](./go/design/create/singleton.md)
 
 
 ### 结构型模式
 
+1. [外观模式](./go/design/structure/facade.md)
+2. [适配器模式](./go/design/structure/adapter.md)
+3. [代理模式](./go/design/structure/proxy.md)
+4. [组合模式](./go/design/structure/composite.md)
+5. [享元模式](./go/design/structure/flyweight.md)
+6. [装饰器模式](./go/design/structure/decorator.md)
+7. [桥模式](./go/design/structure/bridge.md)
 
 
 
 
 ### 行为型模式
 
-
+1. [中介者模式](./go/design/behavior/mediator.md)
+2. [观察者模式](./go/design/behavior/observer.md)
+3. [命令模式](./go/design/behavior/command.md)
+4. [迭代器模式](./go/design/behavior/iterator.md)
+5. [模板方法模式](./go/design/behavior/templateMethod.md)
+6. [策略模式](./go/design/behavior/strategy.md)
+7. [状态模式](./go/design/behavior/state.md)
+8. [备忘录模式](./go/design/behavior/memorandum.md)
+9. [解释器模式](./go/design/behavior/interpreter.md)
+10. [职责链模式](./go/design/behavior/chainOfResponsibility.md)
+11. [访问者模式](./go/design/behavior/visitor.md)
 
 
 
