@@ -2,7 +2,7 @@
 
 
 
-### 1.有效字母的异位词 E
+## 1.有效字母的异位词 E
 
 :::details
 
@@ -65,7 +65,7 @@ func isAnagram(s string, t string) bool {
 
 
 
-### 2. 两个数组的交集 E
+## 2. 两个数组的交集 E
 
 :::details 
 
@@ -123,7 +123,7 @@ func intersection(nums1 []int, nums2 []int) []int {
 
 
 
-### 3.快乐数 E
+## 3.快乐数 E
 
 :::details
 
@@ -197,7 +197,7 @@ func getSum(n int) int {
 
 
 
-### 4. 两数之和 E
+## 4. 两数之和 E
 
 :::details
 
@@ -261,92 +261,69 @@ func twoSum(nums []int, target int) []int {
 
 
 
-### 5. 三数之和
+##  5. **topk(前k个高频元素) M**
+
+
 
 :::details
 
-> 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+
+
+> 给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
 >
-> 注意：答案中不可以包含重复的三元组。
->
->  
->
-> 示例 1：
->
-> 输入：nums = [-1,0,1,2,-1,-4]
-> 输出：[[-1,-1,2],[-1,0,1]]
-> 示例 2：
->
-> 输入：nums = []
-> 输出：[]
-> 示例 3：
->
-> 输入：nums = [0]
-> 输出：[]
+> 示例 1:
+> 输入: nums = [1,1,1,2,2,3], k = 2
+> 输出: [1,2]
+> 示例 2:
+> 输入: nums = [1], k = 1
+> 输出: [1]
 >
 >
 > 提示：
+> 1 <= nums.length <= 105
+> k 的取值范围是 [1, 数组中不相同的元素的个数]
+> 题目数据保证答案唯一，换句话说，数组中前 k 个高频元素的集合是唯一的
 >
-> 0 <= nums.length <= 3000
-> -105 <= nums[i] <= 105
+> 进阶：你所设计算法的时间复杂度 必须 优于 O(n log n) ，其中 n 是数组大小。
 >
 > 来源：力扣（LeetCode）
-> 链接：https://leetcode.cn/problems/3sum
+> 链接：https://leetcode.cn/problems/top-k-frequent-elements
 > 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-解题思路
-
-> 因为题目要求输出的是value而不是index，所以为了简单起见，我们上来先来一个排序
->
-> 然后利用双指针，两头往中间靠
->
-> 注意去重
-
 ```go
-package main
+func topKFrequent(nums []int, k int) []int {
+    sort.Ints(nums)
+    res := make([]int, 0)
+    hash := make(map[int]int)
 
-import (
-	"fmt"
-	"sort"
-)
 
-func threeSum(nums []int) [][]int {
-	sort.Ints(nums)
-	// fmt.Println(nums)
-	res := [][]int{}
-	n := len(nums)
-	for i := 0; i < n-2; i++ {
-		l, r := i+1, n-1
-		if nums[i] > 0 {
-			break
-		}
-		if i > 0 && nums[i] == nums[i-1] {
-			// 去重
-			continue
-		}
-		for l < r {
-			in, ln, rn := nums[i], nums[l], nums[r]
-			if in+ln+rn == 0 {
-				res = append(res, []int{in, ln, rn})
-				for l < r && nums[l] == ln {
-					l++
-				}
-				for l < r && nums[r] == rn {
-					r--
-				}
-			} else if in+ln+rn < 0 {
-				l++
-			} else {
-				r--
-			}
-		}
-	}
-	return res
-}
+    for i, l := 0, len(nums); i < l; i++ {
+        cnt, num := 1, nums[i]
+        for i+1 < l && nums[i+1] == num {
+            cnt++
+            i++
+        }
+        hash[num] = cnt
+        if len(res) < k {
+            res = append(res, num)
+        } else {
+            // 寻找最小的元素
+            minIndex := 0
+            for j := 1; j < k; j++ {
+                if hash[res[j]] < hash[res[minIndex]] {
+                    minIndex = j
+                }
+            }
+            if hash[res[minIndex]] < cnt {
+                res[minIndex] = num
+            }
+        }
 
-func main() {
-	nums := []int{-1, 0, 1, 2, -1, -4}
-	fmt.Println(threeSum(nums))
+
+    }
+    return res
+
+
 }
 
 ```
@@ -355,96 +332,3 @@ func main() {
 
 
 
-### 6. 四数之和
-
-:::details
-
-> 给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）：
->
-> 0 <= a, b, c, d < n
-> a、b、c 和 d 互不相同
-> nums[a] + nums[b] + nums[c] + nums[d] == target
-> 你可以按 任意顺序 返回答案 。
->
->  
->
-> 示例 1：
->
-> 输入：nums = [1,0,-1,0,-2,2], target = 0
-> 输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-> 示例 2：
->
-> 输入：nums = [2,2,2,2,2], target = 8
-> 输出：[[2,2,2,2]]
->
->
-> 提示：
->
-> 1 <= nums.length <= 200
-> -109 <= nums[i] <= 109
-> -109 <= target <= 109
->
-> 来源：力扣（LeetCode）
-> 链接：https://leetcode.cn/problems/4sum
-> 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
-```go
-
-func fourSum(nums []int, target int) [][]int {
-	sort.Ints(nums)
-	// fmt.Println(nums)
-	n := len(nums)
-	res := [][]int{}
-	for i := 0; i < n-3; i++ {
-		/**
-		* 因为target可以是负数，所以不能这么剪枝
-		* 例如 [-5,-4,-3,-2,1,5,4,2] target = -14
-		 */
-		// if nums[i] > target {
-		// 	break
-		// }
-		// 去重 [a,a,x,y]
-		if i > 0 && nums[i] == nums[i-1] {
-			continue
-		}
-		for j := i + 1; j < n-2; j++ {
-			in, jn := nums[i], nums[j]
-			twoSum := in + jn
-			if j > i+1 && nums[j] == nums[j-1] {
-				continue
-			}
-			l, r := j+1, n-1
-			for l < r {
-				ln, rn := nums[l], nums[r]
-				temp := twoSum + ln + rn
-				if temp == target {
-					res = append(res, []int{in, jn, ln, rn})
-					// 去重
-					for l < r && nums[l] == ln {
-						l++
-					}
-					for l < r && nums[r] == rn {
-						r--
-					}
-				} else if temp < target {
-					for l < r && nums[l] == ln {
-						l++
-					}
-				} else {
-					for l < r && nums[r] == rn {
-						r--
-					}
-				}
-			}
-
-		}
-	}
-	return res
-}
-```
-
-
-
-
-
-:::

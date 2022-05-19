@@ -2,12 +2,14 @@ import { Vuepress } from '@vuepress/client/lib/components/Vuepress'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":"首页"},["/index.html","/README.md"]],
+  ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-1739c35a","/algorithm/basic_struct.html",{"title":"基本数据结构"},["/algorithm/basic_struct","/algorithm/basic_struct.md"]],
   ["v-70bc2959","/algorithm/",{"title":"简介"},["/algorithm/index.html","/algorithm/README.md"]],
   ["v-4ffc68c2","/algorithm/sort.html",{"title":"排序"},["/algorithm/sort","/algorithm/sort.md"]],
-  ["v-58f42cfe","/language/",{"title":"计算机语言"},["/language/index.html","/language/README.md"]],
   ["v-647b5f01","/leetcode/array.html",{"title":"数组"},["/leetcode/array","/leetcode/array.md"]],
+  ["v-e3c74214","/leetcode/backtrack.html",{"title":"回溯"},["/leetcode/backtrack","/leetcode/backtrack.md"]],
   ["v-673dc8b9","/leetcode/binaryTree.html",{"title":"二叉树"},["/leetcode/binaryTree","/leetcode/binaryTree.md"]],
+  ["v-70d392ae","/leetcode/double_pointer.html",{"title":""},["/leetcode/double_pointer","/leetcode/double_pointer.md"]],
   ["v-fe7e50ec","/leetcode/hash.html",{"title":"哈希表"},["/leetcode/hash","/leetcode/hash.md"]],
   ["v-255621fa","/leetcode/list.html",{"title":"链表"},["/leetcode/list","/leetcode/list.md"]],
   ["v-31987621","/leetcode/",{"title":"刷题吧"},["/leetcode/index.html","/leetcode/Readme.md"]],
@@ -46,8 +48,14 @@ const routeItems = [
   ["v-3b73db5d","/other/study/http_api_design.html",{"title":"HTTP API 设计指南"},["/other/study/http_api_design","/other/study/http_api_design.md"]],
   ["v-53ffc5cf","/language/go/concurrence/channel.html",{"title":"1. Channel"},["/language/go/concurrence/channel","/language/go/concurrence/channel.md"]],
   ["v-d9c3a514","/language/go/concurrence/Goroutine.html",{"title":"1. Goroutine"},["/language/go/concurrence/Goroutine","/language/go/concurrence/Goroutine.md"]],
+  ["v-4d9118a0","/language/go/concurrence/Goroutinue_pool.html",{"title":"1. Goroutine池"},["/language/go/concurrence/Goroutinue_pool","/language/go/concurrence/Goroutinue_pool.md"]],
   ["v-0ccb48f3","/language/go/concurrence/introduce.html",{"title":"1. 并发介绍"},["/language/go/concurrence/introduce","/language/go/concurrence/introduce.md"]],
   ["v-67961fcc","/language/go/concurrence/runtime.html",{"title":"1. runtime包"},["/language/go/concurrence/runtime","/language/go/concurrence/runtime.md"]],
+  ["v-6356870d","/language/go/concurrence/timer.html",{"title":"定时器"},["/language/go/concurrence/timer","/language/go/concurrence/timer.md"]],
+  ["v-51b4a38b","/language/go/micro/details.html",{"title":"1. 微服务详解"},["/language/go/micro/details","/language/go/micro/details.md"]],
+  ["v-3a236b87","/language/go/micro/ecology.html",{"title":"1. 微服务生态"},["/language/go/micro/ecology","/language/go/micro/ecology.md"]],
+  ["v-70c71952","/language/go/micro/realize.html",{"title":"1. 认识微服务"},["/language/go/micro/realize","/language/go/micro/realize.md"]],
+  ["v-ee5fb870","/language/go/micro/rpc.html",{"title":"1. RPC"},["/language/go/micro/rpc","/language/go/micro/rpc.md"]],
   ["v-39b1e776","/language/go/net/http.html",{"title":""},["/language/go/net/http","/language/go/net/http.md"]],
   ["v-794513aa","/language/go/net/socket.html",{"title":"socket 编程"},["/language/go/net/socket","/language/go/net/socket.md"]],
   ["v-213952d3","/language/go/net/tcp.html",{"title":"Go语言TCP Socket编程"},["/language/go/net/tcp","/language/go/net/tcp.md"]],
@@ -76,8 +84,6 @@ const routeItems = [
   ["v-84b6491e","/language/go/design/create/simple_factory.html",{"title":"简单工厂模式"},["/language/go/design/create/simple_factory","/language/go/design/create/simple_factory.md"]],
   ["v-6fab0699","/language/go/design/create/singleton.html",{"title":"单例模式"},["/language/go/design/create/singleton","/language/go/design/create/singleton.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
-  ["v-4d9118a0","/language/go/concurrence/Goroutinue_pool.html",{"title":"1. Goroutine池"},["/language/go/concurrence/Goroutinue_pool","/language/go/concurrence/Goroutinue_pool.md"]],
-  ["v-6356870d","/language/go/concurrence/timer.html",{"title":"定时器"},["/language/go/concurrence/timer","/language/go/concurrence/timer.md"]],
 ]
 
 export const pagesRoutes = routeItems.reduce(

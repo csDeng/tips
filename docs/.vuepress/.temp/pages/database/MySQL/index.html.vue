@@ -35,4 +35,8 @@
 <li><RouterLink to="/database/MySQL/basic/process.html">MySQL的执行顺序</RouterLink></li>
 <li></li>
 </ol>
+<h2 id="面试题" tabindex="-1"><a class="header-anchor" href="#面试题" aria-hidden="true">#</a> 面试题</h2>
+<ol>
+<li>[为什么MySQL要用B+树，而不用跳表呢]</li>
+</ol>
 </template>
