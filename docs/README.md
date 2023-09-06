@@ -14,7 +14,7 @@ features:
   - title: 数据结构与算法
     details: 学习数据结构与算法的奇思妙想，练就CS的基本功
   - title: 计算机语言
-    details: 以 Go 为核心，学习计算机知识
+    details: 以 Java 为核心，学习计算机知识
   - title: 操作系统
     details: 去了解计算机操作系统的实现以及构成，加深对计算机的了解
 footer: MIT Licensed | Copyright © 2022-present CSJerry
@@ -23,6 +23,19 @@ footer: MIT Licensed | Copyright © 2022-present CSJerry
 ### 写过Hello等于我学会了
 
 <CodeGroup>
+
+  <CodeGroupItem title="Java">
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
+```
+
+  </CodeGroupItem>
+
   <CodeGroupItem title="Go" active>
 
 ```go
@@ -80,17 +93,6 @@ if __name__ == "__main__":
   </CodeGroupItem>
 
 
-  <CodeGroupItem title="Java">
-
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-    }
-}
-```
-
-  </CodeGroupItem>
 
 
   <CodeGroupItem title="javascript">

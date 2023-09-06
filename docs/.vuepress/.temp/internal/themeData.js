@@ -19,7 +19,16 @@ export const themeData = {
     },
     {
       "text": "计算机语言",
-      "link": "/language/"
+      "children": [
+        {
+          "text": "Java",
+          "link": "/language/Java"
+        },
+        {
+          "text": "Golang",
+          "link": "/language/go"
+        }
+      ]
     },
     {
       "text": "操作系统",
@@ -52,6 +61,10 @@ export const themeData = {
         {
           "text": "docker",
           "link": "/other/Docker/"
+        },
+        {
+          "text": "AIGC",
+          "link": "/AI/"
         },
         {
           "text": "other",

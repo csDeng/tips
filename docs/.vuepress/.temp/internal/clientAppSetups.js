@@ -1,7 +1,7 @@
-import clientAppSetup0 from 'D:/Github/tips/node_modules/@vuepress/plugin-active-header-links/lib/client/clientAppSetup.js'
-import clientAppSetup1 from 'D:/Github/tips/node_modules/@vuepress/plugin-nprogress/lib/client/clientAppSetup.js'
-import clientAppSetup2 from 'D:/Github/tips/node_modules/@vuepress/theme-default/lib/client/clientAppSetup.js'
-import clientAppSetup3 from 'D:/Github/tips/node_modules/vuepress-plugin-clipboard/lib/client/clientAppSetup.js'
+import clientAppSetup0 from '/Users/csjerry/project/other/tips/node_modules/@vuepress/plugin-active-header-links/lib/client/clientAppSetup.js'
+import clientAppSetup1 from '/Users/csjerry/project/other/tips/node_modules/@vuepress/plugin-nprogress/lib/client/clientAppSetup.js'
+import clientAppSetup2 from '/Users/csjerry/project/other/tips/node_modules/@vuepress/theme-default/lib/client/clientAppSetup.js'
+import clientAppSetup3 from '/Users/csjerry/project/other/tips/node_modules/vuepress-plugin-clipboard/lib/client/clientAppSetup.js'
 
 export const clientAppSetups = [
   clientAppSetup0,

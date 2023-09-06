@@ -15,7 +15,7 @@ export const data = {
       },
       {
         "title": "计算机语言",
-        "details": "以 Go 为核心，学习计算机知识"
+        "details": "以 Java 为核心，学习计算机知识"
       },
       {
         "title": "操作系统",

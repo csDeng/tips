@@ -14,7 +14,10 @@ module.exports = {
         },
         {
             text: '计算机语言',
-            link: '/language/',
+            children: [
+                { text: 'Java', link: '/language/Java' },
+                { text: 'Golang', link: '/language/go'},
+            ]
         },
         {
             text: '操作系统',
@@ -40,6 +43,10 @@ module.exports = {
                 {
                     text: "docker",
                     link: "/other/Docker/"
+                },
+                {
+                    text: "AIGC",
+                    link: "/AI/"
                 },
                 {
                     text: "other",
