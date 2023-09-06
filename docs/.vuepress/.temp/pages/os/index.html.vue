@@ -5,7 +5,7 @@
 <p>大部分是cv，微调</p>
 </div>
 <h2 id="进程间通信" tabindex="-1"><a class="header-anchor" href="#进程间通信" aria-hidden="true">#</a> 进程间通信</h2>
-<p><RouterLink to="/os/memoryShare.html">1. 共享内存</RouterLink></p>
+<p><RouterLink to="//os/memoryShare.html">1. 共享内存</RouterLink></p>
 <h2 id="体系" tabindex="-1"><a class="header-anchor" href="#体系" aria-hidden="true">#</a> 体系</h2>
 <ol start="2">
 <li>[]</li>
