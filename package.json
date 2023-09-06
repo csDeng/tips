@@ -18,6 +18,7 @@
     "build": "yarn vuepress build docs"
   },
   "dependencies": {
-    "esbuild": "^0.14.39"
+    "esbuild": "^0.14.39",
+    "yarn": "^1.22.19"
   }
 }

@@ -38,6 +38,7 @@ sidebar: false
 1. [Java 的线程安全机制之`synchronized`](./java-synchronized.md)
 2. [Java 的线程安全机制之`volatile`](./java-volatile.md)
 3. [从入门到精通：Java注解详解](./java-annotation.md)
+4. [`Java` 并发基础之`ReentrantReadLock`](./java-reentrantReadLock.md)
 
 
 ## Spring

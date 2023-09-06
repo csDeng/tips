@@ -9,7 +9,7 @@ categories:
 
 
 
-![image-20230821234216329](prompt-introduction//image-20230821234216329.png)
+![image-20230821234216329](./prompt-introduction/image-20230821234216329.png)
 
 # 掌握AI助手的魔法工具：解密Prompt（提示）在AIGC时代的应用「上篇」
 

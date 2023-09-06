@@ -409,21 +409,21 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 >
 > 示例 1：
 >
-> ![img](pics/list/circularlinkedlist.png)
+> ![img](./pics/list/circularlinkedlist.png)
 >
 > 输入：head = [3,2,0,-4], pos = 1
 > 输出：返回索引为 1 的链表节点
 > 解释：链表中有一个环，其尾部连接到第二个节点。
 > 示例 2：
 >
-> ![img](pics/list/circularlinkedlist_test2.png)
+> ![img](./pics/list/circularlinkedlist_test2.png)
 >
 > 输入：head = [1,2], pos = 0
 > 输出：返回索引为 0 的链表节点
 > 解释：链表中有一个环，其尾部连接到第一个节点。
 > 示例 3：
 >
-> ![img](pics/list/circularlinkedlist_test3.png)
+> ![img](./pics/list/circularlinkedlist_test3.png)
 >
 > 输入：head = [1], pos = -1
 > 输出：返回 null
@@ -478,7 +478,7 @@ func detectCycle(head *ListNode) *ListNode {
 
 > 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
 >
-> ![img](pics/list/swap_ex1.jpg)
+> ![img](./pics/list/swap_ex1.jpg)
 >
 > 示例 1：
 >
@@ -545,7 +545,7 @@ func swapPairs(head *ListNode) *ListNode {
 
 > 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
 >
-> ![19.删除链表的倒数第N个节点](pics/list/20210510085957392.png)
+> ![19.删除链表的倒数第N个节点](./pics/list/20210510085957392.png)
 >
 > 示例 1：
 >
