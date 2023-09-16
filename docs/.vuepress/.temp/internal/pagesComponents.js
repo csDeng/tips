@@ -191,8 +191,6 @@ export const pagesComponents = {
   "v-70c71952": defineAsyncComponent(() => import(/* webpackChunkName: "v-70c71952" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/realize.html.vue")),
   // path: /language/go/micro/rpc.html
   "v-ee5fb870": defineAsyncComponent(() => import(/* webpackChunkName: "v-ee5fb870" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/rpc.html.vue")),
-  // path: /language/go/other/package.html
-  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /language/go/net/http.html
   "v-39b1e776": defineAsyncComponent(() => import(/* webpackChunkName: "v-39b1e776" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/http.html.vue")),
   // path: /language/go/net/socket.html
@@ -203,6 +201,8 @@ export const pagesComponents = {
   "v-4fe4d797": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fe4d797" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/tcp_sticky.html.vue")),
   // path: /language/go/net/websocket.html
   "v-7fd75e6d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fd75e6d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.vue")),
+  // path: /language/go/other/package.html
+  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /language/go/design/behavior/chainOfResponsibility.html
   "v-520b6570": defineAsyncComponent(() => import(/* webpackChunkName: "v-520b6570" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/design/behavior/chainOfResponsibility.html.vue")),
   // path: /language/go/design/behavior/command.html
