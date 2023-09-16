@@ -31,14 +31,6 @@ export const themeData = {
       ]
     },
     {
-      "text": "操作系统",
-      "link": "/os/"
-    },
-    {
-      "text": "计算机网络",
-      "link": "/network/"
-    },
-    {
       "text": "数据库",
       "children": [
         {
@@ -71,6 +63,10 @@ export const themeData = {
           "link": "/other/"
         }
       ]
+    },
+    {
+      "text": "面试神器~八股",
+      "link": "/interview/"
     }
   ],
   "logo": "https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg",

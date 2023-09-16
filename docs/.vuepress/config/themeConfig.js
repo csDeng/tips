@@ -20,14 +20,6 @@ module.exports = {
             ]
         },
         {
-            text: '操作系统',
-            link: '/os/',
-        },
-        {
-            text: '计算机网络',
-            link: '/network/',
-        },
-        {
             text: '数据库',
             children: [
                 { text: 'MySQL', link: '/database/MySQL/' },
@@ -53,7 +45,11 @@ module.exports = {
                     link: "/other/"
                 }
             ]
-        }
+        },
+        {
+            text: '面试神器~八股',
+            link: '/interview/',
+        },
         // // NavbarGroup
         // {
         // text: 'Group',

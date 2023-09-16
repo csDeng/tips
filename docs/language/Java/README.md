@@ -31,6 +31,7 @@ sidebar: false
 
 ## 高级
 
+1. [Java 函数式编程](./java-functionalProgram.md)
 
 
 ## 并发
@@ -42,6 +43,5 @@ sidebar: false
 
 
 ## Spring
-
 
 
