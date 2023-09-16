@@ -155,20 +155,20 @@ export const pagesData = {
   "v-04c72495": () => import(/* webpackChunkName: "v-04c72495" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/index/why_btree.html.js").then(({ data }) => data),
   // path: /database/MySQL/lock/has_some_lock.html
   "v-1f9174a4": () => import(/* webpackChunkName: "v-1f9174a4" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/lock/has_some_lock.html.js").then(({ data }) => data),
+  // path: /database/MySQL/optimize/division.html
+  "v-b8bcbcbc": () => import(/* webpackChunkName: "v-b8bcbcbc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/optimize/division.html.js").then(({ data }) => data),
   // path: /database/MySQL/transaction/how.html
   "v-52d7f4bc": () => import(/* webpackChunkName: "v-52d7f4bc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how.html.js").then(({ data }) => data),
   // path: /database/MySQL/transaction/how_to_solve_illusory_read.html
   "v-4e4cc0ef": () => import(/* webpackChunkName: "v-4e4cc0ef" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how_to_solve_illusory_read.html.js").then(({ data }) => data),
-  // path: /database/MySQL/optimize/division.html
-  "v-b8bcbcbc": () => import(/* webpackChunkName: "v-b8bcbcbc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/optimize/division.html.js").then(({ data }) => data),
   // path: /database/Redis/architecture/data_consistency.html
   "v-44200f69": () => import(/* webpackChunkName: "v-44200f69" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/architecture/data_consistency.html.js").then(({ data }) => data),
-  // path: /database/Redis/data_structure/data.html
-  "v-c4b57c26": () => import(/* webpackChunkName: "v-c4b57c26" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.js").then(({ data }) => data),
   // path: /database/Redis/data_persistence/aof.html
   "v-9e9da312": () => import(/* webpackChunkName: "v-9e9da312" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_persistence/aof.html.js").then(({ data }) => data),
   // path: /database/Redis/data_persistence/rdb.html
   "v-49ed3aff": () => import(/* webpackChunkName: "v-49ed3aff" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_persistence/rdb.html.js").then(({ data }) => data),
+  // path: /database/Redis/data_structure/data.html
+  "v-c4b57c26": () => import(/* webpackChunkName: "v-c4b57c26" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.js").then(({ data }) => data),
   // path: /language/go/concurrence/Goroutine.html
   "v-d9c3a514": () => import(/* webpackChunkName: "v-d9c3a514" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/concurrence/Goroutine.html.js").then(({ data }) => data),
   // path: /language/go/concurrence/Goroutinue_pool.html
@@ -189,6 +189,8 @@ export const pagesData = {
   "v-70c71952": () => import(/* webpackChunkName: "v-70c71952" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/realize.html.js").then(({ data }) => data),
   // path: /language/go/micro/rpc.html
   "v-ee5fb870": () => import(/* webpackChunkName: "v-ee5fb870" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/rpc.html.js").then(({ data }) => data),
+  // path: /language/go/other/package.html
+  "v-0a939f3b": () => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.js").then(({ data }) => data),
   // path: /language/go/net/http.html
   "v-39b1e776": () => import(/* webpackChunkName: "v-39b1e776" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/http.html.js").then(({ data }) => data),
   // path: /language/go/net/socket.html
@@ -199,8 +201,6 @@ export const pagesData = {
   "v-4fe4d797": () => import(/* webpackChunkName: "v-4fe4d797" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/tcp_sticky.html.js").then(({ data }) => data),
   // path: /language/go/net/websocket.html
   "v-7fd75e6d": () => import(/* webpackChunkName: "v-7fd75e6d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.js").then(({ data }) => data),
-  // path: /language/go/other/package.html
-  "v-0a939f3b": () => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.js").then(({ data }) => data),
   // path: /language/go/design/behavior/chainOfResponsibility.html
   "v-520b6570": () => import(/* webpackChunkName: "v-520b6570" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/design/behavior/chainOfResponsibility.html.js").then(({ data }) => data),
   // path: /language/go/design/behavior/command.html

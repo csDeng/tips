@@ -7,7 +7,7 @@ const  {
 
 module.exports = {
     // 站点配置
-    base: '/',
+    base: '/csDeng.github.io/',
     lang: 'zh-CN',
     title: 'CSJerry',
     description: '弱小与无知不是生存的障碍，傲慢才是',

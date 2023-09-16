@@ -157,20 +157,20 @@ export const pagesComponents = {
   "v-04c72495": defineAsyncComponent(() => import(/* webpackChunkName: "v-04c72495" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/index/why_btree.html.vue")),
   // path: /database/MySQL/lock/has_some_lock.html
   "v-1f9174a4": defineAsyncComponent(() => import(/* webpackChunkName: "v-1f9174a4" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/lock/has_some_lock.html.vue")),
+  // path: /database/MySQL/optimize/division.html
+  "v-b8bcbcbc": defineAsyncComponent(() => import(/* webpackChunkName: "v-b8bcbcbc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/optimize/division.html.vue")),
   // path: /database/MySQL/transaction/how.html
   "v-52d7f4bc": defineAsyncComponent(() => import(/* webpackChunkName: "v-52d7f4bc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how.html.vue")),
   // path: /database/MySQL/transaction/how_to_solve_illusory_read.html
   "v-4e4cc0ef": defineAsyncComponent(() => import(/* webpackChunkName: "v-4e4cc0ef" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/transaction/how_to_solve_illusory_read.html.vue")),
-  // path: /database/MySQL/optimize/division.html
-  "v-b8bcbcbc": defineAsyncComponent(() => import(/* webpackChunkName: "v-b8bcbcbc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/optimize/division.html.vue")),
   // path: /database/Redis/architecture/data_consistency.html
   "v-44200f69": defineAsyncComponent(() => import(/* webpackChunkName: "v-44200f69" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/architecture/data_consistency.html.vue")),
-  // path: /database/Redis/data_structure/data.html
-  "v-c4b57c26": defineAsyncComponent(() => import(/* webpackChunkName: "v-c4b57c26" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.vue")),
   // path: /database/Redis/data_persistence/aof.html
   "v-9e9da312": defineAsyncComponent(() => import(/* webpackChunkName: "v-9e9da312" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_persistence/aof.html.vue")),
   // path: /database/Redis/data_persistence/rdb.html
   "v-49ed3aff": defineAsyncComponent(() => import(/* webpackChunkName: "v-49ed3aff" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_persistence/rdb.html.vue")),
+  // path: /database/Redis/data_structure/data.html
+  "v-c4b57c26": defineAsyncComponent(() => import(/* webpackChunkName: "v-c4b57c26" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/Redis/data_structure/data.html.vue")),
   // path: /language/go/concurrence/Goroutine.html
   "v-d9c3a514": defineAsyncComponent(() => import(/* webpackChunkName: "v-d9c3a514" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/concurrence/Goroutine.html.vue")),
   // path: /language/go/concurrence/Goroutinue_pool.html
@@ -191,6 +191,8 @@ export const pagesComponents = {
   "v-70c71952": defineAsyncComponent(() => import(/* webpackChunkName: "v-70c71952" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/realize.html.vue")),
   // path: /language/go/micro/rpc.html
   "v-ee5fb870": defineAsyncComponent(() => import(/* webpackChunkName: "v-ee5fb870" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/micro/rpc.html.vue")),
+  // path: /language/go/other/package.html
+  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /language/go/net/http.html
   "v-39b1e776": defineAsyncComponent(() => import(/* webpackChunkName: "v-39b1e776" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/http.html.vue")),
   // path: /language/go/net/socket.html
@@ -201,8 +203,6 @@ export const pagesComponents = {
   "v-4fe4d797": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fe4d797" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/tcp_sticky.html.vue")),
   // path: /language/go/net/websocket.html
   "v-7fd75e6d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fd75e6d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/net/websocket.html.vue")),
-  // path: /language/go/other/package.html
-  "v-0a939f3b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a939f3b" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/other/package.html.vue")),
   // path: /language/go/design/behavior/chainOfResponsibility.html
   "v-520b6570": defineAsyncComponent(() => import(/* webpackChunkName: "v-520b6570" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/design/behavior/chainOfResponsibility.html.vue")),
   // path: /language/go/design/behavior/command.html
