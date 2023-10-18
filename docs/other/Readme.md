@@ -4,6 +4,7 @@
 ## 学习相关
 
 * [HTTP-api-design](./study/http_api_design.md)
+* [雪花算法](./study/snowflake.md)
 
 ## 面试相关
 

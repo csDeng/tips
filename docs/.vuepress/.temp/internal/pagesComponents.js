@@ -21,6 +21,8 @@ export const pagesComponents = {
   "v-1739c35a": defineAsyncComponent(() => import(/* webpackChunkName: "v-1739c35a" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/basic_struct.html.vue")),
   // path: /algorithm/sort.html
   "v-4ffc68c2": defineAsyncComponent(() => import(/* webpackChunkName: "v-4ffc68c2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.vue")),
+  // path: /bigdata/introduce.html
+  "v-873cfd50": defineAsyncComponent(() => import(/* webpackChunkName: "v-873cfd50" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/bigdata/introduce.html.vue")),
   // path: /interview/
   "v-71b3ae87": defineAsyncComponent(() => import(/* webpackChunkName: "v-71b3ae87" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/interview/index.html.vue")),
   // path: /leetcode/
@@ -49,6 +51,10 @@ export const pagesComponents = {
   "v-e95b895e": defineAsyncComponent(() => import(/* webpackChunkName: "v-e95b895e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/company_info.html.vue")),
   // path: /other/interviewContent.html
   "v-b950286e": defineAsyncComponent(() => import(/* webpackChunkName: "v-b950286e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/interviewContent.html.vue")),
+  // path: /algorithm/leetcode/DFS.html
+  "v-19aab629": defineAsyncComponent(() => import(/* webpackChunkName: "v-19aab629" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/leetcode/DFS.html.vue")),
+  // path: /algorithm/leetcode/%E5%91%A8%E8%B5%9B%E6%A8%A1%E7%89%88.html
+  "v-b5ce9dd2": defineAsyncComponent(() => import(/* webpackChunkName: "v-b5ce9dd2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/leetcode/周赛模版.html.vue")),
   // path: /database/MySQL/
   "v-29dfd9f0": defineAsyncComponent(() => import(/* webpackChunkName: "v-29dfd9f0" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.vue")),
   // path: /database/Redis/
@@ -81,16 +87,24 @@ export const pagesComponents = {
   "v-2b122822": defineAsyncComponent(() => import(/* webpackChunkName: "v-2b122822" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/index.html.vue")),
   // path: /language/Java/java-annotation.html
   "v-5449bfce": defineAsyncComponent(() => import(/* webpackChunkName: "v-5449bfce" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-annotation.html.vue")),
+  // path: /language/Java/java-date-time.html
+  "v-5102c989": defineAsyncComponent(() => import(/* webpackChunkName: "v-5102c989" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-date-time.html.vue")),
   // path: /language/Java/java-functionalProgram.html
   "v-5a63fd34": defineAsyncComponent(() => import(/* webpackChunkName: "v-5a63fd34" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-functionalProgram.html.vue")),
+  // path: /language/Java/java-pattern-variable.html
+  "v-431e9e24": defineAsyncComponent(() => import(/* webpackChunkName: "v-431e9e24" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-pattern-variable.html.vue")),
   // path: /language/Java/java-reentrantReadLock.html
   "v-65a36747": defineAsyncComponent(() => import(/* webpackChunkName: "v-65a36747" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-reentrantReadLock.html.vue")),
   // path: /language/Java/java-reentrantReadWriteLock.html
   "v-08855754": defineAsyncComponent(() => import(/* webpackChunkName: "v-08855754" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-reentrantReadWriteLock.html.vue")),
   // path: /language/Java/java-synchronized.html
   "v-19036c09": defineAsyncComponent(() => import(/* webpackChunkName: "v-19036c09" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-synchronized.html.vue")),
+  // path: /language/Java/java-throttle.html
+  "v-3f5c45b3": defineAsyncComponent(() => import(/* webpackChunkName: "v-3f5c45b3" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-throttle.html.vue")),
   // path: /language/Java/java-volatile.html
   "v-02308a81": defineAsyncComponent(() => import(/* webpackChunkName: "v-02308a81" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-volatile.html.vue")),
+  // path: /language/Java/maven-question.html
+  "v-810fc0bc": defineAsyncComponent(() => import(/* webpackChunkName: "v-810fc0bc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/maven-question.html.vue")),
   // path: /language/go/
   "v-b1fd4aee": defineAsyncComponent(() => import(/* webpackChunkName: "v-b1fd4aee" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/index.html.vue")),
   // path: /language/go/array_slice.html
@@ -139,8 +153,12 @@ export const pagesComponents = {
   "v-02a00397": defineAsyncComponent(() => import(/* webpackChunkName: "v-02a00397" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/Docker/index.html.vue")),
   // path: /other/Nginx/
   "v-31c0714d": defineAsyncComponent(() => import(/* webpackChunkName: "v-31c0714d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/Nginx/index.html.vue")),
+  // path: /other/k8s/minikube.html
+  "v-b8455cd8": defineAsyncComponent(() => import(/* webpackChunkName: "v-b8455cd8" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/k8s/minikube.html.vue")),
   // path: /other/study/http_api_design.html
   "v-3b73db5d": defineAsyncComponent(() => import(/* webpackChunkName: "v-3b73db5d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/study/http_api_design.html.vue")),
+  // path: /other/study/snowflake.html
+  "v-697bf125": defineAsyncComponent(() => import(/* webpackChunkName: "v-697bf125" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/study/snowflake.html.vue")),
   // path: /database/MySQL/basic/count_how_work.html
   "v-434176a0": defineAsyncComponent(() => import(/* webpackChunkName: "v-434176a0" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/basic/count_how_work.html.vue")),
   // path: /database/MySQL/basic/process.html

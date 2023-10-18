@@ -19,6 +19,8 @@ export const pagesData = {
   "v-1739c35a": () => import(/* webpackChunkName: "v-1739c35a" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/basic_struct.html.js").then(({ data }) => data),
   // path: /algorithm/sort.html
   "v-4ffc68c2": () => import(/* webpackChunkName: "v-4ffc68c2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.js").then(({ data }) => data),
+  // path: /bigdata/introduce.html
+  "v-873cfd50": () => import(/* webpackChunkName: "v-873cfd50" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/bigdata/introduce.html.js").then(({ data }) => data),
   // path: /interview/
   "v-71b3ae87": () => import(/* webpackChunkName: "v-71b3ae87" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/interview/index.html.js").then(({ data }) => data),
   // path: /leetcode/
@@ -47,6 +49,10 @@ export const pagesData = {
   "v-e95b895e": () => import(/* webpackChunkName: "v-e95b895e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/company_info.html.js").then(({ data }) => data),
   // path: /other/interviewContent.html
   "v-b950286e": () => import(/* webpackChunkName: "v-b950286e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/interviewContent.html.js").then(({ data }) => data),
+  // path: /algorithm/leetcode/DFS.html
+  "v-19aab629": () => import(/* webpackChunkName: "v-19aab629" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/leetcode/DFS.html.js").then(({ data }) => data),
+  // path: /algorithm/leetcode/%E5%91%A8%E8%B5%9B%E6%A8%A1%E7%89%88.html
+  "v-b5ce9dd2": () => import(/* webpackChunkName: "v-b5ce9dd2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/leetcode/周赛模版.html.js").then(({ data }) => data),
   // path: /database/MySQL/
   "v-29dfd9f0": () => import(/* webpackChunkName: "v-29dfd9f0" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/index.html.js").then(({ data }) => data),
   // path: /database/Redis/
@@ -79,16 +85,24 @@ export const pagesData = {
   "v-2b122822": () => import(/* webpackChunkName: "v-2b122822" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/index.html.js").then(({ data }) => data),
   // path: /language/Java/java-annotation.html
   "v-5449bfce": () => import(/* webpackChunkName: "v-5449bfce" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-annotation.html.js").then(({ data }) => data),
+  // path: /language/Java/java-date-time.html
+  "v-5102c989": () => import(/* webpackChunkName: "v-5102c989" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-date-time.html.js").then(({ data }) => data),
   // path: /language/Java/java-functionalProgram.html
   "v-5a63fd34": () => import(/* webpackChunkName: "v-5a63fd34" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-functionalProgram.html.js").then(({ data }) => data),
+  // path: /language/Java/java-pattern-variable.html
+  "v-431e9e24": () => import(/* webpackChunkName: "v-431e9e24" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-pattern-variable.html.js").then(({ data }) => data),
   // path: /language/Java/java-reentrantReadLock.html
   "v-65a36747": () => import(/* webpackChunkName: "v-65a36747" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-reentrantReadLock.html.js").then(({ data }) => data),
   // path: /language/Java/java-reentrantReadWriteLock.html
   "v-08855754": () => import(/* webpackChunkName: "v-08855754" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-reentrantReadWriteLock.html.js").then(({ data }) => data),
   // path: /language/Java/java-synchronized.html
   "v-19036c09": () => import(/* webpackChunkName: "v-19036c09" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-synchronized.html.js").then(({ data }) => data),
+  // path: /language/Java/java-throttle.html
+  "v-3f5c45b3": () => import(/* webpackChunkName: "v-3f5c45b3" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-throttle.html.js").then(({ data }) => data),
   // path: /language/Java/java-volatile.html
   "v-02308a81": () => import(/* webpackChunkName: "v-02308a81" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-volatile.html.js").then(({ data }) => data),
+  // path: /language/Java/maven-question.html
+  "v-810fc0bc": () => import(/* webpackChunkName: "v-810fc0bc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/maven-question.html.js").then(({ data }) => data),
   // path: /language/go/
   "v-b1fd4aee": () => import(/* webpackChunkName: "v-b1fd4aee" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/index.html.js").then(({ data }) => data),
   // path: /language/go/array_slice.html
@@ -137,8 +151,12 @@ export const pagesData = {
   "v-02a00397": () => import(/* webpackChunkName: "v-02a00397" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/Docker/index.html.js").then(({ data }) => data),
   // path: /other/Nginx/
   "v-31c0714d": () => import(/* webpackChunkName: "v-31c0714d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/Nginx/index.html.js").then(({ data }) => data),
+  // path: /other/k8s/minikube.html
+  "v-b8455cd8": () => import(/* webpackChunkName: "v-b8455cd8" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/k8s/minikube.html.js").then(({ data }) => data),
   // path: /other/study/http_api_design.html
   "v-3b73db5d": () => import(/* webpackChunkName: "v-3b73db5d" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/study/http_api_design.html.js").then(({ data }) => data),
+  // path: /other/study/snowflake.html
+  "v-697bf125": () => import(/* webpackChunkName: "v-697bf125" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/study/snowflake.html.js").then(({ data }) => data),
   // path: /database/MySQL/basic/count_how_work.html
   "v-434176a0": () => import(/* webpackChunkName: "v-434176a0" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/basic/count_how_work.html.js").then(({ data }) => data),
   // path: /database/MySQL/basic/process.html

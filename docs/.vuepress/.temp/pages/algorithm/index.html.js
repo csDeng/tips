@@ -17,6 +17,12 @@ export const data = {
       "title": "算法体系",
       "slug": "算法体系",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "刷题",
+      "slug": "刷题",
+      "children": []
     }
   ],
   "git": {
@@ -40,4 +46,17 @@ export const data = {
     ]
   },
   "filePathRelative": "algorithm/README.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }
