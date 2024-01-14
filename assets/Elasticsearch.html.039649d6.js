@@ -1,0 +1,1 @@
+const e={key:"v-b7e5d65c",path:"/interview/middleware/Elasticsearch.html",title:"\u4E3A\u4EC0\u4E48\u8981\u4F7F\u7528 Elasticsearch\uFF1F",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1705231225e3,contributors:[{name:"CSJerry",email:"m16698000915@163.com",commits:2}]},filePathRelative:"interview/middleware/Elasticsearch.md"};export{e as data};

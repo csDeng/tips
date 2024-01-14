@@ -1,0 +1,1 @@
+const a={key:"v-08855754",path:"/language/Java/java-reentrantReadWriteLock.html",title:"",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:169401139e4,contributors:[{name:"CSJerry",email:"m16698000915@163.com",commits:1}]},filePathRelative:"language/Java/java-reentrantReadWriteLock.md"};export{a as data};

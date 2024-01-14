@@ -1,0 +1,1 @@
+const e={key:"v-2d09fb6e",path:"/AI/",title:"AIGC",lang:"zh-CN",frontmatter:{sidebar:!1},excerpt:"",headers:[],git:{updatedTime:1705231225e3,contributors:[{name:"CSJerry",email:"m16698000915@163.com",commits:2}]},filePathRelative:"AI/readme.md"};export{e as data};

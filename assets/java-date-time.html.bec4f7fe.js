@@ -1,0 +1,1 @@
+const a={key:"v-5102c989",path:"/language/Java/java-date-time.html",title:"Java \u65E5\u671F\u65F6\u95F4\u5904\u7406",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1697640471e3,contributors:[{name:"CSJerry",email:"m16698000915@163.com",commits:1}]},filePathRelative:"language/Java/java-date-time.md"};export{a as data};
