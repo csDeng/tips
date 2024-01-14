@@ -124,5 +124,5 @@
 <blockquote>
 <p>⚠️ Leetcode 灵神</p>
 </blockquote>
-<p>周赛模版题</p>
+<p><RouterLink to="/algorithm/leetcode/%E5%91%A8%E8%B5%9B%E6%A8%A1%E7%89%88.html">周赛模版题</RouterLink></p>
 </template>

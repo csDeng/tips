@@ -28,20 +28,26 @@ sidebar: false
 
 
 
+* [`JDK17` 模式变量 `Pattern variable`](./java-pattern-variable.md)
+* [Java 限流](./java-throttle.md)
+* [Java mdc 日志追踪](./java-mdc.md)
+
+
+
 
 ## 高级
 
-1. [Java 函数式编程](./java-functionalProgram.md)
+* [Java 函数式编程](./java-functionalProgram.md)
 
 
 ## 并发
 
-1. [Java 的线程安全机制之`synchronized`](./java-synchronized.md)
-2. [Java 的线程安全机制之`volatile`](./java-volatile.md)
-3. [从入门到精通：Java注解详解](./java-annotation.md)
-4. [`Java` 并发基础之`ReentrantReadLock`](./java-reentrantReadLock.md)
+* [Java 的线程安全机制之`synchronized`](./java-synchronized.md)
+* [Java 的线程安全机制之`volatile`](./java-volatile.md)
+* [从入门到精通：Java注解详解](./java-annotation.md)
+* [`Java` 并发基础之`ReentrantReadLock`](./java-reentrantReadLock.md)
 
 
 ## Spring
 
-
+* [Spring 原理](./深入spring.md)

@@ -50,6 +50,10 @@ module.exports = {
             text: '面试神器~八股',
             link: '/interview/',
         },
+        {
+            text: '关于',
+            link: '/about'
+        }
         // // NavbarGroup
         // {
         // text: 'Group',

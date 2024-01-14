@@ -67,6 +67,10 @@ export const themeData = {
     {
       "text": "面试神器~八股",
       "link": "/interview/"
+    },
+    {
+      "text": "关于",
+      "link": "/about"
     }
   ],
   "logo": "https://blog-1302546775.cos.ap-guangzhou.myqcloud.com/2021%2F12%2Flogo.jpg",

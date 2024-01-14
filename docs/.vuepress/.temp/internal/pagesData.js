@@ -1,6 +1,8 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
+  // path: /about.html
+  "v-22a39d25": () => import(/* webpackChunkName: "v-22a39d25" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/about.html.js").then(({ data }) => data),
   // path: /AI/prompt-change.html
   "v-c172a7a4": () => import(/* webpackChunkName: "v-c172a7a4" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/AI/prompt-change.html.js").then(({ data }) => data),
   // path: /AI/prompt-introduction.html
@@ -9,18 +11,22 @@ export const pagesData = {
   "v-0b067674": () => import(/* webpackChunkName: "v-0b067674" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/AI/prompt-sample.html.js").then(({ data }) => data),
   // path: /AI/
   "v-2d09fb6e": () => import(/* webpackChunkName: "v-2d09fb6e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/AI/index.html.js").then(({ data }) => data),
+  // path: /WeChat/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93%EF%BC%9A%E4%BB%8E%E4%B8%80%E7%BA%BF%E4%BA%92%E8%81%94%E7%BD%91%E5%A4%A7%E5%8E%82%E5%AE%9E%E4%B9%A0%E5%88%B0%E4%BA%8C%E7%BA%BF%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E4%BD%9C%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4.html
+  "v-7d646d45": () => import(/* webpackChunkName: "v-7d646d45" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/WeChat/2023年度总结：从一线互联网大厂实习到二线互联网工作的这半年.html.js").then(({ data }) => data),
   // path: /WeChat/CDN.html
   "v-2424415c": () => import(/* webpackChunkName: "v-2424415c" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/WeChat/CDN.html.js").then(({ data }) => data),
   // path: /WeChat/bit.html
   "v-c2f12f48": () => import(/* webpackChunkName: "v-c2f12f48" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/WeChat/bit.html.js").then(({ data }) => data),
+  // path: /WeChat/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F.html
+  "v-168186d1": () => import(/* webpackChunkName: "v-168186d1" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/WeChat/微服务的前世今生.html.js").then(({ data }) => data),
+  // path: /bigdata/introduce.html
+  "v-873cfd50": () => import(/* webpackChunkName: "v-873cfd50" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/bigdata/introduce.html.js").then(({ data }) => data),
   // path: /algorithm/
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /algorithm/basic_struct.html
   "v-1739c35a": () => import(/* webpackChunkName: "v-1739c35a" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/basic_struct.html.js").then(({ data }) => data),
   // path: /algorithm/sort.html
   "v-4ffc68c2": () => import(/* webpackChunkName: "v-4ffc68c2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/sort.html.js").then(({ data }) => data),
-  // path: /bigdata/introduce.html
-  "v-873cfd50": () => import(/* webpackChunkName: "v-873cfd50" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/bigdata/introduce.html.js").then(({ data }) => data),
   // path: /interview/
   "v-71b3ae87": () => import(/* webpackChunkName: "v-71b3ae87" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/interview/index.html.js").then(({ data }) => data),
   // path: /leetcode/
@@ -45,10 +51,6 @@ export const pagesData = {
   "v-3a6b42b2": () => import(/* webpackChunkName: "v-3a6b42b2" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/leetcode/string.html.js").then(({ data }) => data),
   // path: /other/
   "v-e4cb1150": () => import(/* webpackChunkName: "v-e4cb1150" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/index.html.js").then(({ data }) => data),
-  // path: /other/company_info.html
-  "v-e95b895e": () => import(/* webpackChunkName: "v-e95b895e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/company_info.html.js").then(({ data }) => data),
-  // path: /other/interviewContent.html
-  "v-b950286e": () => import(/* webpackChunkName: "v-b950286e" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/other/interviewContent.html.js").then(({ data }) => data),
   // path: /algorithm/leetcode/DFS.html
   "v-19aab629": () => import(/* webpackChunkName: "v-19aab629" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/algorithm/leetcode/DFS.html.js").then(({ data }) => data),
   // path: /algorithm/leetcode/%E5%91%A8%E8%B5%9B%E6%A8%A1%E7%89%88.html
@@ -89,6 +91,10 @@ export const pagesData = {
   "v-5102c989": () => import(/* webpackChunkName: "v-5102c989" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-date-time.html.js").then(({ data }) => data),
   // path: /language/Java/java-functionalProgram.html
   "v-5a63fd34": () => import(/* webpackChunkName: "v-5a63fd34" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-functionalProgram.html.js").then(({ data }) => data),
+  // path: /language/Java/java-jni.html
+  "v-1d547410": () => import(/* webpackChunkName: "v-1d547410" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-jni.html.js").then(({ data }) => data),
+  // path: /language/Java/java-mdc.html
+  "v-39bc9669": () => import(/* webpackChunkName: "v-39bc9669" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-mdc.html.js").then(({ data }) => data),
   // path: /language/Java/java-pattern-variable.html
   "v-431e9e24": () => import(/* webpackChunkName: "v-431e9e24" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-pattern-variable.html.js").then(({ data }) => data),
   // path: /language/Java/java-reentrantReadLock.html
@@ -103,6 +109,10 @@ export const pagesData = {
   "v-02308a81": () => import(/* webpackChunkName: "v-02308a81" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/java-volatile.html.js").then(({ data }) => data),
   // path: /language/Java/maven-question.html
   "v-810fc0bc": () => import(/* webpackChunkName: "v-810fc0bc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/maven-question.html.js").then(({ data }) => data),
+  // path: /language/Java/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E5%BE%88%E5%B0%91%E4%BD%BF%E7%94%A8AutoWired.html
+  "v-7e055962": () => import(/* webpackChunkName: "v-7e055962" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/为什么我很少使用AutoWired.html.js").then(({ data }) => data),
+  // path: /language/Java/%E6%B7%B1%E5%85%A5spring.html
+  "v-a27c55fe": () => import(/* webpackChunkName: "v-a27c55fe" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/Java/深入spring.html.js").then(({ data }) => data),
   // path: /language/go/
   "v-b1fd4aee": () => import(/* webpackChunkName: "v-b1fd4aee" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/language/go/index.html.js").then(({ data }) => data),
   // path: /language/go/array_slice.html
@@ -173,6 +183,8 @@ export const pagesData = {
   "v-04c72495": () => import(/* webpackChunkName: "v-04c72495" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/index/why_btree.html.js").then(({ data }) => data),
   // path: /database/MySQL/lock/has_some_lock.html
   "v-1f9174a4": () => import(/* webpackChunkName: "v-1f9174a4" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/lock/has_some_lock.html.js").then(({ data }) => data),
+  // path: /database/MySQL/log/MySQL%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.html
+  "v-4dc33f12": () => import(/* webpackChunkName: "v-4dc33f12" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/log/MySQL日志文件.html.js").then(({ data }) => data),
   // path: /database/MySQL/optimize/division.html
   "v-b8bcbcbc": () => import(/* webpackChunkName: "v-b8bcbcbc" */"/Users/csjerry/project/other/tips/docs/.vuepress/.temp/pages/database/MySQL/optimize/division.html.js").then(({ data }) => data),
   // path: /database/MySQL/transaction/how.html

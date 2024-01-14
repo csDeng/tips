@@ -51,7 +51,9 @@
 >
 > ...
 
-4.UTF-8, a transformation format of ISO 10646[4]![null](./bit/640-20230910144853486.png)
+4.UTF-8, a transformation format of ISO 10646[4]
+
+![null](./bit/640-20230910144853486.png)
 
 
 

@@ -8,9 +8,6 @@
 
 ## 面试相关
 
-* [部分秋招信息](./company_info.md)
-* [面试题型](./interviewContent.md)
-
 
 
 

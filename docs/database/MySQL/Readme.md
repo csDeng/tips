@@ -64,7 +64,7 @@ sidebar: false
 
 1. [count是怎么运行的](./basic/count_how_work.md)
 2. [MySQL的执行顺序](./basic/process.md)
-3. 
+3. [MySQL的日志文件](./log/MySQL日志文件.md)
 
 
 

@@ -33,7 +33,7 @@
 <ol>
 <li><RouterLink to="/database/MySQL/basic/count_how_work.html">count是怎么运行的</RouterLink></li>
 <li><RouterLink to="/database/MySQL/basic/process.html">MySQL的执行顺序</RouterLink></li>
-<li></li>
+<li><RouterLink to="/database/MySQL/log/MySQL%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.html">MySQL的日志文件</RouterLink></li>
 </ol>
 <h2 id="面试题" tabindex="-1"><a class="header-anchor" href="#面试题" aria-hidden="true">#</a> 面试题</h2>
 <ol>
